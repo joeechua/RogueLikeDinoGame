@@ -1,6 +1,8 @@
-package game;
+package game.actors;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.AttackAction;
+import game.behaviours.Behaviour;
 
 import java.util.ArrayList;
 

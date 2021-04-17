@@ -1,12 +1,13 @@
-package game;
+package game.actions;
 
 
 import edu.monash.fit2099.engine.*;
 
-public class MateAction extends Action{
+public class FeedingAction extends Action {
 
     protected Actor target;
-    public MateAction(Actor target){this.target = target;}
+
+    public FeedingAction(Actor subject){this.target = subject;}
 
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -17,13 +18,14 @@ public class MateAction extends Action{
         int damage = weapon.damage();
         String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
-        //stuff about breeding, hatch within x days, success etc
+        //stuff about eating (decrease hunger etc)
+
 
         return result;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " attacks " + target;
+        return actor + " eats " + target;
     }
 }
