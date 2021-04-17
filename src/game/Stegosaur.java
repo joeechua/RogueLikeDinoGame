@@ -15,6 +15,8 @@ import edu.monash.fit2099.engine.GameMap;
 public class Stegosaur extends Actor {
 	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
 	private Behaviour behaviour;
+	private int foodLevel = 50;
+	//private ArrayList<Behaviour> behaviour = new Behaviour();
 
 	/** 
 	 * Constructor.
@@ -26,6 +28,9 @@ public class Stegosaur extends Actor {
 		super(name, 'd', 100);
 		
 		behaviour = new WanderBehaviour();
+		//behaviour.add(new WanderBehaviour());
+		//behaviour.add(new EatBehaviour());
+		//behaviour.add(new BreedBehaviour());
 	}
 
 	@Override
@@ -46,6 +51,9 @@ public class Stegosaur extends Actor {
 		Action wander = behaviour.getAction(this, map);
 		if (wander != null)
 			return wander;
+		//eat
+		//breed
+		//attack
 		
 		return new DoNothingAction();
 	}

@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Location;
 
 public class Tree extends Ground {
 	private int age = 0;
+	//fruits?
 
 	public Tree() {
 		super('+');
