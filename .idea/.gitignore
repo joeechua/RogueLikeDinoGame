@@ -1,0 +1,7 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+#jo ee added these check if remove or not
+/out
+/.idea
+*.iml
