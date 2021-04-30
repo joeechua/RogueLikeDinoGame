@@ -9,6 +9,8 @@ import game.items.*;
 import java.util.Scanner;
 
 public class VendingMachine extends Ground {
+
+    public static Location location;
     /**
      * Constructor.
      */
@@ -17,9 +19,10 @@ public class VendingMachine extends Ground {
         for (VendingItems item: VendingItems.values()){
             addCapability(item);
         }
+        location = new Location(location.map(), 5, 7);
     }
 
-    public String selectMenu(Actor actor, GameMap map) {
+    public static String selectMenu(Actor actor, GameMap map) {
         int option = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Purchasing Item \n1. Fruit \n2. Vegetarian Meal Kit \n3. Carnivore Meal Kit \n4. Stegosaur Egg " +
@@ -43,7 +46,7 @@ public class VendingMachine extends Ground {
         };
     }
 
-    public PurchasingAction getPurchasingAction(int price, VendingItems item) {
+    public static PurchasingAction getPurchasingAction(int price, VendingItems item) {
         return new PurchasingAction(price, item);
     }
 

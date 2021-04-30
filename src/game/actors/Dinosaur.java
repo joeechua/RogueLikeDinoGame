@@ -129,6 +129,10 @@ public abstract class Dinosaur extends Actor {
         return gender;
     }
 
+    public int getUnconsciousTime() {
+        return unconsciousTime;
+    }
+
     public boolean isPregnant(){
         for(Behaviour behaviour: behaviours){
             if(behaviour instanceof PregnantBehaviour){

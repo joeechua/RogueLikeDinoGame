@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import game.ecopoint.EcoPointWallet;
+import game.ground.VendingMachine;
 
 /**
  * Class representing the Player.
@@ -33,6 +34,9 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		if(map.locationOf(this) == VendingMachine.location){
+			VendingMachine.selectMenu(this,map);
+		}
 		return menu.showMenu(this, actions, display);
 	}
 }
