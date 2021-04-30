@@ -27,7 +27,7 @@ public class Bush extends Ground{
         if (age == 20)
             displayChar = 'M';
 
-        if(bushFruit == null ) {
+        if(bushFruit == null && random.nextDouble() == 0.1) {
             bushFruit = new Fruit();
         }
     }
