@@ -3,6 +3,7 @@ package game.actors;
 import edu.monash.fit2099.engine.*;
 import game.behaviours.Behaviour;
 import game.behaviours.BreedBehaviour;
+import game.items.Egg;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public abstract class Dinosaur extends Actor {
     protected int initFoodLevel;
     protected int unconsciousTime;
     protected final int MAX_FOOD_LEVEL;
+    public static Egg egg;
 
     public ArrayList<Behaviour> getBehaviours() {
         return behaviours;
@@ -78,5 +80,13 @@ public abstract class Dinosaur extends Actor {
 
     public void increaseFoodLevel(int incValue){
         foodLevel = Math.min(foodLevel+incValue, MAX_FOOD_LEVEL);
+    }
+
+    public static Egg getEgg() {
+        return egg;
+    }
+
+    public static void setEgg(Egg egg) {
+        Dinosaur.egg = egg;
     }
 }
