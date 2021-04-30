@@ -8,6 +8,7 @@ import game.actors.Dinosaur;
 
 public abstract class Egg extends PortableItem {
     private int timeHatch;
+    private Location birthLocation;
 
     /***
      * Constructor.
@@ -47,4 +48,7 @@ public abstract class Egg extends PortableItem {
         return this.timeHatch;
     }
 
+    public void setBirthLocation(Location birthLocation) {
+        this.birthLocation = birthLocation;
+    }
 }
