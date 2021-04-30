@@ -6,8 +6,6 @@ import game.ecopoint.EcoPointWallet;
 import game.enums.VendingItems;
 import game.items.*;
 
-// need VendingItems, EcoPoint and all items
-
 public class PurchasingAction extends Action {
 
     private int itemPrice;
@@ -44,6 +42,7 @@ public class PurchasingAction extends Action {
             case BRACHIOSAUR_EGG: return new BrachiosaurEgg();
             case CRANIVORE_MEAL_KIT: return new CarnivoreMealKit();
             case VEGETARIAN_MEAL_KIT: return new VegetarianMealKit();
+            default: return null;
         }
     }
 }
