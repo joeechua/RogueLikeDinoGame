@@ -1,30 +1,47 @@
 package game.enums;
 
 import edu.monash.fit2099.engine.Item;
-import game.items.CarnivoreMealKit;
-import game.items.Corpse;
-import game.items.Egg;
-import game.items.VegetarianMealKit;
+import game.actors.Dinosaur;
+import game.items.*;
+
+
 
 public enum Food {
-    EGG(10, Egg.class),
-    CORPSE(100, Corpse.class),
-    VEGETARIAN_MEAL_KIT(100, VegetarianMealKit.class),
-    CARNIVORE_MEAL_KIT(100, CarnivoreMealKit.class);
+    EGG(10, Egg.class, false),
+    CORPSE(100, Corpse.class, false),
+    STEG_FRUIT(10, Fruit.class, true),
+    BRACH_FRUIT(5, Fruit.class, true),
+    FED_FRUIT(20, Fruit.class, true),
+    VEGETARIAN_MEAL_KIT(100, VegetarianMealKit.class, true),
+    CARNIVORE_MEAL_KIT(100, CarnivoreMealKit.class, false);
 
-    public final int upLevel;
+    private final int upLevel;
     private Class<?> classType;
+    private final boolean isVeg;
+
 
     public Class<?> getClassType() {
         return classType;
     }
 
-    Food(int upLevel, Class<?> classType){
+    Food(int upLevel, Class<?> classType, boolean isVeg){
         this.upLevel = upLevel;
         this.classType = classType;
+        this.isVeg = isVeg;
     }
 
     public int getUpLevel(Item food) {
         return this.upLevel;
+    }
+
+    public Food[] getFoodList(Dinosaur dino){
+        if(dino.hasCapability(DinosaurCapabilities.HERBIVORE)){
+            Food[] vegList = new Food[]{Food.STEG_FRUIT, Food.BRACH_FRUIT, Food.FED_FRUIT,
+            Food.VEGETARIAN_MEAL_KIT};
+            return vegList;
+        }
+        else{
+            return Food.values();
+        }
     }
 }
