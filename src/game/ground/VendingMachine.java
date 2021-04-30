@@ -13,7 +13,7 @@ public class VendingMachine extends Ground {
      * Constructor.
      */
     public VendingMachine() {
-        super('V');
+        super('⌻');
         for (VendingItems item: VendingItems.values()){
             addCapability(item);
         }
