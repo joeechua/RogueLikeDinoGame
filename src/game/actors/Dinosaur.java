@@ -155,4 +155,24 @@ public abstract class Dinosaur extends Actor {
         ret = new NumberRange[]{x, y};
         return ret;
     }
+
+    public int getMinFoodLevel() {
+        return minFoodLevel;
+    }
+
+    public int getMaxFoodLevel() {
+        return maxFoodLevel;
+    }
+
+    public int getMaxUnconsciousTime() {
+        return maxUnconsciousTime;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public ArrayList<DinosaurCapabilities> getCapabilities() {
+        return capabilities;
+    }
 }
