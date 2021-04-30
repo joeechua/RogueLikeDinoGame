@@ -1,40 +1,51 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.AttackAction;
+import game.actions.EatingAction;
+import game.actions.MateAction;
 import game.actors.Dinosaur;
+import game.enums.DinosaurCapabilities;
+import game.items.*;
+
+import java.util.List;
 
 public class BreedBehaviour implements Behaviour {
 
     private Actor target;
-    public BreedBehaviour(){
-    }
-    public BreedBehaviour(Actor subject){this.target = subject;}
+
+    public BreedBehaviour(){}
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        if (map.contains(target)) {
-            map.contains(actor);
-        }
+        Dinosaur dino = (Dinosaur) actor;
 
-        /*
-        if(actor is not hungry, there is someone in the area){
-            return MateAction();
-        }
-        else if(actor is not hungry, no one in the area){
-            return MoveActorAction(destionation, getExitName());
-        }
-        else if(actor is hungry){
-            return "Actor is too hungry to mate" + maybe something in the dino part to inhibit this behaviour
-            if they are hungry
-        }
-        else{
-            return null;
-        }
-         */
+        Location here = map.locationOf(dino);
+        Location left = new Location(map, here.x()-1, here.y());
+        Location right = new Location(map, here.x()+1, here.y());
+        Location up = new Location(map, here.x(), here.y()+1);
+        Location down = new Location(map, here.x(), here.y()-1);
+        Location leftUp = new Location(map, here.x()-1, here.y()+1);
+        Location leftDown = new Location(map, here.x()-1, here.y()-1);
+        Location rightUp = new Location(map, here.x()+1, here.y()+1);
+        Location rightDown = new Location(map, here.x()+1, here.y()-1);
+        Location[] loclist = new Location[]{here, left, right, up, down, leftUp, rightUp, leftDown, rightDown};
+//        if (map.contains(target)) {
+//            map.contains(actor);
+//        }
 
-        //smt about breeding (check sex, distance etc)
-        //call MateAction()
-
+        if(dino.getFoodLevel()>100){
+            for(Location loc:loclist){
+                //find and mate
+                if(map.isAnActorAt(loc)){
+                    Actor target = map.getActorAt(loc);
+                    if(target.isConscious() && target.getDisplayChar() == dino.getDisplayChar()){
+                        Dinosaur mate = (Dinosaur) target;
+                        return new MateAction(mate);
+                    }
+                }
+            }
+        }
         return null;
     }
 }
