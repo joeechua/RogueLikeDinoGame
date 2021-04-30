@@ -14,7 +14,29 @@ public abstract class Dinosaur extends Actor {
 //    private Gender gender;
     protected int foodLevel;
     protected int initFoodLevel;
-    protected int unconciousTime;
+    protected int unconsciousTime;
+    protected final int MAX_FOOD_LEVEL;
+
+    public ArrayList<Behaviour> getBehaviours() {
+        return behaviours;
+    }
+
+    public int getFoodLevel() {
+        return foodLevel;
+    }
+
+    public int getInitFoodLevel() {
+        return initFoodLevel;
+    }
+
+    public int getUnconsciousTime() {
+        return unconsciousTime;
+    }
+
+    public int getMAX_FOOD_LEVEL() {
+        return MAX_FOOD_LEVEL;
+    }
+
     /**
      * Constructor.
      *
@@ -27,26 +49,34 @@ public abstract class Dinosaur extends Actor {
         // gender
         behaviours = new ArrayList<Behaviour>();
         initFoodLevel = foodLevel = 0;
-        if(!(this instanceof BabyDinosaur)){
-            behaviours.add(new BreedBehaviour());
+        if(this instanceof Brachiosaur){
+            MAX_FOOD_LEVEL = 160;
         }
+        else{
+            MAX_FOOD_LEVEL = 100;
+        }
+//        if(!(this instanceof BabyDinosaur)){
+//            behaviours.add(new BreedBehaviour());
+//        }
     }
 
-//    @Override
-//    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-//        tick();
-//        return new;
-//    }
+    @Override
+    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        tick();
+        return null;
+    }
 
     public void tick(){
         if(foodLevel > 0){
             foodLevel--;
-            unconciousTime = 0;
+            unconsciousTime = 0;
         }
         else {
-            unconciousTime++;
+            unconsciousTime++;
         }
     }
 
-
+    public void increaseFoodLevel(int incValue){
+        foodLevel = Math.min(foodLevel+incValue, MAX_FOOD_LEVEL);
+    }
 }

@@ -2,6 +2,7 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
+import game.enums.Food;
 
 // need Food enums and Dinosaur class
 
@@ -19,12 +20,16 @@ public class EatingAction extends Action {
         Location dinoLocation = map.locationOf(dino);
         dinoLocation.removeItem(targetFood);
 
-        // get nutritionValue of targetFood, increase foodLevel by value
+        int nutritionValue = 0;
+        for(Food enumFood: Food.values()){
+            if(targetFood.getClass() == enumFood.getClassType()){
+                nutritionValue = enumFood.getUpLevel(targetFood);
+                dino.increaseFoodLevel(nutritionValue);
+                break;
+            }
+        }
 
-        // rmb to add foodLevel of dino and nutritionValue
-
-
-        String result = menuDescription(actor) + "\nFood level of " + dino + " has increased by ";// + food level + " by " + nutritionValue
+        String result = menuDescription(actor) + "\nFood level of " + dino + " has increased by " + dino.getFoodLevel() + " by " + nutritionValue;
         return result;
     }
 

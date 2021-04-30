@@ -35,6 +35,22 @@ public abstract class BabyDinosaur extends Dinosaur {
         }
     }
 
+    public int getTurns() {
+        return turns;
+    }
+
+    public char getDinoChar() {
+        return dinoChar;
+    }
+
+    public int getMATURE_TURN_FOR_STEGO_ALLO() {
+        return MATURE_TURN_FOR_STEGO_ALLO;
+    }
+
+    public int getMATURE_TURN_FOR_BRAC() {
+        return MATURE_TURN_FOR_BRAC;
+    }
+
     @Override
     public void tick() {
         super.tick();
