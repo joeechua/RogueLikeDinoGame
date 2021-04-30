@@ -27,10 +27,10 @@ public abstract class BabyDinosaur extends Dinosaur {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-        if(dinoChar == 'b' && turns >= MATURE_TURN_FOR_BRAC){
+        if(dinoChar == 'b' && getTurns() >= MATURE_TURN_FOR_BRAC){
             return new GrowAction();
         }
-        else if((dinoChar == 's' || dinoChar == 'a') && turns >= MATURE_TURN_FOR_STEGO_ALLO){
+        else if((dinoChar == 's' || dinoChar == 'a') && getTurns() >= MATURE_TURN_FOR_STEGO_ALLO){
             return new GrowAction();
         }
         else{

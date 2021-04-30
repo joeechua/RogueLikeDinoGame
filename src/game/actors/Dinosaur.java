@@ -47,7 +47,7 @@ public abstract class Dinosaur extends Actor {
             behaviours.add(new BreedBehaviour());
         }
         else {
-            behaviours.add(new GrowBehaviour(turns));
+            behaviours.add(new GrowBehaviour(getTurns()));
         }
     }
 
