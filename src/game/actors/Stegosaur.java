@@ -10,55 +10,20 @@ import edu.monash.fit2099.engine.GameMap;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.enums.DinosaurCapabilities;
+import game.enums.Species;
 
 /**
  * A herbivorous dinosaur.
  *
  */
 public class Stegosaur extends Dinosaur {
-	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
-	private Behaviour behaviour;
-	private int foodLevel = 50;
-	//private ArrayList<Behaviour> behaviour = new Behaviour();
-
-	/** 
+	/**
 	 * Constructor.
 	 * All Stegosaurs are represented by a 'd' and have 100 hit points.
-	 * 
-	 * @param name the name of this Stegosaur
 	 */
-	public Stegosaur(String name) {
-		super(name, 'd', 100);
-		
-		behaviour = new WanderBehaviour();
-		//behaviour.add(new WanderBehaviour());
-		//behaviour.add(new EatBehaviour());
-		//behaviour.add(new BreedBehaviour());
+	public Stegosaur() {
+		super(Species.S.name(), 'd', 100);
+		capabilities.add(DinosaurCapabilities.HERBIVORE);
 	}
-
-	@Override
-	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new AttackAction(this));
-	}
-
-	/**
-	 * Figure out what to do next.
-	 * 
-	 * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
-	 * just stands there.  That's boring.
-	 * 
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-	 */
-	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		Action wander = behaviour.getAction(this, map);
-		if (wander != null)
-			return wander;
-		//eat
-		//breed
-		//attack
-		
-		return new DoNothingAction();
-	}
-
 }

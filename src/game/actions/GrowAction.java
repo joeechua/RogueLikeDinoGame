@@ -9,13 +9,13 @@ public class GrowAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Dinosaur adultDino = null;
         if(actor instanceof Allosaur){
-            adultDino = new Allosaur("Allosaur");
+            adultDino = new Allosaur();
         }
         else if (actor instanceof Stegosaur){
-            adultDino = new Stegosaur("Stegosaur");
+            adultDino = new Stegosaur();
         }
         else{
-            adultDino = new Brachiosaur("Brachiosaur");
+            adultDino = new Brachiosaur();
         }
         Location currentLocation = map.locationOf(actor);
         map.removeActor(actor);

@@ -3,26 +3,20 @@ package game.actors;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
+import game.enums.DinosaurCapabilities;
+import game.enums.Species;
 
 import java.util.ArrayList;
 
 
 public class Brachiosaur extends Dinosaur {
-    private ArrayList<Behaviour> behaviour;
-    public Brachiosaur(String name) {
-        super(name, 'd', 100);
 
-        //behaviour = new WanderBehaviour();
-        //behaviour.add(new WanderBehaviour());
-        //behaviour.add(new EatBehaviour());
-        //behaviour.add(new BreedBehaviour());
+    public Brachiosaur() {
+        super(Species.B.name(), 'd', 100);
+        capabilities.add(DinosaurCapabilities.HERBIVORE);
+        capabilities.add(DinosaurCapabilities.LONG_NECK);
     }
 
-    @Override
-    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        //i think need to return a list of actions
-        return new Actions(new AttackAction(this));
-    }
 
     /**
      * Figure out what to do next.
@@ -32,14 +26,14 @@ public class Brachiosaur extends Dinosaur {
      *
      * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
      */
-    @Override
-    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        //Action wander = behaviour.getAction(this, map);
-        //
-        //eat
-        //breed
-        //attack
-
-        return new DoNothingAction();
-    }
+//    @Override
+//    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+//        //Action wander = behaviour.getAction(this, map);
+//        //
+//        //eat
+//        //breed
+//        //attack
+//
+//        return new DoNothingAction();
+//    }
 }
