@@ -7,7 +7,7 @@ public enum Species {
 
     public final String label;
 
-    private Species(String name){
+    Species(String name){
         this.label = name;
     }
 

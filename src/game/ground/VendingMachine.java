@@ -1,8 +1,6 @@
 package game.ground;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
 import game.actions.PurchasingAction;
 import game.actors.Player;
 import game.enums.VendingItems;
@@ -13,72 +11,49 @@ import java.util.Scanner;
 public class VendingMachine extends Ground {
     /**
      * Constructor.
-     *
-     * @param displayChar character to display for this type of terrain
      */
-    public VendingMachine(char displayChar) {
+    public VendingMachine() {
         super('V');
+        for (VendingItems item: VendingItems.values()){
+            addCapability(item);
+        }
     }
 
-
-    //if kena Vending machine then will print a menu of what u wanna buy
-    //cliick what u wanna buy
-    //if u got nough money then gautim u get it in inventory
-    //not enough money then print "not rnough money"
-
-
-    public void selectMenu(Player player) {
+    public String selectMenu(Actor actor, GameMap map) {
+        int option = 0;
+        PurchasingAction purchasingAction = null;
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Enter option: ");
-        String c = scanner.nextLine();
-        int choice = 7;
-        PurchasingAction purchase = null;
-        try {
-            choice = Integer.parseInt(c);
+        System.out.println("Purchasing Item \n1. Fruit \n2. Vegetarian Meal Kit \n3. Carnivore Meal Kit \n4. Stegosaur Egg " +
+                "\n5. Brachiosaur Egg \n6. Allosaur Egg \n7. Laser Gun \n");
+        System.out.print("Select an option: ");
 
+        try {
+            option = scanner.nextInt();
         } catch (Exception e) {
             System.out.println("Choice entered is not a numeral!\n");
         }
-        if(choice == 1){
-            int price = VendingItems.FRUIT.value;
-            //player.purchasingAction
-            purchase = new PurchasingAction(price, VendingItems.FRUIT);
-
-        }
-        else if(choice == 2){
-            int price = VendingItems.VEGETARIAN_MEAL_KIT.value;
-            //player.purchasingAction
-            purchase = new PurchasingAction(price, VendingItems.VEGETARIAN_MEAL_KIT);
-        }
-        else if(choice == 3){
-            int price = VendingItems.CRANIVORE_MEAL_KIT.value;
-            //player.purchasingAction
-            purchase = new PurchasingAction(price, VendingItems.CRANIVORE_MEAL_KIT);
-        }
-        else if(choice == 4){
-            int price = VendingItems.STEGOSAUR_EGG.value;
-            //player.purchasingAction
-            purchase = new PurchasingAction(price, VendingItems.STEGOSAUR_EGG);
-        }
-        else if(choice == 5){
-            int price = VendingItems.BRACHIOSAUR_EGG.value;
-            //player.purchasingAction
-            purchase = new PurchasingAction(price, VendingItems.BRACHIOSAUR_EGG);
-        }
-        else if(choice == 6){
-            int price = VendingItems.ALLOSAUR_EGG.value;
-            //player.purchasingAction
-            purchase = new PurchasingAction(price, VendingItems.ALLOSAUR_EGG);
-        }
-        else if(choice == 7){
-            int price = VendingItems.LASER_GUN.value;
-            //player.purchasingAction
-            purchase = new PurchasingAction(price, VendingItems.LASER_GUN);
-        }
-        else{
-            System.out.println("No purchase made from vending machine");
-        }
+        return switch (option) {
+            case 1 -> getPurchasingAction(VendingItems.FRUIT.value, VendingItems.FRUIT).execute(actor, map);
+            case 2 -> getPurchasingAction(VendingItems.VEGETARIAN_MEAL_KIT.value, VendingItems.VEGETARIAN_MEAL_KIT).execute(actor, map);
+            case 3 -> getPurchasingAction(VendingItems.CRANIVORE_MEAL_KIT.value, VendingItems.CRANIVORE_MEAL_KIT).execute(actor, map);
+            case 4 -> getPurchasingAction(VendingItems.STEGOSAUR_EGG.value, VendingItems.STEGOSAUR_EGG).execute(actor, map);
+            case 5 -> getPurchasingAction(VendingItems.BRACHIOSAUR_EGG.value, VendingItems.BRACHIOSAUR_EGG).execute(actor, map);
+            case 6 -> getPurchasingAction(VendingItems.ALLOSAUR_EGG.value, VendingItems.ALLOSAUR_EGG).execute(actor, map);
+            case 7 -> getPurchasingAction(VendingItems.LASER_GUN.value, VendingItems.LASER_GUN).execute(actor, map);
+            default -> "";
+        };
     }
 
+    public PurchasingAction getPurchasingAction(int price, VendingItems item) {
+        return new PurchasingAction(price, item);
+    }
 
+    @Override
+    public Actions allowableActions(Actor actor, Location location, String direction) {
+        Actions actions = new Actions();
+        for(VendingItems item: VendingItems.values()){
+            actions.add(getPurchasingAction(item.getValue(), item));
+        }
+        return actions;
+    }
 }
