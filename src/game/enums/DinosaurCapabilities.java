@@ -6,5 +6,4 @@ public enum DinosaurCapabilities {
     CARNIVORE,
     LONG_NECK,
     PREGNANT;
-
 }

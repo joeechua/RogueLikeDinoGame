@@ -8,12 +8,10 @@ import game.enums.Gender;
 
 import java.util.ArrayList;
 
-// need Gender enums
-
 public abstract class Dinosaur extends Actor {
 
     private ArrayList<Behaviour> behaviours;
-    private Gender gender;
+    protected Gender gender;
     protected int foodLevel;
     protected int initFoodLevel;
     protected int minFoodLevel;
@@ -31,7 +29,6 @@ public abstract class Dinosaur extends Actor {
      */
     public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-//        gender;
         turns = 0;
         behaviours = new ArrayList<Behaviour>();
         if(this instanceof Brachiosaur){
