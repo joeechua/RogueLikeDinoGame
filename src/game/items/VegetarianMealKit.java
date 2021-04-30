@@ -8,6 +8,6 @@ public class VegetarianMealKit extends PortableItem {
      *  @param name the name of this Item
      */
     public VegetarianMealKit(String name) {
-        super(name, 'v');
+        super("Vegetarian Meal Kit", 'v');
     }
 }

@@ -9,7 +9,7 @@ public class BrachiosaurEgg extends Egg{
      * @param name the name of this Item
      */
     public BrachiosaurEgg(String name) {
-        super(name, 'Ḃ', true);
+        super("Branchiosaur Egg", 'Ḃ');
     }
 
     @Override
