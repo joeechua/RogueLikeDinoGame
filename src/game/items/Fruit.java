@@ -3,6 +3,7 @@ package game.items;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.actions.HarvestAction;
 
 public class Fruit extends Item {
     private int rotTime = 15;
@@ -29,6 +30,7 @@ public class Fruit extends Item {
             this.rotTime--;
         }
 
-
     }
+
+    public HarvestAction getHarvestAction() {return new HarvestAction(this);}
 }

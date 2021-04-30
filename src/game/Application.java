@@ -10,10 +10,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.actors.Player;
 import game.actors.Stegosaur;
-import game.ground.Dirt;
-import game.ground.Floor;
-import game.ground.Tree;
-import game.ground.Wall;
+import game.ground.*;
 
 /**
  * The main class for the Jurassic World game.
@@ -24,7 +21,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new Bush());
 		
 		List<String> map = Arrays.asList(
 		"................................................................................",
