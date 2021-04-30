@@ -1,6 +1,7 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
+import game.actors.Dinosaur;
 
 public class BreedBehaviour implements Behaviour {
 
