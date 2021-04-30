@@ -34,7 +34,7 @@ public class HungerBehaviour implements Behaviour {
         Location[] loclist = new Location[]{here, left, right, up, down, leftUp, rightUp, leftDown, rightDown};
 
         //if hungry
-        if (dino.getFoodLevel() < 100 && dino.getUnconsciousTime() < 20) {
+        if (dino.getFoodLevel() < 100 && dino.isConscious()) {
             //go through each location in list
             for (Location loc : loclist) {
                 //attack and Eat?
@@ -66,7 +66,7 @@ public class HungerBehaviour implements Behaviour {
             //move towards a target that we need to find
             //or we could just set it to go towards the player so it can be fed
             return new MoveActorAction(right,"west");
-        } else if (dino.getFoodLevel() < 100 && dino.getUnconsciousTime() == 20) {
+        } else if (dino.getFoodLevel() < 100 && dino.isUnconscious()) {
             return new DieAction();
         }
         return null;
