@@ -2,28 +2,25 @@ package game.actions;
 
 
 import edu.monash.fit2099.engine.*;
+import game.actors.Dinosaur;
 
 public class MateAction extends Action{
 
-    protected Actor target;
-    public MateAction(Actor target){this.target = target;}
+    private Dinosaur mate;
+
+    public MateAction(Dinosaur mate) {
+        this.mate = mate;
+    }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-
-        Weapon weapon = actor.getWeapon();
-
-
-        int damage = weapon.damage();
-        String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-
-        //stuff about breeding, hatch within x days, success etc
-
-        return result;
+        Dinosaur dino = (Dinosaur) actor;
+        // if dino is female then get pregnant
+        return "";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " attacks " + target;
+        return mate + " has impregnated " + actor;
     }
 }

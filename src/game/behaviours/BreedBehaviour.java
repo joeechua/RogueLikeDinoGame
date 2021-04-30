@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.*;
 public class BreedBehaviour implements Behaviour {
 
     private Actor target;
+    public BreedBehaviour(){
+    }
     public BreedBehaviour(Actor subject){this.target = subject;}
 
     @Override

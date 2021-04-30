@@ -7,7 +7,7 @@ import game.behaviours.Behaviour;
 import java.util.ArrayList;
 
 
-public class Brachiosaur extends Actor {
+public class Brachiosaur extends Dinosaur {
     private ArrayList<Behaviour> behaviour;
     public Brachiosaur(String name) {
         super(name, 'd', 100);

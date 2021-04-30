@@ -9,9 +9,10 @@ import game.behaviours.WanderBehaviour;
 
 import java.util.ArrayList;
 
-public class Allosaur extends Actor {
+public class Allosaur extends Dinosaur {
 
     private ArrayList<Behaviour> behaviour;
+
     public Allosaur(String name) {
         super(name, 'd', 100);
         Stegosaur steg = new Stegosaur("Ali");
@@ -19,6 +20,10 @@ public class Allosaur extends Actor {
         behaviour.add(new WanderBehaviour());
         behaviour.add(new HungerBehaviour(steg));
         behaviour.add(new BreedBehaviour(steg));
+    }
+
+    public Allosaur(String name, char displayChar, int hitPoints){
+        super(name, displayChar, hitPoints);
     }
 
     @Override
