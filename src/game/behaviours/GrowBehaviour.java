@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class GrowBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        /*
+
         if(actor.turns == x){
             growAction
         }
@@ -15,7 +15,7 @@ public class GrowBehaviour implements Behaviour {
             actor.turns ++;
             return null;
         }
-         */
+
         return null;
     }
 }

@@ -7,10 +7,9 @@ public class LaserGun extends WeaponItem {
     /**
      * Constructor.
      *
-     * @param name        name of the item
      */
-    public LaserGun(String name) {
-        super(name, 'L', 100, "zaps");
+    public LaserGun() {
+        super("laser Gun", 'L', 100, "zaps");
     }
 
 
