@@ -35,16 +35,17 @@ public class BreedBehaviour implements Behaviour {
 //        }
 
         if(dino.getFoodLevel()>100){
-            for(Location loc:loclist){
+            for(Location loc:loclist) {
                 //find and mate
-                if(map.isAnActorAt(loc)){
+                if (map.isAnActorAt(loc)) {
                     Actor target = map.getActorAt(loc);
-                    if(target.isConscious() && target.getDisplayChar() == dino.getDisplayChar()){
+                    if (target.isConscious() && target.getDisplayChar() == dino.getDisplayChar()) {
                         Dinosaur mate = (Dinosaur) target;
                         return new MateAction(mate);
                     }
                 }
             }
+            return new DoNothingAction();
         }
         return null;
     }
