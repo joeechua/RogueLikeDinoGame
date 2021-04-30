@@ -13,7 +13,7 @@ public class VendingMachine extends Ground {
      * Constructor.
      */
     public VendingMachine() {
-        super('V');
+        super('⌻');
         for (VendingItems item: VendingItems.values()){
             addCapability(item);
         }
@@ -21,7 +21,6 @@ public class VendingMachine extends Ground {
 
     public String selectMenu(Actor actor, GameMap map) {
         int option = 0;
-        PurchasingAction purchasingAction = null;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Purchasing Item \n1. Fruit \n2. Vegetarian Meal Kit \n3. Carnivore Meal Kit \n4. Stegosaur Egg " +
                 "\n5. Brachiosaur Egg \n6. Allosaur Egg \n7. Laser Gun \n");
