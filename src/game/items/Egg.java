@@ -1,27 +1,46 @@
 package game.items;
 
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import game.actions.HatchAction;
 import game.actors.Dinosaur;
 
-public abstract class Egg extends Item {
+public abstract class Egg extends PortableItem {
     private int timeHatch;
 
     /***
      * Constructor.
      *  @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
-     * @param portable true if and only if the Item can be picked up
      */
-    public Egg(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+    public Egg(String name, char displayChar) {
+        super(name, displayChar);
     }
 
+    public void tick(Location location) {
+        super.tick(location);
 
-    public Dinosaur toHatch(){
         if(timeHatch == 0){
-            //HatchAction();
+            //Hatch Action
         }
-        return null;
+        else{
+            timeHatch--;
+        }
+
     }
+
+    public void tick(Location location, Actor actor) {
+        super.tick(location, actor);
+
+        if(timeHatch == 0){
+            //Drop Action
+            //It could also do nothing we should discuss
+            //or i could raise an exception where it can ask user whether want to drop or not
+        }
+        else{
+            timeHatch--;
+        }
+    }
+
 }

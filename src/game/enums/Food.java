@@ -12,4 +12,7 @@ public enum Food {
         this.upLevel = upLevel;
     }
 
+    public int getUpLevel() {
+        return this.upLevel;
+    }
 }

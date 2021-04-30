@@ -10,4 +10,8 @@ public enum Species {
     private Species(String name){
         this.label = name;
     }
+
+    public String getLabel() {
+        return this.label;
+    }
 }

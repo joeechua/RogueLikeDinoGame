@@ -14,4 +14,8 @@ public enum VendingItems {
     private VendingItems(int value){
         this.value = value;
     }
+
+    public int getValue() {
+        return this.value;
+    }
 }
