@@ -2,9 +2,8 @@ package game.actors;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.GrowAction;
-
+//After 30 turns for the stegosaur and 50 turns for the brachiosaur, the baby dinosaur should grow into an adult.
 public abstract class BabyDinosaur extends Dinosaur {
-    private int turns;
     protected char dinoChar;
     private final int MATURE_TURN_FOR_STEGO_ALLO = 30;
     private final int MATURE_TURN_FOR_BRAC = 50;
@@ -17,8 +16,12 @@ public abstract class BabyDinosaur extends Dinosaur {
      */
     public BabyDinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        turns = 0;
-        initFoodLevel = foodLevel = 10;
+        if(this instanceof BabyAllosaur){
+            initFoodLevel = foodLevel = 20;
+        }
+        else{
+            initFoodLevel = foodLevel = 10;
+        }
     }
 
     @Override
@@ -38,6 +41,5 @@ public abstract class BabyDinosaur extends Dinosaur {
     @Override
     public void tick() {
         super.tick();
-        turns++;
     }
 }

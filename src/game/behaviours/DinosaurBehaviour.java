@@ -7,7 +7,7 @@ import game.actors.Dinosaur;
 
 import java.util.ArrayList;
 
-public abstract class DinosaurBehaviour implements Behaviour{
+public class DinosaurBehaviour implements Behaviour{
 
     private ArrayList<Behaviour> bList = new ArrayList<>();
     /*
@@ -17,4 +17,11 @@ public abstract class DinosaurBehaviour implements Behaviour{
     bList.add(WanderBehaviour)
      */
 
+    public DinosaurBehaviour() {
+    }
+
+    @Override
+    public Action getAction(Actor actor, GameMap map) {
+        return null;
+    }
 }

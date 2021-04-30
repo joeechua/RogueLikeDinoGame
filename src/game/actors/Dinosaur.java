@@ -1,44 +1,25 @@
 package game.actors;
 
 import edu.monash.fit2099.engine.*;
-import game.behaviours.Behaviour;
-import game.behaviours.BreedBehaviour;
-import game.items.Egg;
+import game.actions.AttackAction;
+import game.behaviours.*;
+import game.enums.DinosaurCapabilities;
+import game.enums.Gender;
 
 import java.util.ArrayList;
-
-// need Gender enums
 
 public abstract class Dinosaur extends Actor {
 
     private ArrayList<Behaviour> behaviours;
-//    private Gender gender;
+    protected Gender gender;
     protected int foodLevel;
     protected int initFoodLevel;
+    protected int minFoodLevel;
+    protected int maxFoodLevel;
     protected int unconsciousTime;
-    protected final int MAX_FOOD_LEVEL;
-    public static Egg egg;
-
-    public ArrayList<Behaviour> getBehaviours() {
-        return behaviours;
-    }
-
-    public int getFoodLevel() {
-        return foodLevel;
-    }
-
-    public int getInitFoodLevel() {
-        return initFoodLevel;
-    }
-
-    public int getUnconsciousTime() {
-        return unconsciousTime;
-    }
-
-    public int getMAX_FOOD_LEVEL() {
-        return MAX_FOOD_LEVEL;
-    }
-
+    protected int maxUnconsciousTime;
+    protected int turns;
+    protected ArrayList<DinosaurCapabilities> capabilities;
     /**
      * Constructor.
      *
@@ -48,27 +29,36 @@ public abstract class Dinosaur extends Actor {
      */
     public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        // gender
+        turns = 0;
         behaviours = new ArrayList<Behaviour>();
-        initFoodLevel = foodLevel = 0;
         if(this instanceof Brachiosaur){
-            MAX_FOOD_LEVEL = 160;
+            minFoodLevel = 140;
+            maxFoodLevel = 160;
+            maxUnconsciousTime = 15;
+            initFoodLevel = foodLevel = 100;
         }
         else{
-            MAX_FOOD_LEVEL = 100;
+            minFoodLevel = 90;
+            maxFoodLevel = 100;
+            maxUnconsciousTime = 20;
+            initFoodLevel = foodLevel = 50;
         }
-//        if(!(this instanceof BabyDinosaur)){
-//            behaviours.add(new BreedBehaviour());
-//        }
+        if(!(this instanceof BabyDinosaur)){
+            behaviours.add(new BreedBehaviour());
+        }
+        else {
+            behaviours.add(new GrowBehaviour(turns));
+        }
     }
 
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-        return null;
+        return new DinosaurBehaviour().getAction(this, map);
     }
 
     public void tick(){
+        turns++;
         if(foodLevel > 0){
             foodLevel--;
             unconsciousTime = 0;
@@ -78,15 +68,87 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    @Override
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        Actions actions = new Actions();
+        actions.add(new AttackAction(this));
+        return actions;
+    }
+
+    public boolean isHerbivore(){
+        if(capabilities.contains(DinosaurCapabilities.HERBIVORE)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean isLongNeck(){
+        if(capabilities.contains(DinosaurCapabilities.LONG_NECK)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isHungry(){
+        return this.foodLevel < this.minFoodLevel;
+    }
+
+    public boolean isUnconscious(){
+        return foodLevel <= 0;
+    }
+
+    public boolean isDead(){
+        return (unconsciousTime >= maxUnconsciousTime || hitPoints <= 0);
+    }
+
     public void increaseFoodLevel(int incValue){
-        foodLevel = Math.min(foodLevel+incValue, MAX_FOOD_LEVEL);
+        foodLevel = Math.min(foodLevel+incValue, maxFoodLevel);
     }
 
-    public static Egg getEgg() {
-        return egg;
+    public ArrayList<Behaviour> getBehaviours() {
+        return behaviours;
     }
 
-    public static void setEgg(Egg egg) {
-        Dinosaur.egg = egg;
+    public void addBehaviour(Behaviour behaviour){
+        behaviours.add(behaviour);
+    }
+
+    public void removeBehaviour(Behaviour behaviour){
+        behaviours.remove(behaviour);
+    }
+
+    public int getFoodLevel() {
+        return foodLevel;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public boolean isPregnant(){
+        for(Behaviour behaviour: behaviours){
+            if(behaviour instanceof PregnantBehaviour){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public NumberRange[] getRange(Location location, int xRange, int yRange){
+        NumberRange[] ret;
+        int s = Math.max(location.map().getXRange().min(), location.x() - xRange);
+        int e = Math.min(location.map().getXRange().max(), location.x() + xRange);
+        NumberRange x = new NumberRange(s,e-s+1);
+
+        s = Math.max(location.map().getYRange().min(), location.x() - yRange);
+        e = Math.min(location.map().getYRange().max(), location.x() + yRange);
+        NumberRange y = new NumberRange(s,e-s+1);
+
+        ret = new NumberRange[]{x, y};
+        return ret;
     }
 }
