@@ -9,19 +9,33 @@ import java.util.ArrayList;
 
 public class DinosaurBehaviour implements Behaviour{
 
-    private ArrayList<Behaviour> bList = new ArrayList<>();
-    /*
-    if dino is hungry bList.add(Hungerbehaviour)
-    else if dino is female and not pregantn bList.add(BreedingBehaviour)
-    else if pregnant bList.add(PregnantBehaviours)
-    bList.add(WanderBehaviour)
-     */
 
     public DinosaurBehaviour() {
     }
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        return null;
+        Dinosaur dino = (Dinosaur) actor;
+
+        if(dino.isHungry()){
+            HungerBehaviour hB = new HungerBehaviour();
+            return hB.getAction(actor, map);
+        }
+        else if(dino.isPregnant()){
+            PregnantBehaviour pB = new PregnantBehaviour();
+            return pB.getAction(actor, map);
+        }
+        else{
+            BreedBehaviour bB = new BreedBehaviour();
+            Action a = bB.getAction(actor, map);
+            if(a == null){
+                WanderBehaviour wB = new WanderBehaviour();
+                return wB.getAction(actor, map);
+            }
+            else{
+                return a;
+            }
+        }
+
     }
 }
