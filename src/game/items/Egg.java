@@ -51,4 +51,8 @@ public abstract class Egg extends PortableItem {
     public void setBirthLocation(Location birthLocation) {
         this.birthLocation = birthLocation;
     }
+    public Location getBirthLocation() {
+        return birthLocation;
+    }
+
 }

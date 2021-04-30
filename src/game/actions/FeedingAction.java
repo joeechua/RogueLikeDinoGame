@@ -3,6 +3,9 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
+import game.actors.Player;
+import game.enums.Food;
+import game.items.Fruit;
 
 public class FeedingAction extends Action {
 
@@ -20,8 +23,11 @@ public class FeedingAction extends Action {
         String result = feedDino.execute(targetDino, map);
 
         for(Item food: actor.getInventory()){
-            if(food.getClass() == food.getClass()){
+            if(foodInventory.getClass() == food.getClass()){
                 actor.removeItemFromInventory(food);
+            }
+            if(foodInventory.getClass() == Fruit.class){
+                Player.wallet.addEcoPoints(10);
             }
         }
 
