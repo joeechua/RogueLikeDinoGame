@@ -8,10 +8,9 @@ public class Fruit extends Item {
     private int rotTime = 15;
     /***
      * Constructor.
-     *  @param name the name of this Item
      */
-    public Fruit(String name) {
-        super(name, 'f', true);
+    public Fruit() {
+        super("Fruit", 'f', true);
     }
 
     @Override
