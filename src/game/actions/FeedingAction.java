@@ -2,30 +2,34 @@ package game.actions;
 
 
 import edu.monash.fit2099.engine.*;
+import game.actors.Dinosaur;
 
 public class FeedingAction extends Action {
 
-    protected Actor target;
+    private Dinosaur targetDino;
+    private Item foodInventory;
 
-    public FeedingAction(Actor subject){this.target = subject;}
+    public FeedingAction(Dinosaur dino, Item item){
+        this.targetDino = dino;
+        this.foodInventory = item;
+    }
 
     @Override
     public String execute(Actor actor, GameMap map) {
+        EatingAction feedDino = new EatingAction(foodInventory);
+        String result = feedDino.execute(targetDino, map);
 
-        Weapon weapon = actor.getWeapon();
+        for(Item food: actor.getInventory()){
+            if(food.getClass() == food.getClass()){
+                actor.removeItemFromInventory(food);
+            }
+        }
 
-
-        int damage = weapon.damage();
-        String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-
-        //stuff about eating (decrease hunger etc)
-
-
-        return result;
+        return menuDescription(actor) + "\n" + result;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " eats " + target;
+        return actor + " feeds " + targetDino + " with " + foodInventory + ".";
     }
 }
