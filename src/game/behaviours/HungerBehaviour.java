@@ -1,31 +1,67 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.AttackAction;
+import game.actions.EatingAction;
+import game.actors.Dinosaur;
+import game.enums.DinosaurCapabilities;
+import game.enums.Food;
+import game.items.*;
+
+import java.util.List;
 
 public class HungerBehaviour implements Behaviour {
 
-    private Actor target;
 
-    public HungerBehaviour(Actor subject){this.target = subject;}
+    public HungerBehaviour(){}
+
 
     @Override
-    public Action getAction(Actor actor, GameMap map) {
-        if (map.contains(target)) {
-            map.contains(actor);
-        }
+    public Action getAction(Actor actor, GameMap map){
+        Dinosaur dino = (Dinosaur) actor;
 
-        /*
-        if(actor.getFoodLevel < x && no food around them){
-            destination = FindFoodAction(actor, map).execute()
-            return MoveActorAction(destination, getExitName())
-        }
-        else{
-            return EatingAction()
-        }
+        //Locations to check
+        Location here = map.locationOf(dino);
+        Location left = new Location(map, here.x()-1, here.y());
+        Location right = new Location(map, here.x()+1, here.y());
+        Location up = new Location(map, here.x(), here.y()+1);
+        Location down = new Location(map, here.x(), here.y()-1);
+        Location leftUp = new Location(map, here.x()-1, here.y()+1);
+        Location leftDown = new Location(map, here.x()-1, here.y()-1);
+        Location rightUp = new Location(map, here.x()+1, here.y()+1);
+        Location rightDown = new Location(map, here.x()+1, here.y()-1);
+        Location[] loclist = new Location[]{here, left, right, up, down, leftUp, rightUp, leftDown, rightDown};
 
-         */
+        //if hungry
+        if(dino.getFoodLevel() < 100){
+            //go through each location in list
+            for(Location loc:loclist){
+                //attack and Eat?
+                if(map.isAnActorAt(loc) && dino.hasCapability(DinosaurCapabilities.CARNIVORE)  ){
+                    Actor target = map.getActorAt(loc);
+                    return new AttackAction(target);
+                }
+                //eat the stuff available
+                else{
+                    List<Item> items = loc.getItems();
+                    for(Item it:items){
+                        Class c = it.getClass();
+                        //if Carnivore eat the more filling food
+                        if((c == AllosaurEgg.class ||  c== StegosaurEgg.class
+                                || c == CarnivoreMealKit.class)
+                                && dino.hasCapability(DinosaurCapabilities.CARNIVORE) ){
+                            return new EatingAction(it);
+                        }
+                        //if no choice only check for these
+                        else if(c == Corpse.class || c == Fruit.class || c == VegetarianMealKit.class){
+                            return new EatingAction(it);
+                        }
 
+                    }
+                }
+            }
+
+        }
         return null;
     }
-
 }
