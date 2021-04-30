@@ -8,7 +8,7 @@ public class CarnivoreMealKit extends PortableItem {
      * Constructor.
      *  @param name the name of this Item
      */
-    public CarnivoreMealKit(String name) {
+    public CarnivoreMealKit() {
         super("Carnivore Meal Kit", 'c');
     }
 }

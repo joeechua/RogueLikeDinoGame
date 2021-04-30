@@ -8,7 +8,7 @@ public class StegosaurEgg extends Egg {
      * Constructor.
      * @param name the name of this Item
      */
-    public StegosaurEgg(String name) {
+    public StegosaurEgg() {
         super("Stegosaur Egg", 'Ṡ');
     }
 

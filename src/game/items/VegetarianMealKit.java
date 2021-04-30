@@ -7,7 +7,7 @@ public class VegetarianMealKit extends PortableItem {
      * Constructor.
      *  @param name the name of this Item
      */
-    public VegetarianMealKit(String name) {
+    public VegetarianMealKit() {
         super("Vegetarian Meal Kit", 'v');
     }
 }
