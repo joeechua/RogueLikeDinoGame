@@ -42,38 +42,38 @@ public class VendingMachine extends Ground {
         if(choice == 1){
             int price = VendingItems.FRUIT.value;
             //player.purchasingAction
-            purchase = new PurchasingAction(price, new Fruit("fruit"));
+            purchase = new PurchasingAction(price, VendingItems.FRUIT);
 
         }
         else if(choice == 2){
             int price = VendingItems.VEGETARIAN_MEAL_KIT.value;
             //player.purchasingAction
-            purchase = new PurchasingAction(price, new VegetarianMealKit("vege vending"));
+            purchase = new PurchasingAction(price, VendingItems.VEGETARIAN_MEAL_KIT);
         }
         else if(choice == 3){
             int price = VendingItems.CRANIVORE_MEAL_KIT.value;
             //player.purchasingAction
-            purchase = new PurchasingAction(price, new CarnivoreMealKit("carnivore vending"));
+            purchase = new PurchasingAction(price, VendingItems.CRANIVORE_MEAL_KIT);
         }
         else if(choice == 4){
             int price = VendingItems.STEGOSAUR_EGG.value;
             //player.purchasingAction
-            purchase = new PurchasingAction(price, new StegosaurEgg("steg egg"));
+            purchase = new PurchasingAction(price, VendingItems.STEGOSAUR_EGG);
         }
         else if(choice == 5){
             int price = VendingItems.BRACHIOSAUR_EGG.value;
             //player.purchasingAction
-            purchase = new PurchasingAction(price, new BrachiosaurEgg("brach egg"));
+            purchase = new PurchasingAction(price, VendingItems.BRACHIOSAUR_EGG);
         }
         else if(choice == 6){
             int price = VendingItems.ALLOSAUR_EGG.value;
             //player.purchasingAction
-            purchase = new PurchasingAction(price, new AllosaurEgg("allo egg"));
+            purchase = new PurchasingAction(price, VendingItems.ALLOSAUR_EGG);
         }
         else if(choice == 7){
             int price = VendingItems.LASER_GUN.value;
             //player.purchasingAction
-            purchase = new PurchasingAction(price, new LaserGun("laser gun"));
+            purchase = new PurchasingAction(price, VendingItems.LASER_GUN);
         }
         else{
             System.out.println("No purchase made from vending machine");

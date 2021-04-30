@@ -6,7 +6,6 @@ import edu.monash.fit2099.engine.Location;
 public class AllosaurEgg extends Egg{
     /***
      * Constructor.
-     * @param name the name of this Item
      */
     public AllosaurEgg() {
         super("Allosaur Egg", 'Ȧ');

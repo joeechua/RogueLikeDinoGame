@@ -11,7 +11,7 @@ public enum VendingItems {
 
     public final int value;
 
-    private VendingItems(int value){
+    VendingItems(int value){
         this.value = value;
     }
 
