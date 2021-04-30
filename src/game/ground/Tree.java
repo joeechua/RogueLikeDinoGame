@@ -1,23 +1,22 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.items.Fruit;
 
 
 import java.util.ArrayList;
 import java.util.Random;
 
-// need Fruit and HarvestAction
-
 public class Tree extends Ground {
 	private int age = 0;
 	private Random random = new Random();
-//	private Fruit fruit;
-//	private ArrayList<Fruit> dropFruitsArray;
+	private Fruit treeFruit;
+	private ArrayList<Fruit> dropFruitsArray;
 
 	public Tree() {
 		super('+');
-//		fruit = new Fruit();
-//		dropFruitsArray = new ArrayList<>();
+		treeFruit = new Fruit();
+		dropFruitsArray = new ArrayList<>();
 	}
 
 	@Override
@@ -30,20 +29,24 @@ public class Tree extends Ground {
 		if (age == 20)
 			displayChar = 'T';
 
-//		boolean hasDroppedFruit = false;
-//		for (Item item: location.getItems()){
-////			if(dropFruitsArray.contains(item)){
-//				hasDroppedFruit = true;
-//			}
-//		}
-//		if(!hasDroppedFruit && random.nextDouble() <= 0.05){
-//			Fruit dropFruit = new Fruit();
-//			location.addItem(dropFruit);
-//			dropFruitsArray.add(dropFruit);
+		boolean hasDroppedFruit = false;
+		for (Item item : location.getItems()) {
+			if (dropFruitsArray.contains(item)) {
+				hasDroppedFruit = true;
+			}
 		}
-
-//		public Actions allowableActions(Actor actor, Location location, String direction){
-//			return new Actions();
-//		}
+		if (!hasDroppedFruit && random.nextDouble() <= 0.05) {
+			Fruit dropFruit = new Fruit();
+			location.addItem(dropFruit);
+			dropFruitsArray.add(dropFruit);
+		}
+		if(treeFruit == null && random.nextDouble() == 0.5){
+			treeFruit = new Fruit();
+		}
 	}
 
+	@Override
+	public Actions allowableActions(Actor actor, Location location, String direction) {
+		return new Actions(treeFruit.getHarvestAction());
+	}
+}
