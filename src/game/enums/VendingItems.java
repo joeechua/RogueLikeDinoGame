@@ -19,5 +19,4 @@ public enum VendingItems {
         return this.value;
     }
 
-    //is this working??
 }
