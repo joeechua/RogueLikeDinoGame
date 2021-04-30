@@ -18,4 +18,6 @@ public enum VendingItems {
     public int getValue() {
         return this.value;
     }
+
+    //is this working??
 }
