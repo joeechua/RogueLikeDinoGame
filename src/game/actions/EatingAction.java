@@ -4,8 +4,6 @@ import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
 import game.enums.Food;
 
-// need Food enums and Dinosaur class
-
 public class EatingAction extends Action {
     private Item targetFood;
 
