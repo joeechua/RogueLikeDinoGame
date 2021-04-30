@@ -14,8 +14,15 @@ public class HungerBehaviour implements Behaviour {
             map.contains(actor);
         }
 
-        //smt about eating
-        //call ConsumeAction()
+        /*
+        if(actor.getFoodLevel < x && no food around them){
+            return MoveActorAction(destination, getExitName())
+        }
+        else{
+            return EatingAction()
+        }
+
+         */
 
         return null;
     }

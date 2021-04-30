@@ -43,4 +43,8 @@ public abstract class Egg extends PortableItem {
         }
     }
 
+    public int getTimeHatch(){
+        return this.timeHatch;
+    }
+
 }

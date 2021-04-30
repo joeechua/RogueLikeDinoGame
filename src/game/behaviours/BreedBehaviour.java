@@ -13,6 +13,22 @@ public class BreedBehaviour implements Behaviour {
             map.contains(actor);
         }
 
+        /*
+        if(actor is not hungry, there is someone in the area){
+            return MateAction();
+        }
+        else if(actor is not hungry, no one in the area){
+            return MoveActorAction(destionation, getExitName());
+        }
+        else if(actor is hungry){
+            return "Actor is too hungry to mate" + maybe something in the dino part to inhibit this behaviour
+            if they are hungry
+        }
+        else{
+            return null;
+        }
+         */
+
         //smt about breeding (check sex, distance etc)
         //call MateAction()
 
