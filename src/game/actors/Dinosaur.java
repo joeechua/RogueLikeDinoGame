@@ -151,6 +151,7 @@ public abstract class Dinosaur extends Actor {
         return gender;
     }
 
+
     public int getUnconsciousTime() {
         return unconsciousTime;
     }
