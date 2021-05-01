@@ -14,6 +14,7 @@ import game.actors.Stegosaur;
 import game.ecopoint.EcoPointWallet;
 import game.enums.Gender;
 import game.ground.*;
+import game.items.Fruit;
 
 /**
  * The main class for the Jurassic World game.
@@ -60,11 +61,13 @@ public class Application {
 
 		gameMap.at(5,7).setGround(groundFactory.newGround('⌻'));
 
+		gameMap.at(35,12).addItem(new Fruit());
+
 		// Place a pair of stegosaurs in the middle of the map
-//		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur"));
-//		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur"));
-		gameMap.at(30,12).addActor(new Brachiosaur(Gender.M));
-		gameMap.at(32,12).addActor(new Brachiosaur(Gender.M));
+		gameMap.at(30, 12).addActor(new Stegosaur(Gender.F));
+		gameMap.at(32, 12).addActor(new Stegosaur(Gender.M));
+		gameMap.at(50,12).addActor(new Brachiosaur(Gender.M));
+		gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 		gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
 		gameMap.at(45,14).addActor(new Brachiosaur(Gender.F));
 		world.run();
