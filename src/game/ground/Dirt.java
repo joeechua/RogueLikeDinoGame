@@ -33,7 +33,7 @@ public class Dirt extends Ground {
 			}
 
 			if(trees > 0 || bush < 2){
-				if(random.nextDouble() <= 0.1){
+				if(random.nextDouble() == 0.1){
 					location.setGround(new Bush());
 				}
 			}
