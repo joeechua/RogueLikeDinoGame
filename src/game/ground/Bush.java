@@ -34,6 +34,10 @@ public class Bush extends Ground{
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        return new Actions(bushFruit.getHarvestAction());
+        Actions actions = null;
+        if(bushFruit != null){
+            actions = new Actions(bushFruit.getHarvestAction());
+        }
+        return actions;
     }
 }
