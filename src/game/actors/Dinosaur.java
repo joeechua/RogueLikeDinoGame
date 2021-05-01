@@ -60,9 +60,8 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-        //added this if statement or not will have error when null.getGround();
-        if(map.locationOf(this).getGround() != null){
-            if((this instanceof Brachiosaur || this instanceof BabyBrachiosaur) && map.locationOf(this).getGround().equals(Bush.class)){
+        if((this instanceof Brachiosaur || this instanceof BabyBrachiosaur) && map.locationOf(this).getGround() != null){
+            if(map.locationOf(this).getGround().equals(Bush.class)){
                 if(random.nextDouble() <= 0.5){
                     map.locationOf(this).setGround(new Dirt());
                 }
@@ -80,10 +79,6 @@ public abstract class Dinosaur extends Actor {
         else {
             unconsciousTime++;
         }
-    }
-
-    public String getName(){
-        return this.name;
     }
 
     @Override
