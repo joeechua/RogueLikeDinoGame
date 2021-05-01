@@ -11,6 +11,7 @@ public class Dirt extends Ground {
 
 	private Random random = new Random();
 	private Bush bush;
+	private Tree tree;
 
 	public Dirt() {
 		super('.');
@@ -33,11 +34,11 @@ public class Dirt extends Ground {
 			}
 
 			if(trees > 0 || bush < 2){
-				if(random.nextDouble() == 0.1){
+				if(random.nextDouble() <= 0.1){
 					location.setGround(new Bush());
 				}
 			}
-			else if(trees == 1){
+			else if(location.getGround() == tree){
 				return;
 			}
 			else {

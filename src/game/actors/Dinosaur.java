@@ -5,11 +5,15 @@ import game.actions.AttackAction;
 import game.behaviours.*;
 import game.enums.DinosaurCapabilities;
 import game.enums.Gender;
+import game.ground.Bush;
+import game.ground.Dirt;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Dinosaur extends Actor {
 
+    private Random random = new Random();
     private ArrayList<Behaviour> behaviours;
     protected Gender gender;
     protected int foodLevel;
@@ -32,6 +36,7 @@ public abstract class Dinosaur extends Actor {
         super(name, displayChar, hitPoints);
         turns = 0;
         behaviours = new ArrayList<Behaviour>();
+        capabilities = new ArrayList<DinosaurCapabilities>();
         if(this instanceof Brachiosaur){
             minFoodLevel = 140;
             maxFoodLevel = 160;
@@ -55,6 +60,11 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
+        if((this instanceof Brachiosaur || this instanceof BabyBrachiosaur) && map.locationOf(this).getGround().equals(Bush.class)){
+            if(random.nextDouble() <= 0.5){
+                map.locationOf(this).setGround(new Dirt());
+            }
+        }
         return new DinosaurBehaviour().getAction(this, map);
     }
 

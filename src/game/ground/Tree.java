@@ -1,6 +1,7 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.enums.VendingItems;
 import game.items.Fruit;
 
 
@@ -10,12 +11,12 @@ import java.util.Random;
 public class Tree extends Ground {
 	private int age = 0;
 	private Random random = new Random();
-	private Fruit treeFruit;
+	private ArrayList<Fruit> treeFruit;
 	private ArrayList<Fruit> dropFruitsArray;
 
 	public Tree() {
 		super('+');
-		treeFruit = new Fruit();
+		treeFruit = new ArrayList<>();
 		dropFruitsArray = new ArrayList<>();
 	}
 
@@ -40,13 +41,17 @@ public class Tree extends Ground {
 			location.addItem(dropFruit);
 			dropFruitsArray.add(dropFruit);
 		}
-		if(treeFruit == null && random.nextDouble() == 0.5){
-			treeFruit = new Fruit();
+		if(treeFruit == null && random.nextDouble() <= 0.5){
+			treeFruit.add(new Fruit());
 		}
 	}
 
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
-		return new Actions(treeFruit.getHarvestAction());
+		Actions actions = new Actions();
+		for(Fruit item: treeFruit){
+			actions.add(item.getHarvestAction());
+		}
+		return actions;
 	}
 }
