@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class VendingMachine extends Ground {
 
-    public static Location location;
+    public static Location location = null;
     /**
      * Constructor.
      */
