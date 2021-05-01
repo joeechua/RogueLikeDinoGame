@@ -38,8 +38,8 @@ public abstract class Dinosaur extends Actor {
     public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         turns = 0;
-        behaviours = new ArrayList<Behaviour>();
-        capabilities = new ArrayList<DinosaurCapabilities>();
+        behaviours = new ArrayList<>();
+        capabilities = new ArrayList<>();
         if(this instanceof Brachiosaur){
             minFoodLevel = 140;
             maxFoodLevel = 160;
@@ -63,7 +63,6 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-        //added this if statement or not will have error when null.getGround();
         if(map.locationOf(this).getGround() != null){
             if((this instanceof Brachiosaur || this instanceof BabyBrachiosaur) && map.locationOf(this).getGround().equals(Bush.class)){
                 if(random.nextDouble() <= 0.5){
