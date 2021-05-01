@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.actors.Player;
 import game.actors.Stegosaur;
+import game.ecopoint.EcoPointWallet;
 import game.ground.*;
 
 /**

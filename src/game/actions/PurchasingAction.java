@@ -30,7 +30,7 @@ public class PurchasingAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " buys " + item + " for" + item.getValue() + "\nBalance of eco points: " + Player.wallet.getEcoPoints();
+        return actor + " buys " + item + " for " + item.getValue() + "\nBalance of eco points: " + Player.wallet.getEcoPoints();
     }
 
     public Item getPurchasedItem(VendingItems item){

@@ -3,8 +3,8 @@ package game.ecopoint;
 public class EcoPointWallet {
     private int ecoPoints;
 
-    public EcoPointWallet(){
-        this.ecoPoints = 0;
+    public EcoPointWallet(int ecoPoints){
+        this.ecoPoints = ecoPoints;
     }
 
     public void setEcoPoints(int points){

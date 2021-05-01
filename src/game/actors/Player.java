@@ -26,7 +26,7 @@ public class Player extends Actor {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		wallet = new EcoPointWallet();
+		wallet = new EcoPointWallet(500);
 	}
 
 	@Override
