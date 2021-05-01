@@ -25,12 +25,12 @@ public class PurchasingAction extends Action {
             playerWallet.payEcoPoints(itemPrice);
             return menuDescription(actor);
         }
-        return actor + " has insufficent eco points to purchase " + purchasedItem;
+        return actor + " has insufficient eco points to purchase " + purchasedItem;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " buys " + item + " for " + item.getValue() + "\nBalance of eco points: " + Player.wallet.getEcoPoints();
+        return "Current eco points: " + Player.wallet.getEcoPoints() + "\n" + actor + " buys " + item + " for " + item.getValue();
     }
 
     public Item getPurchasedItem(VendingItems item){

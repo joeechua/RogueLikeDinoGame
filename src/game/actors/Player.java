@@ -34,9 +34,6 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		if(map.locationOf(this) == map.at(5,7)){
-			VendingMachine.selectMenu(this,map);
-		}
 		return menu.showMenu(this, actions, display);
 	}
 }
