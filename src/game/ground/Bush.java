@@ -27,13 +27,16 @@ public class Bush extends Ground{
         if (age == 20)
             displayChar = 'M';
 
-        if(bushFruit == null && random.nextDouble() == 0.1) {
+        if(bushFruit == null && random.nextDouble() <= 0.1) {
             bushFruit = new Fruit();
         }
     }
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
+        if(bushFruit == null){
+            return new Actions(null);
+        }
         return new Actions(bushFruit.getHarvestAction());
     }
 }

@@ -3,7 +3,6 @@ package game.behaviours;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.actions.DieAction;
 import game.actors.Dinosaur;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class DinosaurBehaviour implements Behaviour{
         Dinosaur dino = (Dinosaur) actor;
 
         if(dino.isHungry()){
-            System.out.println(dino.getName() + " is hungry!");
             HungerBehaviour hB = new HungerBehaviour();
             return hB.getAction(actor, map);
         }

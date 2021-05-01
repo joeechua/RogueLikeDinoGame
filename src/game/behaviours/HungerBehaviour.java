@@ -23,23 +23,20 @@ public class HungerBehaviour implements Behaviour {
 
         //Locations to check
         Location here = map.locationOf(dino);
-        int[] sini = new int[]{here.x(), here.y()};
-        int[] left = new int[]{here.x()-1, here.y()};
-        int[] right = new int[]{here.x()+1, here.y()};
-        int[] up = new int[]{here.x(), here.y()+1};
-        int[] down = new int[]{here.x(), here.y()-1};
-        int[] leftUp = new int[]{here.x()-1, here.y()+1};
-        int[] leftDown = new int[]{here.x()-1, here.y()-1};
-        int[] rightUp = new int[]{here.x()+1, here.y()+1};
-        int[] rightDown = new int[]{here.x()+1, here.y()-1};
-        int[][] loclist = new int[][]{sini, left, right, up, down, leftUp, rightUp, leftDown, rightDown};
-
+        Location left = new Location(map, here.x() - 1, here.y());
+        Location right = new Location(map, here.x() + 1, here.y());
+        Location up = new Location(map, here.x(), here.y() + 1);
+        Location down = new Location(map, here.x(), here.y() - 1);
+        Location leftUp = new Location(map, here.x() - 1, here.y() + 1);
+        Location leftDown = new Location(map, here.x() - 1, here.y() - 1);
+        Location rightUp = new Location(map, here.x() + 1, here.y() + 1);
+        Location rightDown = new Location(map, here.x() + 1, here.y() - 1);
+        Location[] loclist = new Location[]{here, left, right, up, down, leftUp, rightUp, leftDown, rightDown};
 
         //if hungry
         if (dino.getFoodLevel() < 100 && dino.isConscious()) {
             //go through each location in list
-            for (int[] coords : loclist) {
-                Location loc = map.at(coords[0], coords[1]);
+            for (Location loc : loclist) {
                 //attack and Eat?
                 if (map.isAnActorAt(loc) && dino.hasCapability(DinosaurCapabilities.CARNIVORE)) {
                     Actor target = map.getActorAt(loc);
@@ -68,9 +65,9 @@ public class HungerBehaviour implements Behaviour {
             }
             //move towards a target that we need to find
             //or we could just set it to go towards the player so it can be fed
-            return new MoveActorAction(map.at(right[0], right[1]),"west");
+            return new MoveActorAction(right,"west");
         } else if (dino.getFoodLevel() < 100 && dino.isUnconscious()) {
-            return new DoNothingAction();
+            return new DieAction();
         }
         return null;
     }
