@@ -19,6 +19,7 @@ public abstract class Dinosaur extends Actor {
     protected int unconsciousTime;
     protected int maxUnconsciousTime;
     protected int turns;
+    protected int attackTurns;
     protected ArrayList<DinosaurCapabilities> capabilities;
     /**
      * Constructor.
@@ -44,10 +45,10 @@ public abstract class Dinosaur extends Actor {
             initFoodLevel = foodLevel = 50;
         }
         if(!(this instanceof BabyDinosaur)){
-            behaviours.add(new BreedBehaviour());
+            addBehaviour(new BreedBehaviour());
         }
         else {
-            behaviours.add(new GrowBehaviour(getTurns()));
+            addBehaviour(new GrowBehaviour(getTurns()));
         }
     }
 
@@ -94,7 +95,7 @@ public abstract class Dinosaur extends Actor {
     }
 
     public boolean isHungry(){
-        return this.foodLevel < this.minFoodLevel;
+        return this.foodLevel < getMinFoodLevel();
     }
 
     public boolean isUnconscious(){
@@ -102,11 +103,15 @@ public abstract class Dinosaur extends Actor {
     }
 
     public boolean isDead(){
-        return (unconsciousTime >= maxUnconsciousTime || hitPoints <= 0);
+        return (getUnconsciousTime() >= getMaxUnconsciousTime() || hitPoints <= 0);
     }
 
-    public void increaseFoodLevel(int incValue){
-        foodLevel = Math.min(foodLevel+incValue, maxFoodLevel);
+    public void incFoodLevel(int incValue){
+        foodLevel = Math.min(getFoodLevel()+incValue, getMaxFoodLevel());
+    }
+
+    public void decFoodLevel(int decValue){
+        foodLevel = Math.max(getFoodLevel()-decValue, 0);
     }
 
     public ArrayList<Behaviour> getBehaviours() {
@@ -133,6 +138,30 @@ public abstract class Dinosaur extends Actor {
         return unconsciousTime;
     }
 
+    public int getMinFoodLevel() {
+        return minFoodLevel;
+    }
+
+    public int getMaxFoodLevel() {
+        return maxFoodLevel;
+    }
+
+    public int getMaxUnconsciousTime() {
+        return maxUnconsciousTime;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public void setAttackTurns(int attackTurns) {
+        this.attackTurns = attackTurns;
+    }
+
+    public int getAttackTurns() {
+        return attackTurns;
+    }
+
     public boolean isPregnant(){
         for(Behaviour behaviour: behaviours){
             if(behaviour instanceof PregnantBehaviour){
@@ -154,22 +183,6 @@ public abstract class Dinosaur extends Actor {
 
         ret = new NumberRange[]{x, y};
         return ret;
-    }
-
-    public int getMinFoodLevel() {
-        return minFoodLevel;
-    }
-
-    public int getMaxFoodLevel() {
-        return maxFoodLevel;
-    }
-
-    public int getMaxUnconsciousTime() {
-        return maxUnconsciousTime;
-    }
-
-    public int getTurns() {
-        return turns;
     }
 
     public ArrayList<DinosaurCapabilities> getCapabilities() {

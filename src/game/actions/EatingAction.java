@@ -22,7 +22,7 @@ public class EatingAction extends Action {
         for(Food enumFood: Food.values()){
             if(targetFood.getClass() == enumFood.getClassType()){
                 nutritionValue = enumFood.getUpLevel(targetFood);
-                dino.increaseFoodLevel(nutritionValue);
+                dino.incFoodLevel(nutritionValue);
                 break;
             }
         }

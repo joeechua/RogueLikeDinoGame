@@ -23,6 +23,7 @@ public class Allosaur extends Dinosaur {
 
     public Allosaur(Gender inputGender) {
         super(Species.A.name(), 'A', 100);
+        capabilities.add(DinosaurCapabilities.CARNIVORE);
         gender = inputGender;
     }
 

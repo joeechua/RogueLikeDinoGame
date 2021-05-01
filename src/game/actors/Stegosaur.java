@@ -26,15 +26,25 @@ public class Stegosaur extends Dinosaur {
 	public Stegosaur() {
 		super(Species.S.name(), 'S', 100);
 		capabilities.add(DinosaurCapabilities.HERBIVORE);
+		attackTurns = 0;
 	}
 
 	public Stegosaur(Gender inputGender){
 		super(Species.S.name(), 'S', 100);
 		capabilities.add(DinosaurCapabilities.HERBIVORE);
 		gender = inputGender;
+		attackTurns = 0;
 	}
 
-//	@Override
+	@Override
+	public void tick() {
+		super.tick();
+		if(attackTurns != 0){
+			attackTurns--;
+		}
+	}
+
+	//	@Override
 //	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 //		return new Actions(new AttackAction(this));
 //	}

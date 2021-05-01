@@ -1,5 +1,7 @@
 package game.actors;
 
+import game.enums.DinosaurCapabilities;
+
 public class BabyBrachiosaur extends BabyDinosaur{
     /**
      * Constructor.
@@ -7,6 +9,8 @@ public class BabyBrachiosaur extends BabyDinosaur{
     public BabyBrachiosaur() {
         super("Baby Brachiosaur", 'b', 1000);
         dinoChar = 'b';
+        capabilities.add(DinosaurCapabilities.HERBIVORE);
+        capabilities.add(DinosaurCapabilities.LONG_NECK);
     }
 
     public boolean isVegetarian(){return true;}

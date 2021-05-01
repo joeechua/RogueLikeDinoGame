@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.actors.Dinosaur;
 import game.items.PortableItem;
 
 /**
@@ -43,23 +44,35 @@ public class AttackAction extends Action {
 		}
 
 		int damage = weapon.damage();
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		String result = "";
 
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
-			
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)		
-				drop.execute(target, map);
-			map.removeActor(target);	
-			
-			result += System.lineSeparator() + target + " is killed.";
+		// decrease and increase food level for Stegosaur and Allosaurs respectively by 20
+		Dinosaur dinoTarget = (Dinosaur) target;
+		Dinosaur actorDino = (Dinosaur) actor;
+		if(dinoTarget.getAttackTurns() == 0){
+			target.hurt(damage);
+			actor.heal(damage);
+			dinoTarget.decFoodLevel(20);
+			actorDino.incFoodLevel(20);
+			dinoTarget.setAttackTurns(20);
+			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+			if (!target.isConscious()) {
+				Item corpse = new PortableItem("dead " + target, '%');
+				map.locationOf(target).addItem(corpse);
+
+				Actions dropActions = new Actions();
+				for (Item item : target.getInventory())
+					dropActions.add(item.getDropAction());
+				for (Action drop : dropActions)
+					drop.execute(target, map);
+				map.removeActor(target);
+
+				result += System.lineSeparator() + target + " is killed.";
+			}
 		}
-
+		else {
+			result = actor + " cannot attack " + target + " due to the remaining attack turns: " + dinoTarget.getAttackTurns() ;
+		}
 		return result;
 	}
 
