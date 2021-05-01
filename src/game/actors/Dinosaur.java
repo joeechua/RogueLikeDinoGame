@@ -60,8 +60,8 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-        if((this instanceof Brachiosaur || this instanceof BabyBrachiosaur) && map.locationOf(this).getGround() != null){
-            if(map.locationOf(this).getGround().equals(Bush.class) && random.nextDouble() <= 0.5){
+        if((this instanceof Brachiosaur || this instanceof BabyBrachiosaur) && map.locationOf(this).getGround().equals(Bush.class)){
+            if(random.nextDouble() <= 0.5){
                 map.locationOf(this).setGround(new Dirt());
             }
         }

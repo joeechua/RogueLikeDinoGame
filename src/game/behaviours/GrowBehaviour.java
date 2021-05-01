@@ -16,13 +16,13 @@ public class GrowBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
         BabyDinosaur babyDino = (BabyDinosaur) actor;
-        if(babyDino.getDisplayChar() == 'a' && this.turns == 100){
+        if(babyDino.getDisplayChar() == 'a' && this.turns == 40){
             return new GrowAction();
         }
-        else if(babyDino.getDisplayChar() == 's' && this.turns == 50){
+        else if(babyDino.getDisplayChar() == 's' && this.turns == 10){
             return new GrowAction();
         }
-        else if(babyDino.getDisplayChar() == 'b' && this.turns == 70){
+        else if(babyDino.getDisplayChar() == 'b' && this.turns == 25){
             return new GrowAction();
         }
         return null;
