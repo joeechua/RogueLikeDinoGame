@@ -54,7 +54,9 @@ public class Application {
 		
 		Actor player = new Player("Player", '@', 100);
 		world.addPlayer(player, gameMap.at(9, 4));
-		
+
+		gameMap.at(5,7).setGround(groundFactory.newGround('⌻'));
+
 		// Place a pair of stegosaurs in the middle of the map
 //		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur"));
 //		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur"));

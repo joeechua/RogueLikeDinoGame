@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class VendingMachine extends Ground {
 
-    public static Location location = null;
     /**
      * Constructor.
      */
@@ -19,7 +18,6 @@ public class VendingMachine extends Ground {
         for (VendingItems item: VendingItems.values()){
             addCapability(item);
         }
-        location = new Location(location.map(), 5, 7);
     }
 
     public static String selectMenu(Actor actor, GameMap map) {
