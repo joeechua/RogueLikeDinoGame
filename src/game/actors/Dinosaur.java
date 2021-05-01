@@ -2,11 +2,13 @@ package game.actors;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.actions.FeedingAction;
 import game.behaviours.*;
 import game.enums.DinosaurCapabilities;
 import game.enums.Gender;
 import game.ground.Bush;
 import game.ground.Dirt;
+import game.items.Fruit;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,6 +17,7 @@ public abstract class Dinosaur extends Actor {
 
     private Random random = new Random();
     private ArrayList<Behaviour> behaviours;
+    private Location prevLoc;
     protected Gender gender;
     protected int foodLevel;
     protected int initFoodLevel;
@@ -82,14 +85,26 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    //NEW FROM JO EE
+
     public String getName(){
         return this.name;
+    }
+
+    public Location getPrevLoc(){return this.prevLoc;}
+
+    public boolean setPrevLoc(Location prev){
+        this.prevLoc = prev;
+        return true;
     }
 
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
         actions.add(new AttackAction(this));
+        if(otherActor.getDisplayChar() == '@'){
+            actions.add(new FeedingAction(this, new Fruit())); //do this just to test
+        }
         return actions;
     }
 
@@ -195,8 +210,8 @@ public abstract class Dinosaur extends Actor {
         int e = Math.min(location.map().getXRange().max(), location.x() + xRange);
         NumberRange x = new NumberRange(s,e-s+1);
 
-        s = Math.max(location.map().getYRange().min(), location.x() - yRange);
-        e = Math.min(location.map().getYRange().max(), location.x() + yRange);
+        s = Math.max(location.map().getYRange().min(), location.y() - yRange);
+        e = Math.min(location.map().getYRange().max(), location.y() + yRange);
         NumberRange y = new NumberRange(s,e-s+1);
 
         ret = new NumberRange[]{x, y};

@@ -7,11 +7,14 @@ import game.actions.HarvestAction;
 
 public class Fruit extends Item {
     private int rotTime = 15;
+    private boolean onTree;
+    private boolean inBag;
     /***
      * Constructor.
      */
     public Fruit() {
         super("Fruit", 'f', true);
+        capabilities.addCapability(ItemCapabilities.EATEN);
     }
 
     @Override
@@ -22,14 +25,30 @@ public class Fruit extends Item {
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
-
         if(rotTime == 0){
             currentLocation.removeItem(this);
         }
-        else{
+        else if(!onTree || !inBag){
             this.rotTime--;
         }
 
+    }
+
+    public boolean isOnTree() {
+        return onTree;
+    }
+
+    public boolean setOnTree(boolean stat){
+        onTree = stat;
+        return true;
+    }
+
+    public boolean isInBag() {
+        return inBag;
+    }
+
+    public void setInBag(boolean inBag) {
+        this.inBag = inBag;
     }
 
     public HarvestAction getHarvestAction() {return new HarvestAction(this);}

@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Location;
 
 public class AllosaurEgg extends Egg{
+
     /***
      * Constructor.
      */
@@ -20,4 +21,6 @@ public class AllosaurEgg extends Egg{
     public void tick(Location location, Actor actor) {
         super.tick(location, actor);
     }
+
+
 }

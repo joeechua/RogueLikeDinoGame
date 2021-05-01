@@ -25,6 +25,7 @@ public abstract class Egg extends PortableItem {
 
         super(name, displayChar);
         this.gender = randGen();
+        capabilities.addCapability(ItemCapabilities.EATEN);
     }
 
     public void tick(Location location) {

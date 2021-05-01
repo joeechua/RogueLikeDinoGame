@@ -30,8 +30,13 @@ public enum Food {
         this.isVeg = isVeg;
     }
 
-    public int getUpLevel(Item food) {
-        return this.upLevel;
+    public int getUpLevel(String food) {
+        for(Food f: Food.values()){
+            if(f.name() == food){
+                return f.upLevel;
+            }
+        }
+        return 0;
     }
 
     public Food[] getFoodList(Dinosaur dino){

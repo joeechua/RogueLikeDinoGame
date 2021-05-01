@@ -6,13 +6,21 @@ import game.actions.EatingAction;
 import game.actions.MateAction;
 import game.actors.Dinosaur;
 import game.enums.DinosaurCapabilities;
+import game.ground.Bush;
+import game.ground.Tree;
 import game.items.*;
 
 import java.util.List;
+import java.util.Random;
 
 public class BreedBehaviour implements Behaviour {
 
+    private Random random = new Random();
     private Actor target;
+    private String[] direction = new String[]{"west", "east", "south", "north",
+            "south west", "north west", "south east", "north east"};
+    private int[][] locList;
+    private Location here;
 
     public BreedBehaviour(){}
 
@@ -20,33 +28,42 @@ public class BreedBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
 
-        Location here = map.locationOf(dino);
-        Location left = new Location(map, here.x()-1, here.y());
-        Location right = new Location(map, here.x()+1, here.y());
-        Location up = new Location(map, here.x(), here.y()+1);
-        Location down = new Location(map, here.x(), here.y()-1);
-        Location leftUp = new Location(map, here.x()-1, here.y()+1);
-        Location leftDown = new Location(map, here.x()-1, here.y()-1);
-        Location rightUp = new Location(map, here.x()+1, here.y()+1);
-        Location rightDown = new Location(map, here.x()+1, here.y()-1);
-        Location[] loclist = new Location[]{here, left, right, up, down, leftUp, rightUp, leftDown, rightDown};
+        here = map.locationOf(dino);
+        int[] sini = new int[]{here.x(), here.y(), -1};
+        int[] left = new int[]{here.x() - 1, here.y(), 0};
+        int[] right = new int[]{here.x() + 1, here.y(), 1};
+        int[] up = new int[]{here.x(), here.y() + 1, 2};
+        int[] down = new int[]{here.x(), here.y() - 1, 3};
+        int[] leftUp = new int[]{here.x() - 1, here.y() + 1, 4};
+        int[] leftDown = new int[]{here.x() - 1, here.y() - 1, 5};
+        int[] rightUp = new int[]{here.x() + 1, here.y() + 1, 6};
+        int[] rightDown = new int[]{here.x() + 1, here.y() - 1, 7};
+        locList = new int[][]{left, right, up, down, leftUp, rightUp, leftDown, rightDown};
 //        if (map.contains(target)) {
 //            map.contains(actor);
 //        }
 
-        if(dino.getFoodLevel()>100){
-            for(Location loc:loclist) {
+
+        for(int[] coords:locList) {
+            if(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
+                    && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min()){
+                Location loc = map.at(coords[0], coords[1]);
                 //find and mate
                 if (map.isAnActorAt(loc)) {
-                    Actor target = map.getActorAt(loc);
-                    if (target.isConscious() && target.getDisplayChar() == dino.getDisplayChar()) {
-                        Dinosaur mate = (Dinosaur) target;
-                        return new MateAction(mate);
+                    if(map.getActorAt(loc).getDisplayChar() != '@'){
+                        Dinosaur target = (Dinosaur) actor;
+                        if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()) {
+                            System.out.println("target is at " + loc.y());
+                            System.out.println("dino is at " + map.locationOf(dino).y());
+                            return new MateAction(target);
+                        }
                     }
                 }
             }
-            return new DoNothingAction();
         }
-        return null;
+        int[] use = locList[random.nextInt(locList.length)];
+        Location lc = map.at(use[0], use[1]);
+        return new MoveActorAction(lc,direction[use[2]]);
     }
+
 }

@@ -1,6 +1,8 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.EatingAction;
+import game.actors.Player;
 import game.enums.VendingItems;
 import game.items.Fruit;
 
@@ -36,12 +38,21 @@ public class Tree extends Ground {
 				hasDroppedFruit = true;
 			}
 		}
-		if (!hasDroppedFruit && random.nextDouble() <= 0.05) {
-			Fruit dropFruit = new Fruit();
+		if (!hasDroppedFruit && random.nextDouble() <= 0.05 && treeFruit.size() > 0) {
+			/*
+			i think instead of making a new fruit, can take treeFruit.get(0)
+			i changed the fruit there so we have an attribute onTree so it wont rot in tree
+			 */
+			//Fruit dropFruit = new Fruit();
+			Fruit dropFruit = treeFruit.remove(0);
 			location.addItem(dropFruit);
+			dropFruit.setOnTree(false); //fruit on ground
 			dropFruitsArray.add(dropFruit);
+			Player.wallet.addEcoPoints(1);
+
 		}
-		if(treeFruit == null && random.nextDouble() <= 0.5){
+		if(treeFruit.size() == 0 && random.nextDouble() <= 0.5){
+			//changed this from treeFruit == null because it will never be nnull since u initiated edi
 			treeFruit.add(new Fruit());
 		}
 	}
@@ -53,5 +64,9 @@ public class Tree extends Ground {
 			actions.add(item.getHarvestAction());
 		}
 		return actions;
+	}
+
+	public boolean gotFruit(){
+		return treeFruit == null;
 	}
 }

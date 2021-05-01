@@ -13,7 +13,7 @@ public class Corpse extends PortableItem {
     public Corpse(int rotTime) {
         super("corpse", '%');
         this.rotTime = rotTime;
-
+        capabilities.addCapability(ItemCapabilities.EATEN);
     }
 
     //only this tick because anything in the inventory doesn't rot

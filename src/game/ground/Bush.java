@@ -39,4 +39,8 @@ public class Bush extends Ground{
         }
         return new Actions(bushFruit.getHarvestAction());
     }
+
+    public boolean gotFruit(){
+        return bushFruit != null;
+    }
 }

@@ -9,5 +9,6 @@ public class VegetarianMealKit extends PortableItem {
      */
     public VegetarianMealKit() {
         super("Vegetarian Meal Kit", 'v');
+        capabilities.addCapability(ItemCapabilities.EATEN);
     }
 }

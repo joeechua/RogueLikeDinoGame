@@ -1,13 +1,10 @@
 package game.actors;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.*;
 import game.ecopoint.EcoPointWallet;
 import game.ground.VendingMachine;
+
+import java.util.List;
 
 /**
  * Class representing the Player.
@@ -36,4 +33,5 @@ public class Player extends Actor {
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);
 	}
+
 }

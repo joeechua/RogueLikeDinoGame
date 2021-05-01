@@ -3,6 +3,9 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
+import game.behaviours.PregnantBehaviour;
+import game.enums.DinosaurCapabilities;
+import game.enums.Gender;
 
 public class MateAction extends Action{
 
@@ -16,7 +19,16 @@ public class MateAction extends Action{
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
         // if dino is female then get pregnant
-        return "";
+        if(dino.getGender() == Gender.F){
+            dino.addCapability(DinosaurCapabilities.PREGNANT);
+            dino.addBehaviour(new PregnantBehaviour());
+        }
+        else{
+            mate.addCapability(DinosaurCapabilities.PREGNANT);
+            mate.addBehaviour(new PregnantBehaviour());
+        }
+        String result = menuDescription(mate);
+        return result;
     }
 
     @Override
