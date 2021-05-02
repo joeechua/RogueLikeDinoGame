@@ -19,16 +19,12 @@ public class MateAction extends Action{
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
         // if dino is female then get pregnant
-        if(dino.getGender() == Gender.F){
+        if(dino.getGender().equals(Gender.F)){
             dino.addCapability(DinosaurCapabilities.PREGNANT);
             dino.addBehaviour(new PregnantBehaviour());
+            return menuDescription(actor);
         }
-        else{
-            mate.addCapability(DinosaurCapabilities.PREGNANT);
-            mate.addBehaviour(new PregnantBehaviour());
-        }
-        String result = menuDescription(mate);
-        return result;
+        return "";
     }
 
     @Override
