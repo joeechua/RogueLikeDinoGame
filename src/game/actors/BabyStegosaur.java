@@ -13,7 +13,6 @@ public class BabyStegosaur extends BabyDinosaur{
         attackTurns = 0;
     }
 
-    public boolean isVegetarian(){return true;}
     @Override
     public void tick() {
         super.tick();

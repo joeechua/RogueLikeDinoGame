@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.actors.BabyAllosaur;
+import game.actors.BabyBrachiosaur;
 import game.actors.Dinosaur;
 import game.items.PortableItem;
 
@@ -53,7 +55,12 @@ public class AttackAction extends Action {
 			target.hurt(damage);
 			actor.heal(damage);
 			dinoTarget.decFoodLevel(20);
-			actorDino.incFoodLevel(20);
+			if(actorDino instanceof BabyAllosaur){
+				actorDino.incFoodLevel(10);
+			}
+			else{
+				actorDino.incFoodLevel(20);
+			}
 			dinoTarget.setAttackTurns(20);
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 			if (!target.isConscious()) {

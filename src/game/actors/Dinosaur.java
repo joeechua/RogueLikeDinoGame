@@ -27,7 +27,7 @@ public abstract class Dinosaur extends Actor {
     protected int maxFoodLevel;
     protected int unconsciousTime;
     protected int maxUnconsciousTime;
-    protected int turns;
+    protected int pregnancyTurns;
     protected int attackTurns;
     protected ArrayList<DinosaurCapabilities> capabilities;
     /**
@@ -39,7 +39,7 @@ public abstract class Dinosaur extends Actor {
      */
     public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        turns = 0;
+        pregnancyTurns = 0;
         behaviours = new ArrayList<>();
         capabilities = new ArrayList<>();
         edibleFoodList = Food.getFoodList(this);
@@ -78,7 +78,9 @@ public abstract class Dinosaur extends Actor {
     }
 
     public void tick(){
-        turns++;
+        if(this.isPregnant()) {
+            pregnancyTurns++;
+        }
         if(foodLevel > 0){
             foodLevel--;
             unconsciousTime = 0;
@@ -199,7 +201,7 @@ public abstract class Dinosaur extends Actor {
     }
 
     public int getTurns() {
-        return turns;
+        return pregnancyTurns;
     }
 
     public void setAttackTurns(int attackTurns) {

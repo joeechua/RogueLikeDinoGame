@@ -12,7 +12,4 @@ public class BabyBrachiosaur extends BabyDinosaur{
         capabilities.add(DinosaurCapabilities.HERBIVORE);
         capabilities.add(DinosaurCapabilities.LONG_NECK);
     }
-
-    public boolean isVegetarian(){return true;}
-
 }

@@ -1,5 +1,6 @@
 package game.actors;
 
+import edu.monash.fit2099.engine.IntrinsicWeapon;
 import game.enums.DinosaurCapabilities;
 
 public class BabyAllosaur extends BabyDinosaur{
@@ -12,5 +13,8 @@ public class BabyAllosaur extends BabyDinosaur{
         capabilities.add(DinosaurCapabilities.CARNIVORE);
     }
 
-    public boolean isVegetarian(){return false;}
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(20,"claws");
+    }
 }

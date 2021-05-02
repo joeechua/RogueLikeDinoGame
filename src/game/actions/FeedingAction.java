@@ -28,7 +28,7 @@ public class FeedingAction extends Action {
                 remItem = food;
             }
             if(foodInventory.getClass() == Fruit.class){
-                Player.wallet.addEcoPoints(10); //cannot do thing to the Player class
+                Player.wallet.addEcoPoints(10);
             }
         }
         actor.removeItemFromInventory(remItem);
