@@ -28,6 +28,17 @@ public class EatingAction extends Action {
         Location dinoLocation = map.locationOf(dino);
         map.at(dinoLocation.x(), dinoLocation.y()).removeItem(targetFood);
 
+        if(dino instanceof Brachiosaur || dino instanceof BabyBrachiosaur){
+            Tree tree = (Tree) map.locationOf(actor).getGround();
+            if(tree.equals(Tree.class)){
+                while(tree.gotFruit()){
+                    tree.getTreeFruit().remove(0);
+                    dino.incFoodLevel(5);
+                }
+                return menuDescription(actor) + "\nFood level of " + dino + " has increased to " +  dino.getFoodLevel();
+            }
+        }
+
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
             if(targetFood.getClass() == enumFood.getClassType()){
@@ -51,18 +62,6 @@ public class EatingAction extends Action {
             }
         }
         dino.incFoodLevel(nutritionValue);
-
-        if(dino instanceof Brachiosaur || dino instanceof BabyBrachiosaur){
-            Tree tree = (Tree) map.locationOf(actor).getGround();
-            if(tree.equals(Tree.class)){
-                while(tree.gotFruit()){
-                    tree.getTreeFruit().remove(0);
-                    dino.incFoodLevel(5);
-                }
-                return menuDescription(actor) + "\nFood level of " + dino + " has increased to " +  dino.getFoodLevel();
-            }
-        }
-
         return menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
     }
 
