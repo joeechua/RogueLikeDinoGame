@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Item;
 import game.actors.Dinosaur;
 import game.items.*;
 
+import java.util.ArrayList;
 
 
 public enum Food {
@@ -39,14 +40,16 @@ public enum Food {
         return 0;
     }
 
-    public Food[] getFoodList(Dinosaur dino){
-        if(dino.hasCapability(DinosaurCapabilities.HERBIVORE)){
-            Food[] vegList = new Food[]{Food.STEG_FRUIT, Food.BRACH_FRUIT, Food.FED_FRUIT,
-            Food.VEGETARIAN_MEAL_KIT};
-            return vegList;
+    public ArrayList<Food> getFoodList(Dinosaur dino){
+        ArrayList<Food> foodList = new ArrayList<>();
+        for(Food f: Food.values()){
+            if (dino.isHerbivore() && f.isVeg){
+                foodList.add(f);
+            }
+            else if(!dino.isHerbivore() && !f.isVeg){
+                foodList.add(f);
+            }
         }
-        else{
-            return Food.values();
-        }
+        return foodList;
     }
 }
