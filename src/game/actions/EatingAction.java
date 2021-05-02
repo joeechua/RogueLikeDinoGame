@@ -6,7 +6,9 @@ import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
 import game.enums.Food;
 import game.ground.Tree;
+import game.items.Corpse;
 import game.items.Fruit;
+import game.items.ItemCapabilities;
 
 public class EatingAction extends Action {
     private Item targetFood;
@@ -45,6 +47,16 @@ public class EatingAction extends Action {
                 else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'B'){
                     nutritionValue = enumFood.getUpLevel("BRACH_FRUIT");
                 }
+                else if(targetFood.toString().equals("Corpse")){
+                    Corpse c = (Corpse) targetFood;
+                    if(c.hasCapability(ItemCapabilities.BRACH)){
+                        nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
+                    }
+                    else{
+                        nutritionValue = enumFood.getUpLevel("CORPSE");
+                    }
+
+                }
                 else {
                     nutritionValue = enumFood.getUpLevel(enumFood.name());
                 }
@@ -53,14 +65,16 @@ public class EatingAction extends Action {
         dino.incFoodLevel(nutritionValue);
 
         if(dino instanceof Brachiosaur || dino instanceof BabyBrachiosaur){
-            Tree tree = (Tree) map.locationOf(actor).getGround();
-            if(tree.equals(Tree.class)){
+            if(map.locationOf(actor).getGround().getClass() == Tree.class){
+                Tree tree = (Tree) map.locationOf(actor).getGround();
                 while(tree.gotFruit()){
                     tree.getTreeFruit().remove(0);
                     dino.incFoodLevel(5);
                 }
                 return menuDescription(actor) + "\nFood level of " + dino + " has increased to " +  dino.getFoodLevel();
+
             }
+
         }
 
         return menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
