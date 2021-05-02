@@ -63,4 +63,8 @@ public class Tree extends Ground {
 	public boolean gotFruit(){
 		return treeFruit.size() != 0;
 	}
+
+	public ArrayList<Fruit> getTreeFruit() {
+		return treeFruit;
+	}
 }

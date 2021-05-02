@@ -1,8 +1,11 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.*;
+import game.actors.BabyBrachiosaur;
+import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
 import game.enums.Food;
+import game.ground.Tree;
 import game.items.Fruit;
 
 public class EatingAction extends Action {
@@ -49,8 +52,18 @@ public class EatingAction extends Action {
         }
         dino.incFoodLevel(nutritionValue);
 
-        String result = menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
-        return result;
+        if(dino instanceof Brachiosaur || dino instanceof BabyBrachiosaur){
+            Tree tree = (Tree) map.locationOf(actor).getGround();
+            if(tree.equals(Tree.class)){
+                while(tree.gotFruit()){
+                    tree.getTreeFruit().remove(0);
+                    dino.incFoodLevel(5);
+                }
+                return menuDescription(actor) + "\nFood level of " + dino + " has increased to " +  dino.getFoodLevel();
+            }
+        }
+
+        return menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
     }
 
     @Override
