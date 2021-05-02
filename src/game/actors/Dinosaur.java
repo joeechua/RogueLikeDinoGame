@@ -114,8 +114,10 @@ public abstract class Dinosaur extends Actor {
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
         actions.add(new AttackAction(this));
-        if(otherActor.getDisplayChar() == '@'){
-            actions.add(new FeedingAction(this, new Fruit())); //do this just to test
+        for(Item item: otherActor.getInventory()){
+            if(this.canEat(item)){
+                actions.add(new FeedingAction(this, item));
+            }
         }
         return actions;
     }
