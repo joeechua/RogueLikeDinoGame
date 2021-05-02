@@ -26,7 +26,7 @@ public class DieAction extends Action {
         else{
             rotTime = 20;
         }
-        Corpse corpse = new Corpse(rotTime);
+        Corpse corpse = new Corpse(actor);
         currentLocation.addItem(corpse);
         return menuDescription(actor);
     }
