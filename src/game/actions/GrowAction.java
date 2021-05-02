@@ -8,10 +8,10 @@ public class GrowAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Dinosaur adultDino = null;
-        if(actor instanceof Allosaur){
+        if(actor instanceof BabyAllosaur){
             adultDino = new Allosaur();
         }
-        else if (actor instanceof Stegosaur){
+        else if (actor instanceof BabyStegosaur){
             adultDino = new Stegosaur();
         }
         else{

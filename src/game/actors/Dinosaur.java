@@ -27,6 +27,7 @@ public abstract class Dinosaur extends Actor {
     protected int maxFoodLevel;
     protected int unconsciousTime;
     protected int maxUnconsciousTime;
+    protected int rotTime;
     protected int pregnancyTurns;
     protected int attackTurns;
     protected ArrayList<DinosaurCapabilities> capabilities;
@@ -47,13 +48,15 @@ public abstract class Dinosaur extends Actor {
             minFoodLevel = 140;
             maxFoodLevel = 160;
             maxUnconsciousTime = 15;
-            initFoodLevel = foodLevel = 100;
+            initFoodLevel = foodLevel = 50;
+            rotTime = 40;
         }
         else{
             minFoodLevel = 90;
             maxFoodLevel = 100;
             maxUnconsciousTime = 20;
             initFoodLevel = foodLevel = 50;
+            rotTime = 20;
         }
 
         if(!(this instanceof BabyDinosaur)){
@@ -103,6 +106,10 @@ public abstract class Dinosaur extends Actor {
         return true;
     }
 
+    public int getRotTime(){
+        return rotTime;
+    }
+
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
@@ -140,6 +147,11 @@ public abstract class Dinosaur extends Actor {
         return false;
     }
 
+    public void setPregnancyTurns(int t){
+        if(t >= 0){
+            pregnancyTurns = t;
+        }
+    }
     public boolean isHungry(){
         return this.foodLevel < getMinFoodLevel();
     }
@@ -221,9 +233,9 @@ public abstract class Dinosaur extends Actor {
         return false;
     }
 
-    public void setPregnancyTurns(int pregnancyTurns) {
-        this.pregnancyTurns = pregnancyTurns;
-    }
+//    public void setPregnancyTurns(int pregnancyTurns) {
+//        this.pregnancyTurns = pregnancyTurns;
+//    }
 
     public NumberRange[] getRange(Location location, int xRange, int yRange){
         NumberRange[] ret;

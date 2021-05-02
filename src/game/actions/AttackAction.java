@@ -10,7 +10,9 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 import game.actors.BabyAllosaur;
 import game.actors.BabyBrachiosaur;
+import game.actors.BabyDinosaur;
 import game.actors.Dinosaur;
+import game.items.Corpse;
 import game.items.PortableItem;
 
 /**
@@ -50,21 +52,24 @@ public class AttackAction extends Action {
 
 		// decrease and increase food level for Stegosaur and Allosaurs respectively by 20
 		Dinosaur dinoTarget = (Dinosaur) target;
-		Dinosaur actorDino = (Dinosaur) actor;
+		Dinosaur actorDino;
 		if(dinoTarget.getAttackTurns() == 0){
 			target.hurt(damage);
 			actor.heal(damage);
 			dinoTarget.decFoodLevel(20);
-			if(actorDino instanceof BabyAllosaur){
+			if(actor instanceof BabyAllosaur){
+				actorDino = (Dinosaur) actor;
 				actorDino.incFoodLevel(10);
 			}
-			else{
+			else if(actor instanceof Dinosaur){
+				actorDino = (Dinosaur) actor;
 				actorDino.incFoodLevel(20);
 			}
 			dinoTarget.setAttackTurns(20);
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 			if (!target.isConscious()) {
-				Item corpse = new PortableItem("dead " + target, '%');
+				Item corpse1 = new PortableItem("dead " + target, '%');
+				Corpse corpse = new Corpse(dinoTarget);
 				map.locationOf(target).addItem(corpse);
 
 				Actions dropActions = new Actions();

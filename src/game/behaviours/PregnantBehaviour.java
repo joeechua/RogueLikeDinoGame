@@ -34,9 +34,13 @@ public class PregnantBehaviour implements Behaviour{
             layEgg = new LayEggAction();
         }
         else{
-            int[] use = locList[random.nextInt(locList.length)];
-            Location lc = map.at(use[0], use[1]);
-            layEgg = new MoveActorAction(lc,BreedBehaviour.direction[use[2]]);
+            int[] coords;
+            do{
+                coords = locList[random.nextInt(locList.length)];
+            }while(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
+                    && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min());
+            Location lc = map.at(coords[0], coords[1]);
+            layEgg = new MoveActorAction(lc,BreedBehaviour.direction[coords[2]]);
         }
         return layEgg;
     }
