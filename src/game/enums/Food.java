@@ -40,7 +40,7 @@ public enum Food {
         return 0;
     }
 
-    public ArrayList<Food> getFoodList(Dinosaur dino){
+    public static ArrayList<Food> getFoodList(Dinosaur dino){
         ArrayList<Food> foodList = new ArrayList<>();
         for(Food f: Food.values()){
             if (dino.isHerbivore() && f.isVeg){
