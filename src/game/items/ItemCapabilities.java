@@ -1,5 +1,6 @@
 package game.items;
 
 public enum ItemCapabilities {
-    EATEN;
+    EATEN,
+    BRACH;
 }

@@ -3,17 +3,22 @@ package game.items;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.actors.Brachiosaur;
+import game.actors.Dinosaur;
 
 public class Corpse extends PortableItem {
     private int rotTime;
     /***
      * Constructor.
-     *  @param rotTime time that corpse stays on the map
      */
-    public Corpse(int rotTime) {
+    public Corpse(Actor actor) {
         super("corpse", '%');
-        this.rotTime = rotTime;
+        Dinosaur dino = (Dinosaur) actor;
+        this.rotTime = dino.getRotTime();
         capabilities.addCapability(ItemCapabilities.EATEN);
+        if(dino instanceof Brachiosaur){
+            capabilities.addCapability(ItemCapabilities.BRACH);
+        }
     }
 
     //only this tick because anything in the inventory doesn't rot

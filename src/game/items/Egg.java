@@ -4,14 +4,14 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.actions.HatchAction;
-import game.actors.Dinosaur;
+import game.actors.*;
 import game.enums.Gender;
 import game.enums.Species;
 
 import java.util.Random;
 
 public abstract class Egg extends PortableItem {
-    private int timeHatch;
+    private int timeHatch = 5;
     private Location birthLocation;
     private Gender gender;
     private Random random = new Random();
@@ -25,14 +25,30 @@ public abstract class Egg extends PortableItem {
 
         super(name, displayChar);
         this.gender = randGen();
-        capabilities.addCapability(ItemCapabilities.EATEN);
     }
 
     public void tick(Location location) {
+        System.out.println("egg time " + timeHatch);
         super.tick(location);
 
         if(timeHatch == 0){
-            //Hatch Action
+            BabyDinosaur babyDino;
+            int ecoPoint;
+            if(this instanceof StegosaurEgg){
+                babyDino = new BabyStegosaur();
+                ecoPoint = 100;
+            }
+            else if(this instanceof AllosaurEgg){
+                babyDino = new BabyAllosaur();
+                ecoPoint = 1000;
+            }
+            else {
+                babyDino = new BabyBrachiosaur();
+                ecoPoint = 1000;
+            }
+            Player.wallet.addEcoPoints(ecoPoint);
+            location.addActor(babyDino);
+            location.removeItem(this);
         }
         else{
             timeHatch--;
@@ -44,9 +60,7 @@ public abstract class Egg extends PortableItem {
         super.tick(location, actor);
 
         if(timeHatch == 0){
-            //Drop Action
-            //It could also do nothing we should discuss
-            //or i could raise an exception where it can ask user whether want to drop or not
+            System.out.println("Egg is ready to hatch, you can drop it.");
         }
         else{
             timeHatch--;
