@@ -29,15 +29,6 @@ public abstract class BabyDinosaur extends Dinosaur {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-//        if(dinoChar == 'b' && getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC){
-//            return new GrowAction();
-//        }
-//        else if((dinoChar == 's' || dinoChar == 'a') && getTurnsSinceHatch() >= MATURE_TURN_FOR_STEGO_ALLO){
-//            return new GrowAction();
-//        }
-//        else{
-//            return super.playTurn(actions, lastAction, map, display);
-//        }
         if(this instanceof BabyBrachiosaur && getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC){
             return new GrowAction();
         }
