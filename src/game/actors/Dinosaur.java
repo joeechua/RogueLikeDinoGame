@@ -5,6 +5,7 @@ import game.actions.AttackAction;
 import game.actions.FeedingAction;
 import game.behaviours.*;
 import game.enums.DinosaurCapabilities;
+import game.enums.Food;
 import game.enums.Gender;
 import game.ground.Bush;
 import game.ground.Dirt;
@@ -17,6 +18,7 @@ public abstract class Dinosaur extends Actor {
 
     private Random random = new Random();
     private ArrayList<Behaviour> behaviours;
+    private ArrayList<Food> edibleFoodList;
     private Location prevLoc;
     protected Gender gender;
     protected int foodLevel;
@@ -40,6 +42,7 @@ public abstract class Dinosaur extends Actor {
         turns = 0;
         behaviours = new ArrayList<>();
         capabilities = new ArrayList<>();
+        edibleFoodList = Food.getFoodList(this);
         if(this instanceof Brachiosaur){
             minFoodLevel = 140;
             maxFoodLevel = 160;
@@ -52,6 +55,7 @@ public abstract class Dinosaur extends Actor {
             maxUnconsciousTime = 20;
             initFoodLevel = foodLevel = 50;
         }
+
         if(!(this instanceof BabyDinosaur)){
             addBehaviour(new BreedBehaviour());
         }
@@ -125,6 +129,15 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    public boolean canEat(Item food){
+        for(Food f: edibleFoodList){
+            if(food.getClass() == f.getClassType()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isHungry(){
         return this.foodLevel < getMinFoodLevel();
     }
@@ -165,6 +178,9 @@ public abstract class Dinosaur extends Actor {
         return gender;
     }
 
+    public void setFoodLevel(int foodLevel) {
+        this.foodLevel = foodLevel;
+    }
 
     public int getUnconsciousTime() {
         return unconsciousTime;
@@ -203,19 +219,19 @@ public abstract class Dinosaur extends Actor {
         return false;
     }
 
-    public NumberRange[] getRange(Location location, int xRange, int yRange){
-        NumberRange[] ret;
-        int s = Math.max(location.map().getXRange().min(), location.x() - xRange);
-        int e = Math.min(location.map().getXRange().max(), location.x() + xRange);
-        NumberRange x = new NumberRange(s,e-s+1);
-
-        s = Math.max(location.map().getYRange().min(), location.y() - yRange);
-        e = Math.min(location.map().getYRange().max(), location.y() + yRange);
-        NumberRange y = new NumberRange(s,e-s+1);
-
-        ret = new NumberRange[]{x, y};
-        return ret;
-    }
+//    public NumberRange[] getRange(Location location, int xRange, int yRange){
+//        NumberRange[] ret;
+//        int s = Math.max(location.map().getXRange().min(), location.x() - xRange);
+//        int e = Math.min(location.map().getXRange().max(), location.x() + xRange);
+//        NumberRange x = new NumberRange(s,e-s+1);
+//
+//        s = Math.max(location.map().getYRange().min(), location.y() - yRange);
+//        e = Math.min(location.map().getYRange().max(), location.y() + yRange);
+//        NumberRange y = new NumberRange(s,e-s+1);
+//
+//        ret = new NumberRange[]{x, y};
+//        return ret;
+//    }
 
     public ArrayList<DinosaurCapabilities> getCapabilities() {
         return capabilities;
