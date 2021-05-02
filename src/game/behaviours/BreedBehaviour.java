@@ -17,9 +17,9 @@ public class BreedBehaviour implements Behaviour {
 
     private Random random = new Random();
     private Actor target;
-    private String[] direction = new String[]{"west", "east", "south", "north",
+    protected static String[] direction = new String[]{"west", "east", "south", "north",
             "south west", "north west", "south east", "north east"};
-    private int[][] locList;
+    protected static int[][] locList;
     private Location here;
 
     public BreedBehaviour(){}
@@ -32,18 +32,18 @@ public class BreedBehaviour implements Behaviour {
         int[] sini = new int[]{here.x(), here.y(), -1};
         int[] left = new int[]{here.x() - 1, here.y(), 0};
         int[] right = new int[]{here.x() + 1, here.y(), 1};
-        int[] up = new int[]{here.x(), here.y() + 1, 2};
-        int[] down = new int[]{here.x(), here.y() - 1, 3};
-        int[] leftUp = new int[]{here.x() - 1, here.y() + 1, 4};
-        int[] leftDown = new int[]{here.x() - 1, here.y() - 1, 5};
-        int[] rightUp = new int[]{here.x() + 1, here.y() + 1, 6};
-        int[] rightDown = new int[]{here.x() + 1, here.y() - 1, 7};
+        int[] down = new int[]{here.x(), here.y() + 1, 2};
+        int[] up = new int[]{here.x(), here.y() - 1, 3};
+        int[] leftDown = new int[]{here.x() - 1, here.y() + 1, 4};
+        int[] leftUp = new int[]{here.x() - 1, here.y() - 1, 5};
+        int[] rightDown = new int[]{here.x() + 1, here.y() + 1, 6};
+        int[] rightUp = new int[]{here.x() + 1, here.y() - 1, 7};
         locList = new int[][]{left, right, up, down, leftUp, rightUp, leftDown, rightDown};
 //        if (map.contains(target)) {
 //            map.contains(actor);
 //        }
 
-
+        Action ret = null;
         for(int[] coords:locList) {
             if(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
                     && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min()){
@@ -51,17 +51,20 @@ public class BreedBehaviour implements Behaviour {
                 //find and mate
                 if (map.isAnActorAt(loc)) {
                     if(map.getActorAt(loc).getDisplayChar() != '@'){
-                        Dinosaur target = (Dinosaur) actor;
-                        if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()) {
-                            return new MateAction(target);
+                        Dinosaur target = (Dinosaur) map.getActorAt(loc);
+                        if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()){
+                            ret= new MateAction(target);
                         }
                     }
                 }
             }
         }
-        int[] use = locList[random.nextInt(locList.length)];
-        Location lc = map.at(use[0], use[1]);
-        return new MoveActorAction(lc,direction[use[2]]);
+        if(ret == null){
+            int[] use = locList[random.nextInt(locList.length)];
+            Location lc = map.at(use[0], use[1]);
+            ret = new MoveActorAction(lc,direction[use[2]]);
+        }
+        return ret;
     }
 
 }
