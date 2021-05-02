@@ -27,26 +27,6 @@ public class EatingAction extends Action {
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
-//            if(targetFood.getClass() == enumFood.getClassType()){
-//                //added these to make sure they were getting the correct value
-//                if(isFed){
-//                    if(targetFood.toString().equals("Fruit")) {
-//                        nutritionValue = enumFood.getUpLevel("FED_FRUIT");
-//                    }
-//                    else{
-//                        nutritionValue = enumFood.getUpLevel("VEGETARIAN_MEAL_KIT");
-//                    }
-//                }
-//                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'S'){
-//                    nutritionValue = enumFood.getUpLevel("STEG_FRUIT");
-//                }
-//                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'B'){
-//                    nutritionValue = enumFood.getUpLevel("BRACH_FRUIT");
-//                }
-//
-//                dino.incFoodLevel(nutritionValue);
-//                break;
-//            }
             if(targetFood.getClass() == enumFood.getClassType()){
                 if(isFed){
                     if(targetFood.getClass() == Fruit.class){
@@ -66,8 +46,10 @@ public class EatingAction extends Action {
                     nutritionValue = enumFood.getUpLevel(enumFood.name());
                 }
             }
-            dino.incFoodLevel(nutritionValue);
+//            dino.incFoodLevel(nutritionValue);
         }
+        //put here cuz inside loop will increment multiple time
+        dino.incFoodLevel(nutritionValue);
 
         String result = menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
         return result;
