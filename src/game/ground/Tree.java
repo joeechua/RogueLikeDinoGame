@@ -39,11 +39,6 @@ public class Tree extends Ground {
 			}
 		}
 		if (!hasDroppedFruit && random.nextDouble() <= 0.05 && treeFruit.size() > 0) {
-			/*
-			i think instead of making a new fruit, can take treeFruit.get(0)
-			i changed the fruit there so we have an attribute onTree so it wont rot in tree
-			 */
-			//Fruit dropFruit = new Fruit();
 			Fruit dropFruit = treeFruit.remove(0);
 			location.addItem(dropFruit);
 			dropFruit.setOnTree(false); //fruit on ground
@@ -52,7 +47,6 @@ public class Tree extends Ground {
 
 		}
 		if(treeFruit.size() == 0 && random.nextDouble() <= 0.5){
-			//changed this from treeFruit == null because it will never be nnull since u initiated edi
 			treeFruit.add(new Fruit());
 		}
 	}
@@ -67,6 +61,6 @@ public class Tree extends Ground {
 	}
 
 	public boolean gotFruit(){
-		return treeFruit == null;
+		return treeFruit.size() != 0;
 	}
 }
