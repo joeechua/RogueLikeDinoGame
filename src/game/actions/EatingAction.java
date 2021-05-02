@@ -46,9 +46,7 @@ public class EatingAction extends Action {
                     nutritionValue = enumFood.getUpLevel(enumFood.name());
                 }
             }
-//            dino.incFoodLevel(nutritionValue);
         }
-        //put here cuz inside loop will increment multiple time
         dino.incFoodLevel(nutritionValue);
 
         String result = menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
