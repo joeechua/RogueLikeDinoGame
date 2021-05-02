@@ -1,8 +1,8 @@
 package game.items;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
+
+import java.util.List;
 
 /**
  * Base class for any item that can be picked up and dropped.

@@ -53,8 +53,6 @@ public class BreedBehaviour implements Behaviour {
                     if(map.getActorAt(loc).getDisplayChar() != '@'){
                         Dinosaur target = (Dinosaur) actor;
                         if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()) {
-                            System.out.println("target is at " + loc.y());
-                            System.out.println("dino is at " + map.locationOf(dino).y());
                             return new MateAction(target);
                         }
                     }

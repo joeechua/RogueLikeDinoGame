@@ -1,11 +1,15 @@
 package game.items;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.actions.EatingAction;
 import game.actions.HarvestAction;
 
-public class Fruit extends Item {
+import java.util.List;
+
+public class Fruit extends PortableItem {
     private int rotTime = 15;
     private boolean onTree;
     private boolean inBag;
@@ -13,7 +17,7 @@ public class Fruit extends Item {
      * Constructor.
      */
     public Fruit() {
-        super("Fruit", 'f', true);
+        super("Fruit", 'f');
         capabilities.addCapability(ItemCapabilities.EATEN);
     }
 
@@ -34,6 +38,11 @@ public class Fruit extends Item {
 
     }
 
+    @Override
+    public List<Action> getAllowableActions() {
+        return super.getAllowableActions();
+    }
+
     public boolean isOnTree() {
         return onTree;
     }
@@ -52,4 +61,6 @@ public class Fruit extends Item {
     }
 
     public HarvestAction getHarvestAction() {return new HarvestAction(this);}
+
+    public EatingAction getEatingAction() {return new EatingAction(this);}
 }

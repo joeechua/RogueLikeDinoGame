@@ -39,12 +39,12 @@ public class HungerBehaviour implements Behaviour {
         int[] sini = new int[]{here.x(), here.y(), -1};
         int[] left = new int[]{here.x() - 1, here.y(), 0};
         int[] right = new int[]{here.x() + 1, here.y(), 1};
-        int[] up = new int[]{here.x(), here.y() + 1, 2};
-        int[] down = new int[]{here.x(), here.y() - 1, 3};
-        int[] leftUp = new int[]{here.x() - 1, here.y() + 1, 4};
-        int[] leftDown = new int[]{here.x() - 1, here.y() - 1, 5};
-        int[] rightUp = new int[]{here.x() + 1, here.y() + 1, 6};
-        int[] rightDown = new int[]{here.x() + 1, here.y() - 1, 7};
+        int[] down = new int[]{here.x(), here.y() + 1, 2};
+        int[] up = new int[]{here.x(), here.y() - 1, 3};
+        int[] leftDown = new int[]{here.x() - 1, here.y() + 1, 4};
+        int[] leftUp = new int[]{here.x() - 1, here.y() - 1, 5};
+        int[] rightDown = new int[]{here.x() + 1, here.y() + 1, 6};
+        int[] rightUp = new int[]{here.x() + 1, here.y() - 1, 7};
         locList = new int[][]{left, right, up, down, leftUp, rightUp, leftDown, rightDown};
 
         //go through each location in list
@@ -52,7 +52,7 @@ public class HungerBehaviour implements Behaviour {
         Location loc = map.at(sini[0], sini[1]);
         if (map.isAnActorAt(loc) && !dino.isHerbivore()) {
             Actor target = map.getActorAt(loc);
-            if (target.getDisplayChar() == 'b') {
+            if (target.getDisplayChar() == 'S' || target.getDisplayChar() == 's') {
                 ret = new AttackAction(target);
                 
             }
@@ -60,23 +60,34 @@ public class HungerBehaviour implements Behaviour {
         //eat the stuff available
         else {
             List<Item> items = loc.getItems();
-            for (Item it : items) {
-                Class c = it.getClass();
-                //if Carnivore eat the more filling food
-                if ((c == Corpse.class || c == AllosaurEgg.class || c == StegosaurEgg.class
-                        || c == CarnivoreMealKit.class)
-                        && !dino.isHerbivore()) {
-                    ret = new EatingAction(it);
-                }
-                //if no choice only check for these
-                else if (c == Fruit.class || c == VegetarianMealKit.class) {
-                    if (c == Fruit.class && dino.getDisplayChar() == 'S') {
-                        Fruit f = (Fruit) it;
-                        if (!f.isOnTree()) {
-                            ret = new EatingAction(it);
-                        }
+            if(items.size() == 0){
+                Ground g = loc.getGround();
+                if(g instanceof Bush){
+                    Bush b = (Bush) g;
+                    if(b.gotFruit()){
+                        ret = new EatingAction(b.getBushFruit());
                     }
-                    else {
+                }
+                else if(g instanceof Tree){
+                    Tree t = (Tree) g;
+                    if(t.gotFruit() && dino.hasCapability(DinosaurCapabilities.LONG_NECK)){
+                        ret = new EatingAction(new Fruit());
+                    }
+                }
+            }
+            else{
+                for (Item it : items) {
+                    Class c = it.getClass();
+                    if(dino.canEat(it)){
+//                    if(it instanceof Fruit){
+//                        Fruit fruit = (Fruit) it;
+//                        if(fruit.isOnTree() && dino.hasCapability(DinosaurCapabilities.LONG_NECK)){
+//                            ret = new EatingAction(it);
+//                        }
+//                    }
+//                    else{
+//                        ret = new EatingAction(it);
+//                    }
                         ret = new EatingAction(it);
                     }
                 }
@@ -103,16 +114,14 @@ public class HungerBehaviour implements Behaviour {
                 if (map.isAnActorAt(food) && !dino.isHerbivore()) {
                     Actor target = map.getActorAt(food);
                     if (target.getDisplayChar() == 'b') {
+                        System.out.println("got meat");
                         ret = new MoveActorAction(food, direction[i[2]]);
                     }
-                } else if (food.getItems().size() > 0) {
+                }
+                else if (food.getItems().size() > 0) {
                     for (Item it : food.getItems()) {
-                        if (dino.isHerbivore() && food != dino.getPrevLoc() &&
-                                (it.getClass() == Fruit.class || it.getClass() == VegetarianMealKit.class)) {
-                            ret = new MoveActorAction(food, direction[i[2]]);
-                        } else if (!dino.isHerbivore() && food != dino.getPrevLoc() &&
-                                (it.getClass() == Corpse.class || it.getClass() == CarnivoreMealKit.class)) {
-                            System.out.println("got meat");
+                        if(dino.canEat(it)){
+                            System.out.println("got vege");
                             ret = new MoveActorAction(food, direction[i[2]]);
                         }
                     }
@@ -122,12 +131,14 @@ public class HungerBehaviour implements Behaviour {
                         Tree t = (Tree) ok;
                         if (possible == null && !food.containsAnActor() && food != dino.getPrevLoc()) {
                             if (t.gotFruit())
+                                System.out.println("tree got fruit");
                                 possible = new MoveActorAction(food, direction[i[2]]);
                         }
                     } else if (ok.getClass() == Bush.class) {
-                        Bush t = (Bush) ok;
+                        Bush b = (Bush) ok;
                         if (possible == null && !food.containsAnActor() && food != dino.getPrevLoc()) {
-                            if (t.gotFruit())
+                            if (b.gotFruit())
+                                System.out.println("bush got fruit ");
                                 possible = new MoveActorAction(food, direction[i[2]]);
                         }
                     }

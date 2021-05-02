@@ -2,6 +2,7 @@ package game.enums;
 
 import edu.monash.fit2099.engine.Item;
 import game.actors.Dinosaur;
+import game.actors.Stegosaur;
 import game.items.*;
 
 import java.util.ArrayList;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 
 public enum Food {
     EGG(10, Egg.class, false),
-    CORPSE(100, Corpse.class, false),
+    BRACH_CORPSE(100, Corpse.class, false),
+    CORPSE(50, Corpse.class, false),
     STEG_FRUIT(10, Fruit.class, true),
     BRACH_FRUIT(5, Fruit.class, true),
     FED_FRUIT(20, Fruit.class, true),

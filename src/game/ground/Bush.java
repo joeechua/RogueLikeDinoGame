@@ -43,4 +43,8 @@ public class Bush extends Ground{
     public boolean gotFruit(){
         return bushFruit != null;
     }
+
+    public Fruit getBushFruit(){
+        return bushFruit;
+    }
 }
