@@ -115,6 +115,7 @@ public abstract class Dinosaur extends Actor {
         Actions actions = new Actions();
         actions.add(new AttackAction(this));
         for(Item item: otherActor.getInventory()){
+            System.out.println(item);
             if(this.canEat(item)){
                 actions.add(new FeedingAction(this, item));
             }
