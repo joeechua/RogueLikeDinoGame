@@ -9,7 +9,7 @@ public class LaserGun extends WeaponItem {
      *
      */
     public LaserGun() {
-        super("laser Gun", 'L', 100, "zaps");
+        super("laser Gun", 'L', 140, "zaps");
     }
 
 
