@@ -37,8 +37,8 @@ public class PregnantBehaviour implements Behaviour{
             int[] coords;
             do{
                 coords = locList[random.nextInt(locList.length)];
-            }while(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
-                    && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min());
+            }while(coords[0] >= map.getXRange().max() || coords[1] >= map.getYRange().max()
+                    || coords[0] <= map.getXRange().min() || coords[1]<= map.getYRange().min());
             Location lc = map.at(coords[0], coords[1]);
             layEgg = new MoveActorAction(lc,BreedBehaviour.direction[coords[2]]);
         }

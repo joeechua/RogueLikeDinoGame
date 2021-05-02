@@ -49,16 +49,22 @@ public class HungerBehaviour implements Behaviour {
 
         //go through each location in list
         //attack and Eat?
-        Location loc = map.at(sini[0], sini[1]);
-        if (map.isAnActorAt(loc) && !dino.isHerbivore()) {
-            Actor target = map.getActorAt(loc);
-            if (target.getDisplayChar() == 'S' || target.getDisplayChar() == 's') {
-                ret = new AttackAction(target);
-                
+        if(!dino.isHerbivore()){
+            for(int[] coords: locList){
+                if(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
+                        && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min()){
+                        Location lc = map.at(coords[0],coords[1]);
+                    if(lc.containsAnActor() && map.getActorAt(lc).getDisplayChar() != '@'){
+                        Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(lc);
+                        if(carnivoreFood.getDisplayChar()=='S' || carnivoreFood.getDisplayChar()=='s'){
+                            ret = new AttackAction(carnivoreFood);
+                        }
+                    }
+                }
             }
         }
-        //eat the stuff available
-        else {
+        else{
+            Location loc = map.at(sini[0], sini[1]);
             List<Item> items = loc.getItems();
             if(items.size() == 0){
                 Ground g = loc.getGround();
@@ -79,24 +85,16 @@ public class HungerBehaviour implements Behaviour {
                 for (Item it : items) {
                     Class c = it.getClass();
                     if(dino.canEat(it)){
-//                    if(it instanceof Fruit){
-//                        Fruit fruit = (Fruit) it;
-//                        if(fruit.isOnTree() && dino.hasCapability(DinosaurCapabilities.LONG_NECK)){
-//                            ret = new EatingAction(it);
-//                        }
-//                    }
-//                    else{
-//                        ret = new EatingAction(it);
-//                    }
                         ret = new EatingAction(it);
                     }
                 }
             }
-            //move towards a target that we need to find
-            if (ret == null) {
-                ret = moveCloser(dino, map);
-            }
         }
+        //move towards a target that we need to find
+        if (ret == null) {
+            ret = moveCloser(dino, map);
+        }
+
         dino.setPrevLoc(map.locationOf(dino));
         return ret;
     }
@@ -111,14 +109,7 @@ public class HungerBehaviour implements Behaviour {
             if(i[0] < map.getXRange().max() && i[1] < map.getYRange().max()
             && i[0] > map.getXRange().min() && i[1]> map.getYRange().min()) {
                 food = map.at(i[0], i[1]);
-                if (map.isAnActorAt(food) && !dino.isHerbivore()) {
-                    Actor target = map.getActorAt(food);
-                    if (target.getDisplayChar() == 'b') {
-                        System.out.println("got meat");
-                        ret = new MoveActorAction(food, direction[i[2]]);
-                    }
-                }
-                else if (food.getItems().size() > 0) {
+                if (food.getItems().size() > 0) {
                     for (Item it : food.getItems()) {
                         if(dino.canEat(it)){
                             System.out.println("got vege");

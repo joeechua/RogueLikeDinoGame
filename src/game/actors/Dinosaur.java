@@ -2,6 +2,7 @@ package game.actors;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.actions.EatingAction;
 import game.actions.FeedingAction;
 import game.behaviours.*;
 import game.enums.DinosaurCapabilities;
@@ -48,7 +49,7 @@ public abstract class Dinosaur extends Actor {
             minFoodLevel = 140;
             maxFoodLevel = 160;
             maxUnconsciousTime = 15;
-            initFoodLevel = foodLevel = 50;
+            initFoodLevel = foodLevel = 100;
             rotTime = 40;
         }
         else{
@@ -76,6 +77,10 @@ public abstract class Dinosaur extends Actor {
                     map.locationOf(this).setGround(new Dirt());
                 }
             }
+        }
+        //after attack can eat
+        else if(lastAction instanceof AttackAction){
+            return new HungerBehaviour().getAction(this,map);
         }
         return new DinosaurBehaviour().getAction(this, map);
     }

@@ -60,9 +60,13 @@ public class BreedBehaviour implements Behaviour {
             }
         }
         if(ret == null){
-            int[] use = locList[random.nextInt(locList.length)];
-            Location lc = map.at(use[0], use[1]);
-            ret = new MoveActorAction(lc,direction[use[2]]);
+            int[] coords;
+            do{
+                coords = locList[random.nextInt(locList.length)];
+            }while(coords[0] >= map.getXRange().max() || coords[1] >= map.getYRange().max()
+                    || coords[0] <= map.getXRange().min() || coords[1]<= map.getYRange().min());
+            Location lc = map.at(coords[0], coords[1]);
+            ret= new MoveActorAction(lc,direction[coords[2]]);
         }
         return ret;
     }
