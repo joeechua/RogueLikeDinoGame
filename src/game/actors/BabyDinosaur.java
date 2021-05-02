@@ -5,6 +5,7 @@ import game.actions.GrowAction;
 //After 30 turns for the stegosaur and 50 turns for the brachiosaur, the baby dinosaur should grow into an adult.
 public abstract class BabyDinosaur extends Dinosaur {
     protected char dinoChar;
+    protected int turnsSinceHatch;
     private final int MATURE_TURN_FOR_STEGO_ALLO = 30;
     private final int MATURE_TURN_FOR_BRAC = 50;
     /**
@@ -16,6 +17,7 @@ public abstract class BabyDinosaur extends Dinosaur {
      */
     public BabyDinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
+        turnsSinceHatch = 0;
         if(this instanceof BabyAllosaur){
             initFoodLevel = foodLevel = 20;
         }
@@ -27,10 +29,19 @@ public abstract class BabyDinosaur extends Dinosaur {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-        if(dinoChar == 'b' && getTurns() >= MATURE_TURN_FOR_BRAC){
+//        if(dinoChar == 'b' && getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC){
+//            return new GrowAction();
+//        }
+//        else if((dinoChar == 's' || dinoChar == 'a') && getTurnsSinceHatch() >= MATURE_TURN_FOR_STEGO_ALLO){
+//            return new GrowAction();
+//        }
+//        else{
+//            return super.playTurn(actions, lastAction, map, display);
+//        }
+        if(this instanceof BabyBrachiosaur && getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC){
             return new GrowAction();
         }
-        else if((dinoChar == 's' || dinoChar == 'a') && getTurns() >= MATURE_TURN_FOR_STEGO_ALLO){
+        else if((this instanceof BabyStegosaur || this instanceof BabyAllosaur) && getTurnsSinceHatch() >= MATURE_TURN_FOR_STEGO_ALLO){
             return new GrowAction();
         }
         else{
@@ -41,5 +52,10 @@ public abstract class BabyDinosaur extends Dinosaur {
     @Override
     public void tick() {
         super.tick();
+        turnsSinceHatch++;
+    }
+
+    public int getTurnsSinceHatch() {
+        return turnsSinceHatch;
     }
 }
