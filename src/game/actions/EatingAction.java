@@ -3,6 +3,7 @@ package game.actions;
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
 import game.enums.Food;
+import game.items.Fruit;
 
 public class EatingAction extends Action {
     private Item targetFood;
@@ -26,26 +27,46 @@ public class EatingAction extends Action {
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
+//            if(targetFood.getClass() == enumFood.getClassType()){
+//                //added these to make sure they were getting the correct value
+//                if(isFed){
+//                    if(targetFood.toString().equals("Fruit")) {
+//                        nutritionValue = enumFood.getUpLevel("FED_FRUIT");
+//                    }
+//                    else{
+//                        nutritionValue = enumFood.getUpLevel("VEGETARIAN_MEAL_KIT");
+//                    }
+//                }
+//                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'S'){
+//                    nutritionValue = enumFood.getUpLevel("STEG_FRUIT");
+//                }
+//                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'B'){
+//                    nutritionValue = enumFood.getUpLevel("BRACH_FRUIT");
+//                }
+//
+//                dino.incFoodLevel(nutritionValue);
+//                break;
+//            }
             if(targetFood.getClass() == enumFood.getClassType()){
-                //added these to make sure they were getting the correct value
                 if(isFed){
-                    if(targetFood.toString() == "Fruit") {
+                    if(targetFood.getClass() == Fruit.class){
                         nutritionValue = enumFood.getUpLevel("FED_FRUIT");
                     }
                     else{
-                        nutritionValue = enumFood.getUpLevel("VEGETARIAN_MEAL_KIT");
+                        dino.setFoodLevel(dino.getMaxFoodLevel());
                     }
                 }
-                else if(targetFood.toString() == "Fruit" && dino.getDisplayChar() == 'S'){
+                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'S'){
                     nutritionValue = enumFood.getUpLevel("STEG_FRUIT");
                 }
-                else if(targetFood.toString() == "Fruit" && dino.getDisplayChar() == 'B'){
+                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'B'){
                     nutritionValue = enumFood.getUpLevel("BRACH_FRUIT");
                 }
-
-                dino.incFoodLevel(nutritionValue);
-                break;
+                else {
+                    nutritionValue = enumFood.getUpLevel(enumFood.name());
+                }
             }
+            dino.incFoodLevel(nutritionValue);
         }
 
         String result = menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
