@@ -11,6 +11,7 @@ import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
 import game.enums.DinosaurCapabilities;
+import game.enums.Food;
 import game.enums.Gender;
 import game.enums.Species;
 
@@ -26,12 +27,14 @@ public class Stegosaur extends Dinosaur {
 	public Stegosaur() {
 		super(Species.S.name(), 'S', 100);
 		capabilities.add(DinosaurCapabilities.HERBIVORE);
+		setEdibleFoodList(Food.getFoodList(this));
 		attackTurns = 0;
 	}
 
 	public Stegosaur(Gender inputGender){
 		super(Species.S.name(), 'S', 100);
 		capabilities.add(DinosaurCapabilities.HERBIVORE);
+		setEdibleFoodList(Food.getFoodList(this));
 		gender = inputGender;
 		attackTurns = 0;
 	}

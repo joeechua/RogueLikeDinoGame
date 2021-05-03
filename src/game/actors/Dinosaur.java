@@ -10,6 +10,7 @@ import game.enums.Food;
 import game.enums.Gender;
 import game.ground.Bush;
 import game.ground.Dirt;
+import game.items.Egg;
 import game.items.Fruit;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public abstract class Dinosaur extends Actor {
         pregnancyTurns = 0;
         behaviours = new ArrayList<>();
         capabilities = new ArrayList<>();
-        edibleFoodList = Food.getFoodList(this);
+        edibleFoodList = new ArrayList<>();
         if(this instanceof Brachiosaur){
             minFoodLevel = 140;
             maxFoodLevel = 160;
@@ -98,6 +99,14 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    public void setEdibleFoodList(ArrayList<Food> edibleFoodList) {
+        this.edibleFoodList = edibleFoodList;
+    }
+
+    public ArrayList<Food> getEdibleFoodList(){
+        return this.edibleFoodList;
+    }
+
     public String getName(){
         return this.name;
     }
@@ -118,7 +127,6 @@ public abstract class Dinosaur extends Actor {
         Actions actions = new Actions();
         actions.add(new AttackAction(this));
         for(Item item: otherActor.getInventory()){
-            System.out.println(item);
             if(this.canEat(item)){
                 actions.add(new FeedingAction(this, item));
             }
@@ -147,6 +155,9 @@ public abstract class Dinosaur extends Actor {
     public boolean canEat(Item food){
         for(Food f: edibleFoodList){
             if(food.getClass() == f.getClassType()){
+                return true;
+            }
+            else if(food instanceof Egg){
                 return true;
             }
         }
@@ -239,9 +250,6 @@ public abstract class Dinosaur extends Actor {
         return false;
     }
 
-//    public void setPregnancyTurns(int pregnancyTurns) {
-//        this.pregnancyTurns = pregnancyTurns;
-//    }
 
     public NumberRange[] getRange(Location location, int xRange, int yRange){
         NumberRange[] ret;

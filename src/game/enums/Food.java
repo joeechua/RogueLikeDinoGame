@@ -54,4 +54,8 @@ public enum Food {
         }
         return foodList;
     }
+
+    public boolean getIsVeg(){
+        return isVeg;
+    }
 }

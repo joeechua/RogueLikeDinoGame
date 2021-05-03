@@ -28,7 +28,6 @@ public abstract class BabyDinosaur extends Dinosaur {
 
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        tick();
         if(this instanceof BabyBrachiosaur && getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC){
             return new GrowAction();
         }
@@ -43,7 +42,6 @@ public abstract class BabyDinosaur extends Dinosaur {
     @Override
     public void tick() {
         super.tick();
-        foodLevel--;
         turnsSinceHatch++;
     }
 

@@ -7,6 +7,7 @@ import game.behaviours.BreedBehaviour;
 import game.behaviours.HungerBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.enums.DinosaurCapabilities;
+import game.enums.Food;
 import game.enums.Gender;
 import game.enums.Species;
 
@@ -19,11 +20,13 @@ public class Allosaur extends Dinosaur {
     public Allosaur() {
         super(Species.A.name(), 'A', 100);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
+        setEdibleFoodList(Food.getFoodList(this));
     }
 
     public Allosaur(Gender inputGender) {
         super(Species.A.name(), 'A', 100);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
+        setEdibleFoodList(Food.getFoodList(this));
         gender = inputGender;
     }
 

@@ -45,14 +45,14 @@ public class EatingAction extends Action {
             Tree t = (Tree) origin;
             t.getTreeFruit().remove(0);
         }
-        else{
+        else if(foodLoc != null){
             foodLoc.removeItem(targetFood);
         }
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
             if(targetFood.getClass() == enumFood.getClassType()){
-                if(isFed){
+                if(isFed && enumFood.getIsVeg()){
                     if(targetFood.getClass() == Fruit.class){
                         nutritionValue = enumFood.getUpLevel("FED_FRUIT");
                     }

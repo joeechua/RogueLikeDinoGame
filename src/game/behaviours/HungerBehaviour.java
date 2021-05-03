@@ -98,7 +98,9 @@ public class HungerBehaviour implements Behaviour {
                     if (exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
                         Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
                         if (carnivoreFood.getDisplayChar() == 'S' || carnivoreFood.getDisplayChar() == 's'){
-                            ret= new MoveActorAction(exits.getDestination(), exits.getName());
+                            if(carnivoreFood.getAttackTurns() == 0){
+                                ret= new MoveActorAction(exits.getDestination(), exits.getName());
+                            }
                         }
                     }
                     else{

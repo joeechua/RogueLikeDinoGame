@@ -46,7 +46,7 @@ public class DinosaurBehaviour implements Behaviour{
             a = bB.getAction(dino, map);
         }
         else if(dino.isHungry()){
-            System.out.println(dino.getName() + " at " + loc + " is hungry!");
+            System.out.println(dino.getName() + " at " + loc + " is hungry!" + dino.getFoodLevel());
             HungerBehaviour hB = new HungerBehaviour();
             a = hB.getAction(dino, map);
         }
