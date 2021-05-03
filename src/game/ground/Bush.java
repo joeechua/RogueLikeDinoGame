@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.actions.HarvestAction;
+import game.actors.Player;
 import game.items.Fruit;
 
 import java.util.Random;
@@ -34,10 +36,14 @@ public class Bush extends Ground{
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        if(bushFruit == null){
-            return new Actions(null);
+        if(actor instanceof Player && this.bushFruit != null){
+            return new Actions(new HarvestAction(bushFruit, this));
         }
-        return new Actions(bushFruit.getHarvestAction());
+        return new Actions(null);
+    }
+
+    public void setBushFruit(Fruit bushFruit) {
+        this.bushFruit = bushFruit;
     }
 
     public boolean gotFruit(){

@@ -5,6 +5,7 @@ import game.actors.BabyBrachiosaur;
 import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
 import game.enums.Food;
+import game.ground.Bush;
 import game.ground.Tree;
 import game.items.Corpse;
 import game.items.Fruit;
@@ -13,9 +14,12 @@ import game.items.ItemCapabilities;
 public class EatingAction extends Action {
     private Item targetFood;
     private boolean isFed = false;
+    private Ground origin;
+    private Location foodLoc;
 
-    public EatingAction(Item targetFood) {
+    public EatingAction(Item targetFood, Ground origin) {
         this.targetFood = targetFood;
+        this.origin = origin;
     }
 
     public EatingAction(Item targetFood, Actor actor) {
@@ -23,12 +27,27 @@ public class EatingAction extends Action {
         this.isFed = true;
     }
 
+    public EatingAction(Item targetFood, Location loc) {
+        this.targetFood = targetFood;
+        this.foodLoc = loc;
+    }
+
     @Override
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
 
         Location dinoLocation = map.locationOf(dino);
-        map.at(dinoLocation.x(), dinoLocation.y()).removeItem(targetFood);
+        if(origin instanceof Bush && targetFood instanceof Fruit){
+            Bush b = (Bush) origin;
+            b.setBushFruit(null);
+        }
+        else if(origin instanceof Tree && targetFood instanceof Fruit){
+            Tree t = (Tree) origin;
+            t.getTreeFruit().remove(0);
+        }
+        else{
+            foodLoc.removeItem(targetFood);
+        }
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
@@ -41,15 +60,17 @@ public class EatingAction extends Action {
                         dino.setFoodLevel(dino.getMaxFoodLevel());
                     }
                 }
-                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'S'){
+                else if(targetFood.toString().equals("Fruit") &&
+                        (dino.getDisplayChar() == 'S' || dino.getDisplayChar() == 's')){
                     nutritionValue = enumFood.getUpLevel("STEG_FRUIT");
                 }
-                else if(targetFood.toString().equals("Fruit") && dino.getDisplayChar() == 'B'){
+                else if(targetFood.toString().equals("Fruit") &&
+                        (dino.getDisplayChar() == 'B' || dino.getDisplayChar() == 'b')){
                     nutritionValue = enumFood.getUpLevel("BRACH_FRUIT");
                 }
-                else if(targetFood.toString().equals("Corpse")){
+                else if(targetFood.getClass() ==Corpse.class){
                     Corpse c = (Corpse) targetFood;
-                    if(c.hasCapability(ItemCapabilities.BRACH)){
+                    if(c.getOriginDino() instanceof Brachiosaur){
                         nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
                     }
                     else{

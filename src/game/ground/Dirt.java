@@ -10,8 +10,6 @@ import java.util.Random;
 public class Dirt extends Ground {
 
 	private Random random = new Random();
-	private Bush bush;
-	private Tree tree;
 
 	public Dirt() {
 		super('.');
@@ -20,7 +18,7 @@ public class Dirt extends Ground {
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
-		if(!location.getItems().contains(bush)){
+		if(!(location.getGround() instanceof Bush)){
 			int trees = 0;
 			int bush = 0;
 
@@ -38,8 +36,7 @@ public class Dirt extends Ground {
 					location.setGround(new Bush());
 				}
 			}
-			else if(location.getGround() == tree){
-				return;
+			else if(location.getGround() instanceof Tree){
 			}
 			else {
 				if(random.nextDouble() <= 0.01){
@@ -51,6 +48,6 @@ public class Dirt extends Ground {
 
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
-		return new Actions();
+		return new Actions(null);
 	}
 }

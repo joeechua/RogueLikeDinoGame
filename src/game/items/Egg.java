@@ -32,7 +32,7 @@ public abstract class Egg extends PortableItem {
         System.out.println("egg time " + timeHatch);
         super.tick(location);
 
-        if(timeHatch == 0){
+        if(timeHatch <= 0 && !location.containsAnActor()){
             BabyDinosaur babyDino;
             int ecoPoint;
             if(this instanceof StegosaurEgg){
@@ -62,6 +62,10 @@ public abstract class Egg extends PortableItem {
 
         if(timeHatch == 0){
             System.out.println("Egg is ready to hatch, you can drop it.");
+        }
+        else{
+            System.out.println("egg time: " + timeHatch);
+            timeHatch--;
         }
     }
 

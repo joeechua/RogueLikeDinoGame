@@ -98,8 +98,6 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-    //NEW FROM JO EE
-
     public String getName(){
         return this.name;
     }

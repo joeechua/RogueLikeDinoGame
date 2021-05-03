@@ -2,6 +2,7 @@ package game.ground;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.EatingAction;
+import game.actions.HarvestAction;
 import game.actors.Player;
 import game.enums.VendingItems;
 import game.items.Fruit;
@@ -54,8 +55,10 @@ public class Tree extends Ground {
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
-		for(Fruit item: treeFruit){
-			actions.add(item.getHarvestAction());
+		if(location.getGround() instanceof Tree){
+			if(gotFruit()){
+				actions.add(new HarvestAction(treeFruit.get(0), this));
+			}
 		}
 		return actions;
 	}

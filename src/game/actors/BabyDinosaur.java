@@ -43,6 +43,7 @@ public abstract class BabyDinosaur extends Dinosaur {
     @Override
     public void tick() {
         super.tick();
+        foodLevel--;
         turnsSinceHatch++;
     }
 

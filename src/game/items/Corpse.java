@@ -8,6 +8,7 @@ import game.actors.Dinosaur;
 
 public class Corpse extends PortableItem {
     private int rotTime;
+    private Dinosaur originDino;
     /***
      * Constructor.
      */
@@ -19,6 +20,7 @@ public class Corpse extends PortableItem {
         if(dino instanceof Brachiosaur){
             capabilities.addCapability(ItemCapabilities.BRACH);
         }
+        this.originDino = dino;
     }
 
     //only this tick because anything in the inventory doesn't rot
@@ -31,4 +33,7 @@ public class Corpse extends PortableItem {
         }
     }
 
+    public Dinosaur getOriginDino() {
+        return originDino;
+    }
 }

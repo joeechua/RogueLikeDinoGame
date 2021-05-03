@@ -60,7 +60,7 @@ public class Fruit extends PortableItem {
         this.inBag = inBag;
     }
 
-    public HarvestAction getHarvestAction() {return new HarvestAction(this);}
+    //public HarvestAction getHarvestAction() {return new HarvestAction(this);}
 
-    public EatingAction getEatingAction() {return new EatingAction(this);}
+    //public EatingAction getEatingAction() {return new EatingAction(this);}
 }

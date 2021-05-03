@@ -1,19 +1,13 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.HatchAction;
 import game.actions.LayEggAction;
 import game.actors.Allosaur;
 import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
 import game.actors.Stegosaur;
-import game.enums.DinosaurCapabilities;
-import game.items.Egg;
-
-import java.util.ArrayList;
 import java.util.Random;
 
-import static game.behaviours.BreedBehaviour.locList;
 
 public class PregnantBehaviour implements Behaviour{
     private Random random = new Random();
@@ -22,6 +16,7 @@ public class PregnantBehaviour implements Behaviour{
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
         Action layEgg= null;
+        Location here = map.locationOf(dino);
 
         if(dino instanceof Allosaur && dino.getTurns() >= 10){
             layEgg = new LayEggAction();
@@ -34,13 +29,8 @@ public class PregnantBehaviour implements Behaviour{
             layEgg = new LayEggAction();
         }
         else{
-            int[] coords;
-            do{
-                coords = locList[random.nextInt(locList.length)];
-            }while(coords[0] >= map.getXRange().max() || coords[1] >= map.getYRange().max()
-                    || coords[0] <= map.getXRange().min() || coords[1]<= map.getYRange().min());
-            Location lc = map.at(coords[0], coords[1]);
-            layEgg = new MoveActorAction(lc,BreedBehaviour.direction[coords[2]]);
+            Exit exit = here.getExits().get(random.nextInt(here.getExits().size()));
+            layEgg= new MoveActorAction(exit.getDestination(),exit.getName());
         }
         return layEgg;
     }

@@ -2,6 +2,7 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import game.actions.DieAction;
 import game.actors.BabyDinosaur;
@@ -22,17 +23,25 @@ public class DinosaurBehaviour implements Behaviour{
         int locX = map.locationOf(actor).x();
         int locY = map.locationOf(actor).y();
         String loc = "(" + locX + ", " + locY + ")";
-        if(dino.hasCapability(DinosaurCapabilities.PREGNANT) && dino.isPregnant()){
+        if(dino.isUnconscious()){
+            if(dino.getUnconsciousTime() >= dino.getMaxUnconsciousTime()){
+                a = new DieAction();
+            }
+            else{
+                a = new DoNothingAction();
+            }
+        }
+        else if(dino.hasCapability(DinosaurCapabilities.PREGNANT) && dino.isPregnant()){
             PregnantBehaviour pB = new PregnantBehaviour();
             a = pB.getAction(dino, map);
         }
-        else if(dino instanceof BabyDinosaur){
+        else if(dino instanceof BabyDinosaur && !dino.isHungry()){
             GrowBehaviour gB = new GrowBehaviour(dino.getTurns());
             a = gB.getAction(dino,map);
         }
         else if(((dino.getDisplayChar() == 'S' && dino.getFoodLevel() >= 50) ||
                 (dino.getDisplayChar() == 'B' && dino.getFoodLevel() >= 70))
-        && !dino.isPregnant() && !(dino instanceof BabyDinosaur)){
+        && !dino.isPregnant()){
             BreedBehaviour bB = new BreedBehaviour();
             a = bB.getAction(dino, map);
         }
