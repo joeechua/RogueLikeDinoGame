@@ -45,46 +45,39 @@ public class HungerBehaviour implements Behaviour {
         int[] leftUp = new int[]{here.x() - 1, here.y() - 1, 5};
         int[] rightDown = new int[]{here.x() + 1, here.y() + 1, 6};
         int[] rightUp = new int[]{here.x() + 1, here.y() - 1, 7};
-        locList = new int[][]{left, right, up, down, leftUp, rightUp, leftDown, rightDown};
+        //locList = new int[][]{left, right, up, down, leftUp, rightUp, leftDown, rightDown};
 
         //go through each location in list
         //attack and Eat?
-        if(!dino.isHerbivore()){
-            for(int[] coords: locList){
-                if(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
-                        && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min()){
-                        Location lc = map.at(coords[0],coords[1]);
-                    if(lc.containsAnActor() && map.getActorAt(lc).getDisplayChar() != '@'){
-                        Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(lc);
-                        if(carnivoreFood.getDisplayChar()=='S' || carnivoreFood.getDisplayChar()=='s'){
-                            ret = new AttackAction(carnivoreFood);
-                        }
+        if (!dino.isHerbivore()) {
+            for (Exit exit : here.getExits()) {
+                if (exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
+                    Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
+                    if (carnivoreFood.getDisplayChar() == 'S' || carnivoreFood.getDisplayChar() == 's') {
+                        ret = new AttackAction(carnivoreFood);
                     }
                 }
             }
+
         }
-        else{
-            Location loc = map.at(sini[0], sini[1]);
-            List<Item> items = loc.getItems();
-            if(items.size() == 0){
-                Ground g = loc.getGround();
-                if(g instanceof Bush){
+        else {
+            List<Item> items = here.getItems();
+            if (items.size() == 0) {
+                Ground g = here.getGround();
+                if (g instanceof Bush) {
                     Bush b = (Bush) g;
-                    if(b.gotFruit()){
+                    if (b.gotFruit()) {
                         ret = new EatingAction(b.getBushFruit());
                     }
-                }
-                else if(g instanceof Tree){
+                } else if (g instanceof Tree) {
                     Tree t = (Tree) g;
-                    if(t.gotFruit() && dino.hasCapability(DinosaurCapabilities.LONG_NECK)){
+                    if (t.gotFruit() && dino.hasCapability(DinosaurCapabilities.LONG_NECK)) {
                         ret = new EatingAction(new Fruit());
                     }
                 }
-            }
-            else{
+            } else {
                 for (Item it : items) {
-                    Class c = it.getClass();
-                    if(dino.canEat(it)){
+                    if (dino.canEat(it)) {
                         ret = new EatingAction(it);
                     }
                 }
@@ -100,55 +93,111 @@ public class HungerBehaviour implements Behaviour {
     }
 
 
-    public Action moveCloser (Dinosaur dino, GameMap map){
+    public Action moveCloser(Dinosaur dino, GameMap map) {
         Action possible = null;
         Action ret = null;
         Location food = null;
+        Exit temp = null;
 
-        for (int[] i : locList) {
-            if(i[0] < map.getXRange().max() && i[1] < map.getYRange().max()
-            && i[0] > map.getXRange().min() && i[1]> map.getYRange().min()) {
-                food = map.at(i[0], i[1]);
-                if (food.getItems().size() > 0) {
-                    for (Item it : food.getItems()) {
-                        if(dino.canEat(it)){
-                            System.out.println("got vege");
-                            ret = new MoveActorAction(food, direction[i[2]]);
+        if(!dino.isHerbivore()){
+            for (Exit exits : here.getExits()) {
+                for(Exit exit: exits.getDestination().getExits()){
+                    if (exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
+                        Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
+                        if (carnivoreFood.getDisplayChar() == 'S' || carnivoreFood.getDisplayChar() == 's') {
+                            return new MoveActorAction(exits.getDestination(), exits.getName());
                         }
                     }
-                } else {
+                }
+            }
+        }
+        else{
+            for (Exit exit : here.getExits()) {
+                food = exit.getDestination();
+                if (food.getItems().size() > 0) {
+                    for (Item it : food.getItems()) {
+                        if (dino.canEat(it)) {
+                            System.out.println(exit.getName() + " got fruit");
+                            return new MoveActorAction(food, exit.getName());
+                        }
+                    }
+                }
+                else {
                     Ground ok = food.getGround();
                     if (ok.getClass() == Tree.class) {
                         Tree t = (Tree) ok;
-                        if (possible == null && !food.containsAnActor() && food != dino.getPrevLoc()) {
+                        if (possible == null && food != dino.getPrevLoc()) {
                             if (t.gotFruit())
-                                System.out.println("tree got fruit");
-                                possible = new MoveActorAction(food, direction[i[2]]);
+                                System.out.println(exit.getName() + " tree got fruit");
+                            return new MoveActorAction(food, exit.getName());
                         }
                     } else if (ok.getClass() == Bush.class) {
                         Bush b = (Bush) ok;
-                        if (possible == null && !food.containsAnActor() && food != dino.getPrevLoc()) {
+                        if (possible == null && food != dino.getPrevLoc()) {
                             if (b.gotFruit())
-                                System.out.println("bush got fruit ");
-                                possible = new MoveActorAction(food, direction[i[2]]);
+                                System.out.println(exit.getName() + " bush got fruit");
+                            possible = new MoveActorAction(food, exit.getName());
                         }
                     }
                 }
-            }
-            if (ret == null && possible != null) {
-                ret = possible;
-            }
-            int[] use = null;
-            if (ret == null) {
-                do {
-                    use = locList[random.nextInt(locList.length)];
-                    food = map.at(use[0], use[1]);
+                if (ret == null && possible != null) {
+                    ret = possible;
                 }
-                while (food == dino.getPrevLoc());
-                ret = new MoveActorAction(food, direction[use[2]]);
+                if (ret == null) {
+                    do {
+                        temp = here.getExits().get(random.nextInt(here.getExits().size()));
+                        food = temp.getDestination();
+                    }
+                    while (food == dino.getPrevLoc());
+                    ret = new MoveActorAction(food, temp.getName());
+                }
+                dino.setPrevLoc(food);
             }
-            dino.setPrevLoc(food);
-            }
+        }
         return ret;
     }
 }
+
+       // for (int[] i : locList) {
+//            if(i[0] < map.getXRange().max() && i[1] < map.getYRange().max()
+//            && i[0] > map.getXRange().min() && i[1]> map.getYRange().min()) {
+//                food = map.at(i[0], i[1]);
+//                if (food.getItems().size() > 0) {
+//                    for (Item it : food.getItems()) {
+//                        if(dino.canEat(it)){
+//                            ret = new MoveActorAction(food, direction[i[2]]);
+//                        }
+//                    }
+//                } else {
+//                    Ground ok = food.getGround();
+//                    if (ok.getClass() == Tree.class) {
+//                        Tree t = (Tree) ok;
+//                        if (possible == null && !food.containsAnActor() && food != dino.getPrevLoc()) {
+//                            if (t.gotFruit())
+//                                possible = new MoveActorAction(food, direction[i[2]]);
+//                        }
+//                    } else if (ok.getClass() == Bush.class) {
+//                        Bush b = (Bush) ok;
+//                        if (possible == null && !food.containsAnActor() && food != dino.getPrevLoc()) {
+//                            if (b.gotFruit())
+//                                possible = new MoveActorAction(food, direction[i[2]]);
+//                        }
+//                    }
+//                }
+            //}
+//            if (ret == null && possible != null) {
+//                ret = possible;
+//            }
+//            int[] use = null;
+//            if (ret == null) {
+//                do {
+//                    use = locList[random.nextInt(locList.length)];
+//                    food = map.at(use[0], use[1]);
+//                }
+//                while (food == dino.getPrevLoc());
+//                ret = new MoveActorAction(food, direction[use[2]]);
+//            }
+//            dino.setPrevLoc(food);
+//            }
+//        return ret;
+

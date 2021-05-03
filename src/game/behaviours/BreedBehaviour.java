@@ -42,33 +42,39 @@ public class BreedBehaviour implements Behaviour {
 //        if (map.contains(target)) {
 //            map.contains(actor);
 //        }
-
         Action ret = null;
-        for(int[] coords:locList) {
-            if(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
-                    && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min()){
-                Location loc = map.at(coords[0], coords[1]);
-                //find and mate
-                if (map.isAnActorAt(loc)) {
-                    if(map.getActorAt(loc).getDisplayChar() != '@'){
-                        Dinosaur target = (Dinosaur) map.getActorAt(loc);
-                        if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()){
-                            ret= new MateAction(target);
-                        }
+        for(Exit exit: here.getExits()){
+            if (map.isAnActorAt(exit.getDestination())) {
+                if(map.getActorAt(exit.getDestination()).getDisplayChar() != '@'){
+                    Dinosaur target = (Dinosaur) map.getActorAt(exit.getDestination());
+                    if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()
+                    && target.getGender() != dino.getGender()){
+                        ret= new MateAction(target);
                     }
                 }
             }
         }
         if(ret == null){
-            int[] coords;
-            do{
-                coords = locList[random.nextInt(locList.length)];
-            }while(coords[0] >= map.getXRange().max() || coords[1] >= map.getYRange().max()
-                    || coords[0] <= map.getXRange().min() || coords[1]<= map.getYRange().min());
-            Location lc = map.at(coords[0], coords[1]);
-            ret= new MoveActorAction(lc,direction[coords[2]]);
+            Exit exit = here.getExits().get(random.nextInt(here.getExits().size()));
+            ret= new MoveActorAction(exit.getDestination(),exit.getName());
         }
         return ret;
     }
+
+//        for(int[] coords:locList) {
+//            if(coords[0] < map.getXRange().max() && coords[1] < map.getYRange().max()
+//                    && coords[0] > map.getXRange().min() && coords[1]> map.getYRange().min()){
+//                Location loc = map.at(coords[0], coords[1]);
+//                //find and mate
+//                if (map.isAnActorAt(loc)) {
+//                    if(map.getActorAt(loc).getDisplayChar() != '@'){
+//                        Dinosaur target = (Dinosaur) map.getActorAt(loc);
+//                        if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()){
+//                            ret= new MateAction(target);
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
 }
