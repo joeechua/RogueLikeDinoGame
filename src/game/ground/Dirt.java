@@ -6,7 +6,9 @@ import java.util.Random;
 
 /**
  * A class that represents bare dirt.
- * @see Ground
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Ground
  */
 public class Dirt extends Ground {
 
@@ -22,6 +24,7 @@ public class Dirt extends Ground {
 	/**
 	 * Called once per turn, so that maps can experience the passage of time.
 	 * @param location The location of the Ground
+	 * @see Location
 	 */
 	@Override
 	public void tick(Location location) {
@@ -61,6 +64,7 @@ public class Dirt extends Ground {
 	 * @param location the current Location
 	 * @param direction the direction of the Ground from the Actor
 	 * @return A collection of Actions.
+	 * @see Actor
 	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {

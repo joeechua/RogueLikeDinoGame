@@ -1,9 +1,6 @@
 package game.ground;
 
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 import game.actions.HarvestAction;
 import game.actors.Player;
 import game.enums.Points;
@@ -13,7 +10,9 @@ import java.util.Random;
 
 /**
  * A class that represents Bush.
- * @see Ground
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Ground
  */
 
 public class Bush extends Ground{
@@ -31,6 +30,7 @@ public class Bush extends Ground{
     /**
      * Called once per turn, so that maps can experience the passage of time.
      * @param location The location of the Ground
+     * @see Location
      */
     @Override
     public void tick(Location location) {
@@ -54,6 +54,7 @@ public class Bush extends Ground{
      * @param location the current Location
      * @param direction the direction of the Ground from the Actor
      * @return A collection of Actions.
+     * @see Actor
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {

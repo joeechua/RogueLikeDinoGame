@@ -10,12 +10,15 @@ import java.util.Scanner;
 
 /**
  * A class that represents VendingMachine.
- * @see Ground
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Ground
  */
 public class VendingMachine extends Ground {
 
     /**
      * Constructor.
+     * @see VendingItems
      */
     public VendingMachine() {
         super('⌻');
@@ -30,6 +33,7 @@ public class VendingMachine extends Ground {
      * @param price price of the item
      * @param item the items to be purchase
      * @return a PurchasingAction with the price and item
+     * @see PurchasingAction
      */
     public PurchasingAction getPurchasingAction(int price, VendingItems item) {
         return new PurchasingAction(price, item);
@@ -41,6 +45,7 @@ public class VendingMachine extends Ground {
      * @param location the current Location
      * @param direction the direction of the Ground from the Actor
      * @return A collection of Actions.
+     * @see Actor
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
