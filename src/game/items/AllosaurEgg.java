@@ -5,12 +5,12 @@ import game.actors.BabyAllosaur;
 import game.actors.Player;
 import game.enums.Points;
 
-/***
+/**
  * Class for Allosaur Egg object
  */
 public class AllosaurEgg extends Egg{
 
-    /***
+    /**
      * Constructor.
      * @see Egg
      */
@@ -18,7 +18,7 @@ public class AllosaurEgg extends Egg{
         super("Allosaur Egg", 'Ȧ');
     }
 
-    /***
+    /**
      * Tick function to let egg keep track of time, and when egg is due to hatch
      * @param location location of egg
      * @see Egg

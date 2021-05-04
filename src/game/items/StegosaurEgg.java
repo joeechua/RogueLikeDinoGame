@@ -6,11 +6,11 @@ import game.actors.BabyStegosaur;
 import game.actors.Player;
 import game.enums.Points;
 
-/***
+/**
  * Class for Stegosaur Egg object
  */
 public class StegosaurEgg extends Egg {
-    /***
+    /**
      * Constructor.
      * @see Egg
      */
@@ -18,7 +18,7 @@ public class StegosaurEgg extends Egg {
         super("Stegosaur Egg", 'Ṡ');
     }
 
-    /***
+    /**
      * Tick function to let egg keep track of time, and when egg is due to hatch
      * @param location location of egg
      * @see Player

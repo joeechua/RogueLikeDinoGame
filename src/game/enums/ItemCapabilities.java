@@ -1,6 +1,6 @@
 package game.enums;
 
-/***
+/**
  * Collection of capabilities an item can have
  * @see edu.monash.fit2099.engine.Item
  */

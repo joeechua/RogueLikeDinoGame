@@ -6,7 +6,7 @@ import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
 import game.enums.ItemCapabilities;
 
-/***
+/**
  * Class for Corpse object
  * @see PortableItem
  */
@@ -14,7 +14,7 @@ public class Corpse extends PortableItem {
     private int rotTime;
     private final Dinosaur originDino;
 
-    /***
+    /**
      * Constructor.
      * @see edu.monash.fit2099.engine.Capabilities
      * @see Brachiosaur
@@ -32,7 +32,7 @@ public class Corpse extends PortableItem {
         this.originDino = dino;
     }
 
-    /***
+    /**
      * Tick function that keeps track of time and when the corpse will rot
      * @param location location of the corpse
      * @see Location
@@ -47,7 +47,7 @@ public class Corpse extends PortableItem {
         }
     }
 
-    /***
+    /**
      * Lets outside classes see which Dinosaur this corpse came from
      * @return dinosaur that this corpse came from
      * @see Dinosaur

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class PortableItem extends Item {
 
-	/***
+	/**
 	 * Constructor
 	 * @param name name of the portable item
 	 * @param displayChar display character of the portable item

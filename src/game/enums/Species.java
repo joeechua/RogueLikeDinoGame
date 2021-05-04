@@ -1,6 +1,6 @@
 package game.enums;
 
-/***
+/**
  * Collection of possible Dinosaur speecies
  * @see game.actors.Dinosaur
  */
@@ -11,7 +11,7 @@ public enum Species {
 
     public final String label;
 
-    /***
+    /**
      * Constructor
      * @param name name of the species
      */

@@ -2,7 +2,7 @@ package game.items;
 
 import edu.monash.fit2099.engine.WeaponItem;
 
-/***
+/**
  * Class for Laser Gun item
  */
 public class LaserGun extends WeaponItem {

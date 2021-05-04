@@ -1,6 +1,6 @@
 package game.enums;
 
-/***
+/**
  * Collection of activities and the eco points associated with them
  */
 public enum Points {
@@ -13,7 +13,7 @@ public enum Points {
 
     public final int points;
 
-    /***
+    /**
      * Constructor
      * @param points
      */
@@ -21,7 +21,7 @@ public enum Points {
         this.points = points;
     }
 
-    /***
+    /**
      * Allows outside classes to get restricted access to the points of each occurrence.
      * @return
      */
