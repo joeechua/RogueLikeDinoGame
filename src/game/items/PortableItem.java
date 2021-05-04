@@ -9,18 +9,14 @@ import java.util.List;
  */
 public class PortableItem extends Item {
 
+	/***
+	 * Constructor
+	 * @param name name of the portable item
+	 * @param displayChar display character of the portable item
+	 * @see Item
+	 */
 	public PortableItem(String name, char displayChar) {
 		super(name, displayChar, true);
-	}
-
-	@Override
-	public void tick(Location currentLocation) {
-		super.tick(currentLocation);
-	}
-
-	@Override
-	public void tick(Location currentLocation, Actor actor) {
-		super.tick(currentLocation, actor);
 	}
 
 

@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Location;
 import game.actors.BabyStegosaur;
 import game.actors.Player;
+import game.enums.Points;
 
 /***
  * Class for Stegosaur Egg object
@@ -23,12 +24,13 @@ public class StegosaurEgg extends Egg {
      * @see Player
      * @see BabyStegosaur
      * @see Location
+     * @see Points
      */
     @Override
     public void tick(Location location) {
         super.tick(location);
         if(this.getTimeHatch() == 0 && !location.containsAnActor()){
-            Player.wallet.addEcoPoints(100);
+            Player.wallet.addEcoPoints(Points.STEGOSAUR_HATCHED.getPoints());
             location.removeItem(this);
             location.addActor(new BabyStegosaur());
         }

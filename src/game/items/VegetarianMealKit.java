@@ -1,11 +1,15 @@
 package game.items;
 
-import edu.monash.fit2099.engine.Item;
+import game.enums.ItemCapabilities;
 
+/***
+ * Class for vegetarian meal kit
+ */
 public class VegetarianMealKit extends PortableItem {
     /***
      * Constructor.
-     *  @param name the name of this Item
+     * @see PortableItem
+     * @see ItemCapabilities
      */
     public VegetarianMealKit() {
         super("Vegetarian Meal Kit", 'v');
