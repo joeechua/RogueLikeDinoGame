@@ -32,13 +32,13 @@ public class GrowAction extends Action {
         Dinosaur adultDino = null;
         // create adult dinosaur according to the species
         if(actor instanceof BabyAllosaur){
-            adultDino = new Allosaur();
+            adultDino = new Allosaur(((BabyAllosaur) actor).getGender());
         }
         else if (actor instanceof BabyStegosaur){
-            adultDino = new Stegosaur();
+            adultDino = new Stegosaur(((BabyStegosaur) actor).getGender());
         }
         else{
-            adultDino = new Brachiosaur();
+            adultDino = new Brachiosaur(((BabyBrachiosaur) actor).getGender());
         }
         // remove the baby dinosaur and add the adult dinosaur at current location
         Location currentLocation = map.locationOf(actor);
