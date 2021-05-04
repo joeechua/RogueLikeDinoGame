@@ -1,12 +1,17 @@
 package game.items;
 
 
-import edu.monash.fit2099.engine.Item;
+import game.enums.ItemCapabilities;
 
+/***
+ * Class for a Carnivore meal kit object
+ * @see PortableItem
+ */
 public class CarnivoreMealKit extends PortableItem {
     /***
      * Constructor.
-     *  @param name the name of this Item
+     * @see edu.monash.fit2099.engine.Capabilities
+     * @see ItemCapabilities
      */
     public CarnivoreMealKit() {
         super("Carnivore Meal Kit", 'c');
