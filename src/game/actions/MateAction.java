@@ -1,20 +1,35 @@
 package game.actions;
 
-
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
 import game.behaviours.PregnantBehaviour;
 import game.enums.DinosaurCapabilities;
 import game.enums.Gender;
 
+/**
+ * Mate Action for Actors
+ */
 public class MateAction extends Action{
 
     private Dinosaur mate;
 
+    /**
+     * Constructor
+     * @param mate dinosaur target mate
+     */
     public MateAction(Dinosaur mate) {
         this.mate = mate;
     }
 
+    /**
+     * Perform the Mate action.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened to the actor
+     * @see Dinosaur
+     * @see Gender
+     * @see DinosaurCapabilities
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
@@ -31,6 +46,11 @@ public class MateAction extends Action{
         return "";
     }
 
+    /**
+     * Return a descriptive string
+     * @param actor The actor performing the action.
+     * @return a description of the action
+     */
     @Override
     public String menuDescription(Actor actor) {
         return mate + " is able to mate with " + actor;

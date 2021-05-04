@@ -104,7 +104,7 @@ public class AttackAction extends Action {
 	}
 
 	/**
-	 * Returns a descriptive string
+	 * Returns a descriptive string.
 	 *
 	 * @param actor The actor performing the action.
 	 * @return a description of the action
