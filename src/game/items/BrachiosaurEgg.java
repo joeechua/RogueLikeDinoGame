@@ -3,6 +3,7 @@ package game.items;
 import edu.monash.fit2099.engine.Location;
 import game.actors.BabyBrachiosaur;
 import game.actors.Player;
+import game.enums.Points;
 
 /***
  * Class for Brachiosaur Egg object
@@ -22,13 +23,14 @@ public class BrachiosaurEgg extends Egg{
      * @see BabyBrachiosaur
      * @see Player
      * @see Location
+     * @see Points
      */
     @Override
     public void tick(Location location) {
         super.tick(location);
         if(this.getTimeHatch() == 0 && !location.containsAnActor()
         && random.nextInt(10) >= 3){
-            Player.wallet.addEcoPoints(1000);
+            Player.wallet.addEcoPoints(Points.BRACHIOSAUR_HATCHED.getPoints());
             location.removeItem(this);
             location.addActor(new BabyBrachiosaur());
         }
