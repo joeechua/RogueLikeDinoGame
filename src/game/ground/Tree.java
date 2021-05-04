@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.actions.EatingAction;
 import game.actions.HarvestAction;
 import game.actors.Player;
+import game.enums.Points;
 import game.enums.VendingItems;
 import game.items.Fruit;
 
@@ -44,11 +45,10 @@ public class Tree extends Ground {
 			location.addItem(dropFruit);
 			dropFruit.setOnTree(false); //fruit on ground
 			dropFruitsArray.add(dropFruit);
-			Player.wallet.addEcoPoints(1);
-
 		}
 		if(treeFruit.size() == 0 && random.nextDouble() <= 0.5){
 			treeFruit.add(new Fruit());
+			Player.wallet.addEcoPoints(Points.RIPE_FRUIT_PRODUCED.getPoints());
 		}
 	}
 

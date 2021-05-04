@@ -10,7 +10,7 @@ public enum Points {
 
     public final int points;
 
-    private Points(int points){
+    Points(int points){
         this.points = points;
     }
 

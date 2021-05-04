@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.actions.HarvestAction;
 import game.actors.Player;
+import game.enums.Points;
 import game.items.Fruit;
 
 import java.util.Random;
@@ -31,6 +32,7 @@ public class Bush extends Ground{
 
         if(bushFruit == null && random.nextDouble() <= 0.1) {
             bushFruit = new Fruit();
+            Player.wallet.addEcoPoints(Points.RIPE_FRUIT_PRODUCED.getPoints());
         }
     }
 
