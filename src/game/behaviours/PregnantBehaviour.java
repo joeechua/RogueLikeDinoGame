@@ -8,10 +8,18 @@ import game.actors.Dinosaur;
 import game.actors.Stegosaur;
 import java.util.Random;
 
-
+/**
+ * Behaviour subclass that allows dinosaur to be pregnant and give birth
+ */
 public class PregnantBehaviour implements Behaviour{
     private Random random = new Random();
 
+    /**
+     * Returns action pertaining to what the actor should do(layEgg or MoveActor)
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;

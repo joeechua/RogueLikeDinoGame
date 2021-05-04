@@ -3,19 +3,24 @@ package game.behaviours;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
 import game.actions.GrowAction;
 import game.actors.BabyBrachiosaur;
 import game.actors.BabyDinosaur;
-import game.actors.Brachiosaur;
-import game.actors.Dinosaur;
 
+/**
+ * Behaviour subclass that allows dinosaur to grow
+ */
 public class GrowBehaviour implements Behaviour {
 
     private final int MATURE_TURN_FOR_STEGO_ALLO = 30;
     private final int MATURE_TURN_FOR_BRAC = 50;
 
-    public GrowBehaviour(){}
+    /**
+     * Returns Action to be performed in order for dinosaur to grow
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return GrowAction instance or null
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         BabyDinosaur babyDino = (BabyDinosaur) actor;

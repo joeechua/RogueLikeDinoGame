@@ -12,26 +12,29 @@ import game.items.*;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Behaviour that allows dinosaur to eat or prey on other dinosaurs
+ */
 public class HungerBehaviour implements Behaviour {
-
-
-    public HungerBehaviour() {
-    }
 
     private Random random = new Random();
     private Location here;
 
-
+    /**
+     * Returns action to be performed by dinosaur so it can relief hunger
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return EatingAction instance or MoveActorAction instance or AttackAction instance depending on circumstance
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
         Action ret = null;
 
-        //Locations to check
         here = map.locationOf(dino);
 
-        //attack and Eat?
         if (!dino.isHerbivore()) {
+            //check all adjacent squares for food
             for (Exit exit : here.getExits()) {
                 if (exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
                     Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
@@ -39,6 +42,7 @@ public class HungerBehaviour implements Behaviour {
                         ret = new AttackAction(carnivoreFood);
                     }
                 }
+                //no live dinosaurs so eat the possible item
                 else{
                     for(Item food: exit.getDestination().getItems()){
                         if(dino.canEat(food)){
@@ -49,7 +53,9 @@ public class HungerBehaviour implements Behaviour {
             }
 
         }
+        //herbivore
         else {
+            //go through all the items in the square to find food
             List<Item> items = here.getItems();
             if (items.size() == 0) {
                 Ground g = here.getGround();
@@ -81,7 +87,12 @@ public class HungerBehaviour implements Behaviour {
         return ret;
     }
 
-
+    /**
+     * Allows dinosaur to move closer to it's target food
+     * @param dino dinosaur to be moved
+     * @param map map where dinosaur is on
+     * @return MoveActorAction instance
+     */
     public Action moveCloser(Dinosaur dino, GameMap map) {
         Action possible = null;
         Action ret = null;
