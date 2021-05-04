@@ -1,5 +1,6 @@
 package game.enums;
 
+import game.actors.Allosaur;
 import game.actors.Dinosaur;
 import game.items.*;
 
@@ -9,7 +10,9 @@ import java.util.ArrayList;
  * A collection of food items with foodLevel values, class types, and a vegetarian check
  */
 public enum Food {
-    EGG(10, Egg.class, false),
+    STEG_EGG(10, StegosaurEgg.class, false),
+    BRACH_EGG(10, BrachiosaurEgg.class, false),
+    ALLO_EGG(10, Allosaur.class, false),
     BRACH_CORPSE(100, Corpse.class, false),
     CORPSE(50, Corpse.class, false),
     STEG_FRUIT(10, Fruit.class, true),
