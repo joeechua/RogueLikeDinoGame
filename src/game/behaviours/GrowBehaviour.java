@@ -5,24 +5,24 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import game.actions.GrowAction;
+import game.actors.BabyBrachiosaur;
 import game.actors.BabyDinosaur;
+import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
 
 public class GrowBehaviour implements Behaviour {
 
-    private int turns;
+    private final int MATURE_TURN_FOR_STEGO_ALLO = 30;
+    private final int MATURE_TURN_FOR_BRAC = 50;
 
-    public GrowBehaviour(int turns){this.turns = turns;}
+    public GrowBehaviour(){}
     @Override
     public Action getAction(Actor actor, GameMap map) {
         BabyDinosaur babyDino = (BabyDinosaur) actor;
-        if(babyDino.getDisplayChar() == 'a' && this.turns == 50){
+        if(babyDino instanceof BabyBrachiosaur && babyDino.getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC){
             return new GrowAction();
         }
-        else if(babyDino.getDisplayChar() == 's' && this.turns == 30){
-            return new GrowAction();
-        }
-        else if(babyDino.getDisplayChar() == 'b' && this.turns == 50){
+        else if(babyDino.getTurnsSinceHatch() >= MATURE_TURN_FOR_STEGO_ALLO){
             return new GrowAction();
         }
         return null;

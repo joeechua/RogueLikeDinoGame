@@ -3,11 +3,7 @@ package game.behaviours;
 import java.util.ArrayList;
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Exit;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
 public class WanderBehaviour implements Behaviour {
 	
@@ -37,7 +33,8 @@ public class WanderBehaviour implements Behaviour {
 			return actions.get(random.nextInt(actions.size()));
 		}
 		else {
-			return null;
+			//did this to make sure no null pointer exceptions trying to execute null actions
+			return new DoNothingAction();
 		}
 
 	}

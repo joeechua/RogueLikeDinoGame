@@ -24,9 +24,6 @@ public class DinosaurBehaviour implements Behaviour{
         int locY = map.locationOf(actor).y();
         String loc = "(" + locX + ", " + locY + ")";
         if(dino.isUnconscious()){
-            //public boolean isDead(){return (getUnconsciousTime() >= getMaxUnconsciousTime() || hitPoints <= 0);}
-            // instead of dino.getUnconsciousTime() >= dino.getMaxUnconsciousTime()
-            // can use isDead()
             if(dino.isDead()){
                 a = new DieAction();
             }
@@ -39,7 +36,7 @@ public class DinosaurBehaviour implements Behaviour{
             a = pB.getAction(dino, map);
         }
         else if(dino instanceof BabyDinosaur && !dino.isHungry()){
-            GrowBehaviour gB = new GrowBehaviour(dino.getTurns());
+            GrowBehaviour gB = new GrowBehaviour();
             a = gB.getAction(dino,map);
         }
         else if(((dino.getDisplayChar() == 'S' && dino.getFoodLevel() >= 50) ||
@@ -48,13 +45,15 @@ public class DinosaurBehaviour implements Behaviour{
             BreedBehaviour bB = new BreedBehaviour();
             a = bB.getAction(dino, map);
         }
-        else if(dino.isHungry()){
-            System.out.println(dino.getName() + " at " + loc + " is hungry!" + dino.getFoodLevel());
+        else if((a == null || dino.isHungry()) && (dino.getFoodLevel() != dino.getMaxFoodLevel())){
+            if(dino.isHungry()){
+                System.out.println(dino.getName() + " at " + loc + " is getting hungry!");
+            }
             HungerBehaviour hB = new HungerBehaviour();
             a = hB.getAction(dino, map);
         }
 
-        if(a == null){
+        if (a == null){
             WanderBehaviour wB = new WanderBehaviour();
             a = wB.getAction(dino, map);
         }

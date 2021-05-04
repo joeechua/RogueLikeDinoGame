@@ -65,7 +65,7 @@ public abstract class Dinosaur extends Actor {
             addBehaviour(new BreedBehaviour());
         }
         else {
-            addBehaviour(new GrowBehaviour(getTurns()));
+            addBehaviour(new GrowBehaviour());
         }
     }
 
@@ -157,7 +157,7 @@ public abstract class Dinosaur extends Actor {
             if(food.getClass() == f.getClassType()){
                 return true;
             }
-            else if(food instanceof Egg){
+            else if(this.hasCapability(DinosaurCapabilities.CARNIVORE) && food instanceof Egg){
                 return true;
             }
         }

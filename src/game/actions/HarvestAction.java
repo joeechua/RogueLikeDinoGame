@@ -34,11 +34,9 @@ public class HarvestAction extends Action {
             actor.addItemToInventory(item);
             Player.wallet.addEcoPoints(10);
             if(bush != null){
-                System.out.println("bush fruit");
                 bush.setBushFruit(null);
             }
             else if(tree != null){
-                System.out.println("tree fruit");
                 tree.getTreeFruit().remove(0);
             }
         }

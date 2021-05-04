@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.actions.EatingAction;
 import game.actions.MateAction;
+import game.actors.BabyDinosaur;
 import game.actors.Dinosaur;
 import game.enums.DinosaurCapabilities;
 import game.ground.Bush;
@@ -34,7 +35,7 @@ public class BreedBehaviour implements Behaviour {
                 if(map.getActorAt(exit.getDestination()).getDisplayChar() != '@'){
                     Dinosaur target = (Dinosaur) map.getActorAt(exit.getDestination());
                     if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()
-                    && target.getGender() != dino.getGender()){
+                    && target.getGender() != dino.getGender() && !(target instanceof BabyDinosaur)){
                         ret= new MateAction(target);
                     }
                 }
@@ -47,8 +48,6 @@ public class BreedBehaviour implements Behaviour {
     }
 
     public Action moveCloser(Dinosaur dino, GameMap map){
-        Exit temp = null;
-        Location mate;
         for(Exit exits: here.getExits()){
             for(Exit exit:exits.getDestination().getExits()){
                 target = map.getActorAt(exit.getDestination());
@@ -61,12 +60,7 @@ public class BreedBehaviour implements Behaviour {
                 }
             }
         }
-        do {
-            temp = here.getExits().get(random.nextInt(here.getExits().size()));
-            mate = temp.getDestination();
-        }
-        while (mate == dino.getPrevLoc());
-        return new MoveActorAction(mate, temp.getName());
+        return null;
     }
 
 }

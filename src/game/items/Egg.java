@@ -1,14 +1,16 @@
 package game.items;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Location;
 import game.actors.*;
 import game.enums.Gender;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public abstract class Egg extends PortableItem {
-    private int timeHatch = 5;
+    private int timeHatch;
     private Location birthLocation;
     private Gender gender;
     private Random random = new Random();
@@ -19,18 +21,17 @@ public abstract class Egg extends PortableItem {
      * @param displayChar the character to use to represent this item if it is on the ground
      */
     public Egg(String name, char displayChar) {
-
         super(name, displayChar);
         this.gender = randGen();
+        this.timeHatch = 10 + random.nextInt(10);
     }
 
     public void tick(Location location) {
-        System.out.println("egg time " + timeHatch);
         super.tick(location);
 
         if(timeHatch <= 0 && !location.containsAnActor()){
-            BabyDinosaur babyDino;
-            int ecoPoint;
+            BabyDinosaur babyDino = null;
+            int ecoPoint = 0;
             if(this instanceof StegosaurEgg){
                 babyDino = new BabyStegosaur();
                 ecoPoint = 100;
@@ -39,7 +40,8 @@ public abstract class Egg extends PortableItem {
                 babyDino = new BabyAllosaur();
                 ecoPoint = 1000;
             }
-            else {
+            else if(random.nextInt(10) >= 3) {
+                //70% will hatch
                 babyDino = new BabyBrachiosaur();
                 ecoPoint = 1000;
             }
@@ -60,7 +62,6 @@ public abstract class Egg extends PortableItem {
             System.out.println("Egg is ready to hatch, you can drop it.");
         }
         else{
-            System.out.println("egg time: " + timeHatch);
             timeHatch--;
         }
     }

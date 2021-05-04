@@ -153,14 +153,6 @@ public class HungerBehaviour implements Behaviour {
                 return ret;
             }
         }
-        if (ret == null) {
-            do {
-                temp = here.getExits().get(random.nextInt(here.getExits().size()));
-                food = temp.getDestination();
-            }
-            while (food == dino.getPrevLoc());
-            ret = new MoveActorAction(food, temp.getName());
-        }
         return ret;
     }
 }

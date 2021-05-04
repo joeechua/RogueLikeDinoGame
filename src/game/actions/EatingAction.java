@@ -90,7 +90,7 @@ public class EatingAction extends Action {
         if(dino.isLongNeck()){
             if(map.locationOf(actor).getGround().getClass() == Tree.class){
                 Tree tree = (Tree) map.locationOf(actor).getGround();
-                while(tree.gotFruit()){
+                while(tree.gotFruit() && !(dino.getFoodLevel()==dino.getMaxFoodLevel())){
                     tree.getTreeFruit().remove(0);
                     dino.incFoodLevel(5);
                 }

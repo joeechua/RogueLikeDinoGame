@@ -2,6 +2,8 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.actors.*;
+import game.behaviours.Behaviour;
+import game.behaviours.PregnantBehaviour;
 
 public class GrowAction extends Action {
 
