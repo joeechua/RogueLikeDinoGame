@@ -250,21 +250,6 @@ public abstract class Dinosaur extends Actor {
         return false;
     }
 
-
-//    public NumberRange[] getRange(Location location, int xRange, int yRange){
-//        NumberRange[] ret;
-//        int s = Math.max(location.map().getXRange().min(), location.x() - xRange);
-//        int e = Math.min(location.map().getXRange().max(), location.x() + xRange);
-//        NumberRange x = new NumberRange(s,e-s+1);
-//
-//        s = Math.max(location.map().getYRange().min(), location.y() - yRange);
-//        e = Math.min(location.map().getYRange().max(), location.y() + yRange);
-//        NumberRange y = new NumberRange(s,e-s+1);
-//
-//        ret = new NumberRange[]{x, y};
-//        return ret;
-//    }
-
     public ArrayList<DinosaurCapabilities> getCapabilities() {
         return capabilities;
     }
