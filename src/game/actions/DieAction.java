@@ -6,7 +6,6 @@ import game.actors.Brachiosaur;
 import game.items.Corpse;
 
 public class DieAction extends Action {
-    int rotTime;
 
     /**
      * Perform the action.
@@ -18,14 +17,9 @@ public class DieAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Location currentLocation = map.locationOf(actor);
+        // remove actor from current location
         map.removeActor(actor);
         // create and add corpse into current location
-        if(actor instanceof Brachiosaur || actor instanceof BabyBrachiosaur){
-            rotTime = 40;
-        }
-        else{
-            rotTime = 20;
-        }
         Corpse corpse = new Corpse(actor);
         currentLocation.addItem(corpse);
         return menuDescription(actor);

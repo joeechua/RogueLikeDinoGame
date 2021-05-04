@@ -17,9 +17,11 @@ public abstract class BabyDinosaur extends Dinosaur {
         turnsSinceHatch = 0;
         if(this instanceof BabyAllosaur){
             initFoodLevel = foodLevel = 20;
+            rotTime = 40;
         }
         else{
             initFoodLevel = foodLevel = 10;
+            rotTime = 20;
         }
     }
 
