@@ -6,15 +6,23 @@ import java.util.Random;
 
 /**
  * A class that represents bare dirt.
+ * @see Ground
  */
 public class Dirt extends Ground {
 
 	private Random random = new Random();
 
+	/**
+	 * Constructor.
+	 */
 	public Dirt() {
 		super('.');
 	}
 
+	/**
+	 * Called once per turn, so that maps can experience the passage of time.
+	 * @param location The location of the Ground
+	 */
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
@@ -30,22 +38,25 @@ public class Dirt extends Ground {
 					trees++;
 				}
 			}
-
-			if(trees > 0 || bush < 2){
+			if(random.nextDouble() <= 0.01){
+				location.setGround(new Bush());
+			}
+			// if at least two squares of bush
+			else if(bush >= 2){
 				if(random.nextDouble() <= 0.1){
-					location.setGround(new Bush());
-				}
-			}
-			else if(location.getGround() instanceof Tree){
-			}
-			else {
-				if(random.nextDouble() <= 0.01){
 					location.setGround(new Bush());
 				}
 			}
 		}
 	}
 
+	/**
+	 * Returns a collection of the Actions that the otherActor can do to the current Actor.
+	 * @param actor the Actor acting
+	 * @param location the current Location
+	 * @param direction the direction of the Ground from the Actor
+	 * @return A collection of Actions.
+	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		return new Actions(null);

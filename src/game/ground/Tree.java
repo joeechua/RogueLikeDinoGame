@@ -12,18 +12,29 @@ import game.items.Fruit;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * A class that represents Tree.
+ * @see Ground
+ */
 public class Tree extends Ground {
 	private int age = 0;
 	private Random random = new Random();
 	private ArrayList<Fruit> treeFruit;
 	private ArrayList<Fruit> dropFruitsArray;
 
+	/**
+	 * Constructor.
+	 */
 	public Tree() {
 		super('+');
 		treeFruit = new ArrayList<>();
 		dropFruitsArray = new ArrayList<>();
 	}
 
+	/**
+	 * Called once per turn, so that maps can experience the passage of time.
+	 * @param location The location of the Ground
+	 */
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
@@ -34,24 +45,34 @@ public class Tree extends Ground {
 		if (age == 20)
 			displayChar = 'T';
 
+		// scan if there's drop fruits at current location
 		boolean hasDroppedFruit = false;
 		for (Item item : location.getItems()) {
 			if (dropFruitsArray.contains(item)) {
 				hasDroppedFruit = true;
 			}
 		}
+		// if no drop fruits and has tree fruit and has 5% chance
 		if (!hasDroppedFruit && random.nextDouble() <= 0.05 && treeFruit.size() > 0) {
 			Fruit dropFruit = treeFruit.remove(0);
 			location.addItem(dropFruit);
 			dropFruit.setOnTree(false); //fruit on ground
 			dropFruitsArray.add(dropFruit);
 		}
-		if(treeFruit.size() == 0 && random.nextDouble() <= 0.5){
+		// if
+		if(random.nextDouble() <= 0.5){
 			treeFruit.add(new Fruit());
 			Player.wallet.addEcoPoints(Points.RIPE_FRUIT_PRODUCED.getPoints());
 		}
 	}
 
+	/**
+	 * Returns a collection of the Actions that the otherActor can do to the current Actor.
+	 * @param actor the Actor acting
+	 * @param location the current Location
+	 * @param direction the direction of the Ground from the Actor
+	 * @return A collection of Actions.
+	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
@@ -63,10 +84,18 @@ public class Tree extends Ground {
 		return actions;
 	}
 
+	/**
+	 * Determine whether the tree contains fruit
+	 * @return a boolean, if true tree got fruit, else no fruit
+	 */
 	public boolean gotFruit(){
 		return treeFruit.size() != 0;
 	}
 
+	/**
+	 * Get array list of tree fruit that contains all fruits on tree
+	 * @return An ArrayList of treeFruit that contains all fruits on tree
+	 */
 	public ArrayList<Fruit> getTreeFruit() {
 		return treeFruit;
 	}
