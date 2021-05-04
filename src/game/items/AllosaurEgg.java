@@ -33,7 +33,7 @@ public class AllosaurEgg extends Egg{
         if(this.getTimeHatch() == 0 && !location.containsAnActor()){
             Player.wallet.addEcoPoints(Points.ALLOSAUR_HATCHED.getPoints());
             location.removeItem(this);
-            location.addActor(new BabyAllosaur());
+            location.addActor(new BabyAllosaur(this.getGender()));
         }
     }
 

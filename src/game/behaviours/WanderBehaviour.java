@@ -33,7 +33,6 @@ public class WanderBehaviour implements Behaviour {
 			return actions.get(random.nextInt(actions.size()));
 		}
 		else {
-			//did this to make sure no null pointer exceptions trying to execute null actions
 			return new DoNothingAction();
 		}
 

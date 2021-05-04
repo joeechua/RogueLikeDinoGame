@@ -32,7 +32,7 @@ public class BrachiosaurEgg extends Egg{
         && random.nextInt(10) >= 3){
             Player.wallet.addEcoPoints(Points.BRACHIOSAUR_HATCHED.getPoints());
             location.removeItem(this);
-            location.addActor(new BabyBrachiosaur());
+            location.addActor(new BabyBrachiosaur(this.getGender()));
         }
     }
 }
