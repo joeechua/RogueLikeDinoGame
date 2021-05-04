@@ -34,7 +34,6 @@ public class BabyStegosaur extends BabyDinosaur{
     /**
      * Called once per turn, so that maps can experience the passage of time.
      * @see Dinosaur
-     * @see GameMap
      */
     @Override
     public void tick() {

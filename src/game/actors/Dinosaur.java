@@ -110,7 +110,6 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Called once per turn, so that maps can experience the passage of time.
-     * @see GameMap
      */
     public void tick(){
         if(this.isPregnant()) {

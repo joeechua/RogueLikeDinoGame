@@ -75,7 +75,7 @@ public abstract class BabyDinosaur extends Dinosaur {
 
     /**
      * Called once per turn, so that maps can experience the passage of time.
-     * @see GameMap
+     * @see Dinosaur
      */
     @Override
     public void tick() {
