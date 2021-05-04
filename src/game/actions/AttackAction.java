@@ -2,11 +2,7 @@ package game.actions;
 
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Weapon;
+import edu.monash.fit2099.engine.*;
 import game.actors.*;
 import game.items.Corpse;
 
@@ -86,6 +82,13 @@ public class AttackAction extends Action {
 			// if target is unconscious - die
 			if (!dinoTarget.isConscious()) {
 				result += System.lineSeparator() + new DieAction().execute(dinoTarget, map) + " and killed.";
+
+				Actions dropActions = new Actions();
+				for (Item item : dinoTarget.getInventory())
+					dropActions.add(item.getDropAction());
+				for (Action drop : dropActions)
+					drop.execute(dinoTarget, map);
+				map.removeActor(dinoTarget);
 			}
 		}
 		// if actor is the Player
@@ -95,6 +98,14 @@ public class AttackAction extends Action {
 			// if dinoTarget is unconscious - die
 			if(!dinoTarget.isConscious()){
 				result += System.lineSeparator() + new DieAction().execute(target, map) + " and killed.";
+
+				Actions dropActions = new Actions();
+				for (Item item : target.getInventory())
+					dropActions.add(item.getDropAction());
+				for (Action drop : dropActions)
+					drop.execute(target, map);
+				map.removeActor(target);
+
 			}
 		}
 		// when attackTurns > 0
