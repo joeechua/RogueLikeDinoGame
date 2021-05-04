@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
 import game.actors.Player;
 import game.enums.Food;
+import game.enums.Points;
 import game.items.Fruit;
 
 /**
@@ -51,7 +52,7 @@ public class FeedingAction extends Action {
             }
             // add eco points if player feed dinosaur with fruits
             if(foodInventory.getClass() == Fruit.class){
-                Player.wallet.addEcoPoints(10);
+                Player.wallet.addEcoPoints(Points.FRUIT_FED.getPoints());
             }
         }
         actor.removeItemFromInventory(remItem);

@@ -2,6 +2,7 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.actors.Player;
+import game.enums.Points;
 import game.ground.Bush;
 import game.ground.Tree;
 import java.util.Random;
@@ -56,7 +57,7 @@ public class HarvestAction extends Action {
         Random random = new Random();
         if(random.nextDouble() <= 0.6){
             actor.addItemToInventory(item);
-            Player.wallet.addEcoPoints(10);
+            Player.wallet.addEcoPoints(Points.RIPE_FRUIT_HARVESTED.getPoints());
             if(bush != null){
                 bush.setBushFruit(null);
             }
