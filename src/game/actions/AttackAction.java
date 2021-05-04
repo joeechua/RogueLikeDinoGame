@@ -6,14 +6,15 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 import game.actors.*;
 import game.items.Corpse;
-import game.items.PortableItem;
 
 /**
  * Special Action for attacking other Actors.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
 public class AttackAction extends Action {
 

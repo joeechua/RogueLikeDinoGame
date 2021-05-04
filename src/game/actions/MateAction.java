@@ -8,6 +8,9 @@ import game.enums.Gender;
 
 /**
  * Mate Action for Actors
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
 public class MateAction extends Action{
 
@@ -29,6 +32,7 @@ public class MateAction extends Action{
      * @see Dinosaur
      * @see Gender
      * @see DinosaurCapabilities
+     * @see PregnantBehaviour
      */
     @Override
     public String execute(Actor actor, GameMap map) {

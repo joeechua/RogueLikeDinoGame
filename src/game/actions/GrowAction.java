@@ -2,13 +2,13 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.actors.*;
-import game.behaviours.Behaviour;
-import game.behaviours.PregnantBehaviour;
 
 /**
  * Grow Action for Actors.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
-
 public class GrowAction extends Action {
 
     /**
