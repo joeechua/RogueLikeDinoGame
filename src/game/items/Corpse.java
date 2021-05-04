@@ -1,6 +1,7 @@
 package game.items;
 
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
@@ -8,6 +9,8 @@ import game.enums.ItemCapabilities;
 
 /**
  * Class for Corpse object
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see PortableItem
  */
 public class Corpse extends PortableItem {
@@ -18,7 +21,7 @@ public class Corpse extends PortableItem {
      * Constructor.
      * @see edu.monash.fit2099.engine.Capabilities
      * @see Brachiosaur
-     * @see Dinosaur
+     * @see Dinosaur#getRotTime()
      * @see Actor
      */
     public Corpse(Actor actor) {
@@ -35,7 +38,7 @@ public class Corpse extends PortableItem {
     /**
      * Tick function that keeps track of time and when the corpse will rot
      * @param location location of the corpse
-     * @see Location
+     * @see Location#removeItem(Item)
      */
     //only this tick because anything in the inventory doesn't rot
     public void tick(Location location) {

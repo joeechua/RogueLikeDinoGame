@@ -1,11 +1,14 @@
 package game.items;
 
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.enums.ItemCapabilities;
 
 
 /**
  * Class for a fruit object
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see PortableItem
  */
 public class Fruit extends PortableItem {
@@ -16,7 +19,7 @@ public class Fruit extends PortableItem {
     /**
      * Constructor.
      * @see edu.monash.fit2099.engine.Capabilities
-     * @see ItemCapabilities
+     * @see ItemCapabilities#EATEN
      */
     public Fruit() {
         super("Fruit", 'f');
@@ -27,7 +30,7 @@ public class Fruit extends PortableItem {
     /**
      * Tick function that helps the fruit keep track of time and when it should rot
      * @param currentLocation The location of the ground on which we lie.
-     * @see Location
+     * @see Location#removeItem(Item)
      */
     @Override
     public void tick(Location currentLocation) {

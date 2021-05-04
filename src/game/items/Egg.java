@@ -9,6 +9,9 @@ import java.util.Random;
 
 /**
  * Abstract class for Egg object
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see PortableItem
  */
 public abstract class Egg extends PortableItem {
     private int timeHatch;
@@ -20,9 +23,10 @@ public abstract class Egg extends PortableItem {
      * Constructor.
      * @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
-     * @see Random
+     * @see Random#nextInt()
      * @see Gender
      * @see PortableItem
+     * @see AllosaurEgg
      */
     public Egg(String name, char displayChar) {
         super(name, displayChar);
@@ -68,7 +72,7 @@ public abstract class Egg extends PortableItem {
      * Randomly generates a gender for the egg
      * @return Gender enum type (F or M)
      * @see Gender
-     * @see Random
+     * @see Random#nextInt()
      */
     public Gender randGen(){
         int rand = random.nextInt(100);
