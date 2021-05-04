@@ -26,6 +26,10 @@ public class Wall extends Ground {
 		return false;
 	}
 
+	/**
+	 * Determine whether terrain will block thrown object but not movement
+	 * @return a boolean if true terrain will block thrown object but not movement
+	 */
 	@Override
 	public boolean blocksThrownObjects() {
 		return true;
