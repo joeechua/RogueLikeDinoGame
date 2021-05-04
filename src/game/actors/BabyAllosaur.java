@@ -9,16 +9,20 @@ import game.enums.Species;
 
 /**
  * A baby carnivorous dinosaur (Baby Allosaur).
- * @see Actor
- * @see Dinosaur
- * @see DinosaurCapabilities
- * @see Food
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see BabyDinosaur
  */
 public class BabyAllosaur extends BabyDinosaur{
+
     /**
      * Constructor.
      * All Baby Allosaurs are represented by a 'a' and have 100 hit points.
      * has dinosaur capabilities carnivore
+     * @see Dinosaur
+     * @see Species
+     * @see DinosaurCapabilities
+     * @see Food
      */
     public BabyAllosaur(Gender g) {
         super("Baby " + Species.A.name(),'a',100,g);
@@ -29,6 +33,7 @@ public class BabyAllosaur extends BabyDinosaur{
     /**
      * Creates and returns an intrinsic weapon with damage 20.
      * @return a freshly-instantiated IntrinsicWeapon
+     * @see Actor
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {

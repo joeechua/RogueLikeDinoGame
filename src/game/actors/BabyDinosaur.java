@@ -6,6 +6,8 @@ import game.enums.Gender;
 
 /**
  * A baby dinosaur class.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see Dinosaur
  */
 
