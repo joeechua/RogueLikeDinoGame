@@ -170,13 +170,6 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     *
-     */
-    public void decRotTime(){
-        rotTime = Math.max(getRotTime()-1, 0);
-    }
-
-    /**
      * Returns a collection of the Actions that the otherActor can do to the current Actor.
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
