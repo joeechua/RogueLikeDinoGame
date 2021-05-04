@@ -27,7 +27,12 @@ public abstract class Egg extends PortableItem {
     public Egg(String name, char displayChar) {
         super(name, displayChar);
         this.gender = randGen();
-        this.timeHatch = 10 + random.nextInt(10);
+        if(this instanceof AllosaurEgg){
+            this.timeHatch = 50;
+        }
+        else{
+            this.timeHatch = 10 + random.nextInt(10);
+        }
     }
 
     /**
