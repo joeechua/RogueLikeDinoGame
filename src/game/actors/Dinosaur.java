@@ -15,6 +15,9 @@ import java.util.Random;
 /**
  * A dinosaur class.
  *
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see Actor
  */
 
 public abstract class Dinosaur extends Actor {
@@ -174,6 +177,7 @@ public abstract class Dinosaur extends Actor {
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
      * @return A collection of Actions.
+     * @see Actor
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
@@ -191,6 +195,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * Determine whether the dinosaur is herbivore or carnivore
      * @return a boolean, if true dino is herbivorous, false dino is carnivore
+     * @see DinosaurCapabilities
      */
     public boolean isHerbivore(){
         if(capabilities.contains(DinosaurCapabilities.HERBIVORE)){
@@ -204,6 +209,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * Determine whether the dinosaur has long neck.
      * @return a boolean, if true dino has long neck, false dino doesn't have long neck
+     * @see DinosaurCapabilities
      */
     public boolean isLongNeck(){
         if(capabilities.contains(DinosaurCapabilities.LONG_NECK)){
@@ -218,6 +224,7 @@ public abstract class Dinosaur extends Actor {
      * Determine whether the food item is edible for the dinosaur.
      * @param food a food item
      * @return a boolean, if true food is edible, false food is not edible
+     * @see Food
      */
     public boolean canEat(Item food){
         for(Food f: getEdibleFoodList()){

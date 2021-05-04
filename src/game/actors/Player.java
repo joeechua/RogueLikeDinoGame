@@ -8,6 +8,9 @@ import java.util.List;
 
 /**
  * Class representing the Player.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Actor
  */
 public class Player extends Actor {
 
@@ -20,6 +23,7 @@ public class Player extends Actor {
 	 * @param name        Name to call the player in the UI
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
+	 * @see EcoPointWallet
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);

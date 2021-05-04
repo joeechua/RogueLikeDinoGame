@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 /**
  * A carnivorous dinosaur (Allosaur).
- * @see Actor
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see Dinosaur
- * @see DinosaurCapabilities
- * @see Food
  */
+
 public class Allosaur extends Dinosaur {
 
     private ArrayList<Behaviour> behaviour;
@@ -24,6 +24,10 @@ public class Allosaur extends Dinosaur {
      * Constructor.
      * All Allosaurs are represented by a 'A' and have 100 hit points.
      * has dinosaur capabilities carnivore
+     * @see Dinosaur
+     * @see Species
+     * @see DinosaurCapabilities
+     * @see Food
      */
     public Allosaur() {
         super(Species.A.name(), 'A', 100);
@@ -37,6 +41,10 @@ public class Allosaur extends Dinosaur {
      * All Allosaurs are represented by a 'A' and have 100 hit points.
      * has dinosaur capabilities carnivore
      * @param inputGender gender of the dinosaur
+     * @see Dinosaur
+     * @see Species
+     * @see DinosaurCapabilities
+     * @see Food
      */
     public Allosaur(Gender inputGender) {
         super(Species.A.name(), 'A', 100);
@@ -50,6 +58,7 @@ public class Allosaur extends Dinosaur {
     /**
      * Creates and returns an intrinsic weapon with damage 20.
      * @return a freshly-instantiated IntrinsicWeapon
+     * @see Actor
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {

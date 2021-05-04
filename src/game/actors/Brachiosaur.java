@@ -8,10 +8,9 @@ import game.enums.Species;
 
 /**
  * A herbivorous and long neck dinosaur (Brachiosaur).
- * @see Actor
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see Dinosaur
- * @see DinosaurCapabilities
- * @see Food
  */
 public class Brachiosaur extends Dinosaur {
 
@@ -19,6 +18,10 @@ public class Brachiosaur extends Dinosaur {
      * Constructor.
      * All Brachiosaur are represented by a 'B' and have 100 hit points.
      * has dinosaur capabilities herbivore and long neck
+     * @see Dinosaur
+     * @see Species
+     * @see DinosaurCapabilities
+     * @see Food
      */
     public Brachiosaur() {
         super(Species.B.name(), 'B', 100);
@@ -31,6 +34,10 @@ public class Brachiosaur extends Dinosaur {
      * Constructor.
      * All Brachiosaur are represented by a 'B' and have 100 hit points.
      * has dinosaur capabilities herbivore and long neck
+     * @see Dinosaur
+     * @see Species
+     * @see DinosaurCapabilities
+     * @see Food
      */
     public Brachiosaur(Gender inputGender){
         super(Species.B.name(), 'B', 100);

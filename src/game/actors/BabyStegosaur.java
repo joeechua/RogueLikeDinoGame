@@ -9,11 +9,20 @@ import game.enums.Food;
 import game.enums.Gender;
 import game.enums.Species;
 
+/**
+ * A baby herbivorous dinosaur (BabyStegosaur).
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see BabyDinosaur
+ */
 public class BabyStegosaur extends BabyDinosaur{
     /**
      * Constructor.
      * All Stegosaurs are represented by a 's' and have 100 hit points.
      * has dinosaur capabilities herbivore
+     * @see Dinosaur
+     * @see DinosaurCapabilities
+     * @see Food
      */
     public BabyStegosaur(Gender g) {
         super("Baby " + Species.S.name(),'s',100, g);
@@ -41,6 +50,7 @@ public class BabyStegosaur extends BabyDinosaur{
      * @param direction String representing the direction of the other Actor
      * @param map current GameMap
      * @return A collection of Actions.
+     * @see Actor
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
