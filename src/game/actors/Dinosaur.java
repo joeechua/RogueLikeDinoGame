@@ -125,6 +125,7 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
+        // player to attack dino
         actions.add(new AttackAction(this));
         for(Item item: otherActor.getInventory()){
             if(this.canEat(item)){
