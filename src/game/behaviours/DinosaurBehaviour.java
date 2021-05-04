@@ -24,7 +24,10 @@ public class DinosaurBehaviour implements Behaviour{
         int locY = map.locationOf(actor).y();
         String loc = "(" + locX + ", " + locY + ")";
         if(dino.isUnconscious()){
-            if(dino.getUnconsciousTime() >= dino.getMaxUnconsciousTime()){
+            //public boolean isDead(){return (getUnconsciousTime() >= getMaxUnconsciousTime() || hitPoints <= 0);}
+            // instead of dino.getUnconsciousTime() >= dino.getMaxUnconsciousTime()
+            // can use isDead()
+            if(dino.isDead()){
                 a = new DieAction();
             }
             else{

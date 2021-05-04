@@ -85,7 +85,9 @@ public class EatingAction extends Action {
         }
         dino.incFoodLevel(nutritionValue);
 
-        if(dino instanceof Brachiosaur || dino instanceof BabyBrachiosaur){
+        // instead of dino instanceof Brachiosaur || dino instanceof BabyBrachiosaur
+        // dino has the isLongNeck() where only Brac has the capability of LONGNECK
+        if(dino.isLongNeck()){
             if(map.locationOf(actor).getGround().getClass() == Tree.class){
                 Tree tree = (Tree) map.locationOf(actor).getGround();
                 while(tree.gotFruit()){

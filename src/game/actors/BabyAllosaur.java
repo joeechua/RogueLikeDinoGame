@@ -2,6 +2,7 @@ package game.actors;
 
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import game.enums.DinosaurCapabilities;
+import game.enums.Food;
 
 public class BabyAllosaur extends BabyDinosaur{
     /**
@@ -11,6 +12,7 @@ public class BabyAllosaur extends BabyDinosaur{
         super("Baby Allosaur",'a',1000);
         dinoChar = 'a';
         capabilities.add(DinosaurCapabilities.CARNIVORE);
+        setEdibleFoodList(Food.getFoodList(this));
     }
 
     @Override
