@@ -2,7 +2,6 @@ package game.actors;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
-import game.actions.EatingAction;
 import game.actions.FeedingAction;
 import game.behaviours.*;
 import game.enums.DinosaurCapabilities;
@@ -10,11 +9,13 @@ import game.enums.Food;
 import game.enums.Gender;
 import game.ground.Bush;
 import game.ground.Dirt;
-import game.items.Egg;
-import game.items.Fruit;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+/**
+ * A dinosaur class.
+ *
+ */
 
 public abstract class Dinosaur extends Actor {
 
@@ -154,16 +155,14 @@ public abstract class Dinosaur extends Actor {
     /**
      * Set previous location of dinosaur
      * @param prev a previous location that the dinosaur come from
-     * @return a
      */
-    public boolean setPrevLoc(Location prev){
+    public void setPrevLoc(Location prev){
         this.prevLoc = prev;
-        return true;
     }
 
     /**
-     *
-     * @return int that represents rot time
+     * Get rot time of corpse that according to the species of dino
+     * @return int that represents rot time of corpse
      */
     public int getRotTime(){
         return rotTime;
@@ -190,8 +189,8 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     *
-     * @return
+     * Determine whether the dinosaur is herbivore or carnivore
+     * @return a boolean, if true dino is herbivorous, false dino is carnivore
      */
     public boolean isHerbivore(){
         if(capabilities.contains(DinosaurCapabilities.HERBIVORE)){
@@ -203,8 +202,8 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     *
-     * @return
+     * Determine whether the dinosaur has long neck.
+     * @return a boolean, if true dino has long neck, false dino doesn't have long neck
      */
     public boolean isLongNeck(){
         if(capabilities.contains(DinosaurCapabilities.LONG_NECK)){
@@ -216,16 +215,13 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     *
-     * @param food
-     * @return
+     * Determine whether the food item is edible for the dinosaur.
+     * @param food a food item
+     * @return a boolean, if true food is edible, false food is not edible
      */
     public boolean canEat(Item food){
         for(Food f: getEdibleFoodList()){
             if(food.getClass() == f.getClassType()){
-                return true;
-            }
-            else if(this.hasCapability(DinosaurCapabilities.CARNIVORE) && food instanceof Egg){
                 return true;
             }
         }
@@ -233,8 +229,135 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     *
-     * @param t
+     * Determine whether the dinosaur is hungry with the food level.
+     * @return a boolean, if true dino is hungry, false food is not hungry
+     */
+    public boolean isHungry(){
+        return this.foodLevel < getMinFoodLevel();
+    }
+
+    /**
+     * Determine whether a dinosaur is unconscious with food level
+     * @return a boolean, if true dino is unconscious, false dino is conscious
+     */
+    public boolean isUnconscious(){
+        return foodLevel <= 0;
+    }
+
+    /**
+     * Determine whether a dinosaur is dead or alive
+     * @return a boolean, if true dino is dead, false dino is alive
+     */
+    public boolean isDead(){
+        return (getUnconsciousTime() >= getMaxUnconsciousTime() || hitPoints <= 0);
+    }
+
+    /**
+     * Increase the food level of dinosaur
+     * @param incValue the increment value
+     */
+    public void incFoodLevel(int incValue){
+        foodLevel = Math.min(getFoodLevel()+incValue, getMaxFoodLevel());
+    }
+
+    /**
+     * Decrease the food level of dinosaur
+     * @param decValue the decrement value
+     */
+    public void decFoodLevel(int decValue){
+        foodLevel = Math.max(getFoodLevel()-decValue, 0);
+    }
+
+    /**
+     * Get the array list of behaviours of dinosaur
+     * @return array list of behaviours
+     */
+    public ArrayList<Behaviour> getBehaviours() {
+        return behaviours;
+    }
+
+    /**
+     * Add new behaviour into dinosaur's behaviours array list
+     * @param behaviour behaviour of dinosaur has to be added to behaviours
+     */
+    public void addBehaviour(Behaviour behaviour){
+        behaviours.add(behaviour);
+    }
+
+    /**
+     * Remove behaviour into dinosaur's behaviours array list
+     * @param behaviour behaviour of dinosaur has to be removed to behaviours
+     */
+    public void removeBehaviour(Behaviour behaviour){
+        behaviours.remove(behaviour);
+    }
+
+    /**
+     * Get the dinosaur's food level
+     * @return int represents the food level of dinosaur
+     */
+    public int getFoodLevel() {
+        return foodLevel;
+    }
+
+    /**
+     * Get the gender of dinosaur
+     * @return Gender of dinosaur
+     */
+    public Gender getGender() {
+        return gender;
+    }
+
+    /**
+     * Set the foodLevel of dinosaur
+     * @param foodLevel int that represents the food level to be set
+     */
+    public void setFoodLevel(int foodLevel) {
+        this.foodLevel = foodLevel;
+    }
+
+    /**
+     * Get the unconscious time of dinosaur
+     * @return int represents unconscious time of dinosaur
+     */
+    public int getUnconsciousTime() {
+        return unconsciousTime;
+    }
+
+    /**
+     * Get the minimum food level of dinosaurs
+     * @return int represents minimum food level of dinosaurs
+     */
+    public int getMinFoodLevel() {
+        return minFoodLevel;
+    }
+
+    /**
+     * Get the maximum food level of dinosaurs
+     * @return int represents maximum food level of dinosaurs
+     */
+    public int getMaxFoodLevel() {
+        return maxFoodLevel;
+    }
+
+    /**
+     * Get the max unconscious time of dinosaur
+     * @return int represents max unconscious time of dinosaur
+     */
+    public int getMaxUnconsciousTime() {
+        return maxUnconsciousTime;
+    }
+
+    /**
+     * Get the pregnancy turns
+     * @return int represents the pregnancy turns
+     */
+    public int getPregnancyTurns() {
+        return pregnancyTurns;
+    }
+    /**
+     * Set the pregnancy turns
+     * @param t int represents the pregnancy turns
      */
     public void setPregnancyTurns(int t){
         if(t >= 0){
@@ -243,152 +366,24 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     *
-     * @return
-     */
-    public boolean isHungry(){
-        return this.foodLevel < getMinFoodLevel();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean isUnconscious(){
-        return foodLevel <= 0;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean isDead(){
-        return (getUnconsciousTime() >= getMaxUnconsciousTime() || hitPoints <= 0);
-    }
-
-    /**
-     *
-     * @param incValue
-     */
-    public void incFoodLevel(int incValue){
-        foodLevel = Math.min(getFoodLevel()+incValue, getMaxFoodLevel());
-    }
-
-    /**
-     *
-     * @param decValue
-     */
-    public void decFoodLevel(int decValue){
-        foodLevel = Math.max(getFoodLevel()-decValue, 0);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ArrayList<Behaviour> getBehaviours() {
-        return behaviours;
-    }
-
-    /**
-     *
-     * @param behaviour
-     */
-    public void addBehaviour(Behaviour behaviour){
-        behaviours.add(behaviour);
-    }
-
-    /**
-     *
-     * @param behaviour
-     */
-    public void removeBehaviour(Behaviour behaviour){
-        behaviours.remove(behaviour);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getFoodLevel() {
-        return foodLevel;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Gender getGender() {
-        return gender;
-    }
-
-    /**
-     *
-     * @param foodLevel
-     */
-    public void setFoodLevel(int foodLevel) {
-        this.foodLevel = foodLevel;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getUnconsciousTime() {
-        return unconsciousTime;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getMinFoodLevel() {
-        return minFoodLevel;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getMaxFoodLevel() {
-        return maxFoodLevel;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getMaxUnconsciousTime() {
-        return maxUnconsciousTime;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getTurns() {
-        return pregnancyTurns;
-    }
-
-    /**
-     *
-     * @param attackTurns
+     * Set the attack turns of dinosaur
+     * @param attackTurns int that represents attack turns
      */
     public void setAttackTurns(int attackTurns) {
         this.attackTurns = attackTurns;
     }
 
     /**
-     *
-     * @return
+     * Get the attack turns of dinosaur
+     * @return int that represents attack turns
      */
     public int getAttackTurns() {
         return attackTurns;
     }
 
     /**
-     *
-     * @return
+     * Determine whether the dino is pregnant or not
+     * @return a boolean, if true dino is pregnant, false dino is not
      */
     public boolean isPregnant(){
         for(Behaviour behaviour: behaviours){
@@ -400,8 +395,8 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     *
-     * @return
+     * Get the capabilities of dinosaur
+     * @return ArrayList that contains the capabilities of dinosaur
      */
     public ArrayList<DinosaurCapabilities> getCapabilities() {
         return capabilities;

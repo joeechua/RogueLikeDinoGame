@@ -2,8 +2,13 @@ package game.actors;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.GrowAction;
+
+/**
+ * A baby dinosaur class.
+ * @see Dinosaur
+ */
+
 public abstract class BabyDinosaur extends Dinosaur {
-    protected char dinoChar;
     protected int turnsSinceHatch;
     /**
      * Constructor.
@@ -25,17 +30,35 @@ public abstract class BabyDinosaur extends Dinosaur {
         }
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be performed
+     * @see Actor
+     * @see Dinosaur
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         return super.playTurn(actions, lastAction, map, display);
     }
 
+    /**
+     * Called once per turn, so that maps can experience the passage of time.
+     * @see GameMap
+     */
     @Override
     public void tick() {
         super.tick();
         turnsSinceHatch++;
     }
 
+    /**
+     * Get the turns since the egg hatch
+     * @return int represents the turns since the egg hatch
+     */
     public int getTurnsSinceHatch() {
         return turnsSinceHatch;
     }

@@ -16,13 +16,16 @@ import game.enums.Gender;
 import game.enums.Species;
 
 /**
- * A herbivorous dinosaur.
- *
+ * A herbivorous dinosaur (Stegosaur).
+ * @see Dinosaur
+ * @see Species
+ * @see DinosaurCapabilities
  */
 public class Stegosaur extends Dinosaur {
 	/**
 	 * Constructor.
 	 * All Stegosaurs are represented by a 'S' and have 100 hit points.
+	 * has dinosaur capabilities herbivore
 	 */
 	public Stegosaur() {
 		super(Species.S.name(), 'S', 100);
@@ -31,6 +34,11 @@ public class Stegosaur extends Dinosaur {
 		attackTurns = 0;
 	}
 
+	/**
+	 * Constructor.
+	 * All Stegosaurs are represented by a 'S' and have 100 hit points.
+	 * has dinosaur capabilities herbivore
+	 */
 	public Stegosaur(Gender inputGender){
 		super(Species.S.name(), 'S', 100);
 		capabilities.add(DinosaurCapabilities.HERBIVORE);
@@ -39,33 +47,29 @@ public class Stegosaur extends Dinosaur {
 		attackTurns = 0;
 	}
 
+	/**
+	 * Called once per turn, so that maps can experience the passage of time.
+	 * @see Dinosaur
+	 * @see GameMap
+	 */
 	@Override
 	public void tick() {
 		super.tick();
+		// decrease attack turns by 1 for each tick()
 		if(attackTurns != 0){
 			attackTurns--;
 		}
 	}
 
-	//	@Override
-//	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-//		return new Actions(new AttackAction(this));
-//	}
-//
-//	/**
-//	 * Figure out what to do next.
-//	 *
-//	 * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
-//	 * just stands there.  That's boring.
-//	 *
-//	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-//	 */
-//	@Override
-//	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-//		Action wander = behaviour.getAction(this, map);
-//		if (wander != null)
-//			return wander;
-//
-//		return new DoNothingAction();
-//	}
+	/**
+	 * Returns a collection of the Actions that the otherActor can do to the current Actor.
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction String representing the direction of the other Actor
+	 * @param map current GameMap
+	 * @return A collection of Actions.
+	 */
+	@Override
+	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+		return new Actions(new AttackAction(this));
+	}
 }
