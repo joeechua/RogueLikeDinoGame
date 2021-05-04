@@ -109,7 +109,7 @@ public class EatingAction extends Action {
                     nutritionValue = enumFood.getUpLevel("BRACH_FRUIT");
                 }
                 // eats corpse
-                else if(targetFood.getClass() ==Corpse.class){
+                else if(targetFood.getClass() == Corpse.class){
                     Corpse c = (Corpse) targetFood;
                     if(c.getOriginDino() instanceof Brachiosaur){
                         nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
