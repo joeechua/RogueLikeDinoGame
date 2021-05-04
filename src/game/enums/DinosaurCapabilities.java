@@ -1,6 +1,6 @@
 package game.enums;
 
-/***
+/**
  * A collection of capabilities that a dinosaur can have
  * @see game.actors.Dinosaur
  */

@@ -1,6 +1,6 @@
 package game.enums;
 
-/***
+/**
  * A collection of possible genders for a Dinosaur
  * @see game.actors.Dinosaur
  */
@@ -10,7 +10,7 @@ public enum Gender {
 
     public final String label;
 
-    /***
+    /**
      * Constructor
      * @param label name of the gender
      */
