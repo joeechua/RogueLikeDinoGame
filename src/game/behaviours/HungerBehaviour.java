@@ -14,6 +14,9 @@ import java.util.Random;
 
 /**
  * Behaviour that allows dinosaur to eat or prey on other dinosaurs
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see Behaviour
  */
 public class HungerBehaviour implements Behaviour {
 
@@ -25,6 +28,15 @@ public class HungerBehaviour implements Behaviour {
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
      * @return EatingAction instance or MoveActorAction instance or AttackAction instance depending on circumstance
+     * @see Actor
+     * @see Dinosaur#getDisplayChar()
+     * @see GameMap
+     * @see Location#getExits()
+     * @see AttackAction
+     * @see EatingAction
+     * @see Bush#getBushFruit()
+     * @see Tree#getTreeFruit()
+     * @see Item#getClass()
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {

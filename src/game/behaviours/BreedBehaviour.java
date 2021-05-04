@@ -8,6 +8,9 @@ import java.util.Random;
 
 /**
  * Behaviour subclass for Dinosaur breeding
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see game.behaviours.Behaviour
  */
 public class BreedBehaviour implements Behaviour {
 
@@ -32,10 +35,11 @@ public class BreedBehaviour implements Behaviour {
      * @param map the GameMap containing the Actor
      * @return Action that actor should perform in order to breed
      * @see Actor
-     * @see GameMap
-     * @see Location
+     * @see GameMap#isAnActorAt(Location)
+     * @see Location#getExits()
      * @see Exit
      * @see MateAction
+     * @see Dinosaur#getClass()
      * @see BabyDinosaur
      */
     @Override
