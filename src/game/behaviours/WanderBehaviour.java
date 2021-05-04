@@ -5,6 +5,12 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Behaviour subclass for dinosaur to wander or do nothing
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see Behaviour
+ */
 public class WanderBehaviour implements Behaviour {
 	
 	private Random random = new Random();
@@ -17,6 +23,10 @@ public class WanderBehaviour implements Behaviour {
 	 * @param actor the Actor enacting the behaviour
 	 * @param map the map that actor is currently on
 	 * @return an Action, or null if no MoveAction is possible
+	 * @see Actor
+	 * @see GameMap#locationOf(Actor)
+	 * @see Location#getExits()
+	 * @see Exit
 	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {

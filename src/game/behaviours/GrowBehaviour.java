@@ -10,6 +10,9 @@ import game.actors.BabyStegosaur;
 
 /**
  * Behaviour subclass that allows dinosaur to grow
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see Behaviour
  */
 public class GrowBehaviour implements Behaviour {
 
@@ -21,6 +24,11 @@ public class GrowBehaviour implements Behaviour {
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
      * @return GrowAction instance or null
+     * @see Actor
+     * @see GameMap
+     * @see BabyStegosaur
+     * @see BabyDinosaur#getTurnsSinceHatch()
+     * @see GrowAction
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {

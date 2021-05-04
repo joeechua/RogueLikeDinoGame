@@ -11,17 +11,14 @@ import game.enums.DinosaurCapabilities;
 
 /**
  * A behaviour subclass that contains all possible behaviours a Dinosaur can have
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see Behaviour
  */
 public class DinosaurBehaviour implements Behaviour{
 
     private Action a;
 
-    /**
-     * Constructor
-     */
-    public DinosaurBehaviour() {
-    }
 
     /**
      * Selects behaviour and gets the appropriate action to be performed in order
@@ -31,15 +28,15 @@ public class DinosaurBehaviour implements Behaviour{
      * @return Action to be performed by actor
      * @see Dinosaur
      * @see Actor
-     * @see GameMap
+     * @see GameMap#locationOf(Actor)
      * @see DieAction
      * @see DoNothingAction
-     * @see DinosaurCapabilities
-     * @see PregnantBehaviour
-     * @see GrowBehaviour
-     * @see BreedBehaviour
-     * @see HungerBehaviour
-     * @see WanderBehaviour
+     * @see DinosaurCapabilities#PREGNANT
+     * @see PregnantBehaviour#getAction(Actor, GameMap)
+     * @see GrowBehaviour#getAction(Actor, GameMap)
+     * @see BreedBehaviour#getAction(Actor, GameMap)
+     * @see HungerBehaviour#getAction(Actor, GameMap)
+     * @see WanderBehaviour#getAction(Actor, GameMap)
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {

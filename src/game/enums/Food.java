@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 /**
  * A collection of food items with foodLevel values, class types, and a vegetarian check
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see game.actions.EatingAction
+ * @see game.behaviours.HungerBehaviour
  */
 public enum Food {
     STEG_EGG(10, StegosaurEgg.class, false),

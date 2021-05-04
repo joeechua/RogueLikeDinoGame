@@ -10,6 +10,9 @@ import java.util.Random;
 
 /**
  * Behaviour subclass that allows dinosaur to be pregnant and give birth
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see Behaviour
  */
 public class PregnantBehaviour implements Behaviour{
     private Random random = new Random();
@@ -19,6 +22,11 @@ public class PregnantBehaviour implements Behaviour{
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
      * @return
+     * @see Actor
+     * @see Dinosaur
+     * @see GameMap#locationOf(Actor)
+     * @see LayEggAction
+     * @see Location#getExits()
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {

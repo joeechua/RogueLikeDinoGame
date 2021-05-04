@@ -14,6 +14,9 @@ import java.util.Random;
 
 /**
  * Behaviour that allows dinosaur to eat or prey on other dinosaurs
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see Behaviour
  */
 public class HungerBehaviour implements Behaviour {
 
@@ -25,6 +28,15 @@ public class HungerBehaviour implements Behaviour {
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
      * @return EatingAction instance or MoveActorAction instance or AttackAction instance depending on circumstance
+     * @see Actor
+     * @see Dinosaur#getDisplayChar()
+     * @see GameMap
+     * @see Location#getExits()
+     * @see AttackAction
+     * @see EatingAction
+     * @see Bush#getBushFruit()
+     * @see Tree#getTreeFruit()
+     * @see Item#getClass()
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
@@ -99,8 +111,10 @@ public class HungerBehaviour implements Behaviour {
         Location food = null;
         Exit temp = null;
 
+        //if dino is carnivore
         if(!dino.isHerbivore()){
             for (Exit exits : here.getExits()) {
+                //go through exits of all exits to see if there is possible target to follow
                 for(Exit exit: exits.getDestination().getExits()){
                     if (exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
                         Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
@@ -111,6 +125,7 @@ public class HungerBehaviour implements Behaviour {
                             }
                         }
                     }
+                    //or else look for food
                     else{
                         for(Item it: exit.getDestination().getItems()){
                             if(it.getClass() == Corpse.class || it.getClass() == Egg.class){
@@ -121,6 +136,7 @@ public class HungerBehaviour implements Behaviour {
                 }
             }
         }
+        //if dinosaur is herbivore go through the adjacent squares for items
         else{
             for (Exit exit : here.getExits()) {
                 food = exit.getDestination();
@@ -131,6 +147,7 @@ public class HungerBehaviour implements Behaviour {
                         }
                     }
                 }
+                //the floor dont have so go through the bush and trees
                 else {
                     Ground ok = food.getGround();
                     if (ok.getClass() == Tree.class) {

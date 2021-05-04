@@ -3,6 +3,8 @@ package game.ecopoint;
 /**
  * Class that represents a player's wallet. Restricts any impossible transactions and can
  * be extended to keep track of all transactions
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see game.actors.Player
  */
 public class EcoPointWallet {
