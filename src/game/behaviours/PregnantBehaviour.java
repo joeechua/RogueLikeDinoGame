@@ -18,16 +18,16 @@ public class PregnantBehaviour implements Behaviour{
         Action layEgg= null;
         Location here = map.locationOf(dino);
 
-        if(dino instanceof Allosaur && dino.getTurns() >= 10){
+        if(dino instanceof Allosaur && dino.getPregnancyTurns() >= 10){
             layEgg = new LayEggAction();
             dino.removeBehaviour(this);
         }
-        else if(dino instanceof Brachiosaur && dino.getTurns() >= 30){
+        else if(dino instanceof Brachiosaur && dino.getPregnancyTurns() >= 30){
             //so it is more likely to go extinct bcos higher possbility someone eats it
             layEgg = new LayEggAction();
             dino.removeBehaviour(this);
         }
-        else if(dino instanceof Stegosaur && dino.getTurns() >= 10){
+        else if(dino instanceof Stegosaur && dino.getPregnancyTurns() >= 10){
             layEgg = new LayEggAction();
             dino.removeBehaviour(this);
         }

@@ -40,7 +40,6 @@ public class Corpse extends PortableItem {
     //only this tick because anything in the inventory doesn't rot
     public void tick(Location location) {
         super.tick(location);
-
         rotTime--;
         if(rotTime ==0){
             location.removeItem(this); //this should remove the corpse from the location
