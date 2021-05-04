@@ -35,6 +35,13 @@ public class Bush extends Ground{
     @Override
     public void tick(Location location) {
         super.tick(location);
+
+        age++;
+        if (age == 10)
+            displayChar = 'm';
+        if (age == 20)
+            displayChar = 'M';
+
         if(bushFruit == null && random.nextDouble() <= 0.1) {
             bushFruit = new Fruit();
             Player.wallet.addEcoPoints(Points.RIPE_FRUIT_PRODUCED.getPoints());

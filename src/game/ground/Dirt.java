@@ -47,6 +47,11 @@ public class Dirt extends Ground {
 					location.setGround(new Bush());
 				}
 			}
+			// if there's tree no chance to grow
+			else if(trees > 0){
+
+			}
+
 		}
 	}
 
