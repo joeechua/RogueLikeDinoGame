@@ -2,6 +2,11 @@ package game.enums;
 
 /**
  * Collection of activities and the eco points associated with them
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see game.actions.HarvestAction
+ * @see game.items.Egg
+ * @see game.actions.FeedingAction
  */
 public enum Points {
     RIPE_FRUIT_PRODUCED(1),

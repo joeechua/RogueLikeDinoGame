@@ -2,6 +2,8 @@ package game.enums;
 
 /**
  * Collection of capabilities an item can have
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see edu.monash.fit2099.engine.Item
  */
 public enum ItemCapabilities {

@@ -2,6 +2,8 @@ package game.enums;
 
 /**
  * A collection of possible genders for a Dinosaur
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
  * @see game.actors.Dinosaur
  */
 public enum Gender {
