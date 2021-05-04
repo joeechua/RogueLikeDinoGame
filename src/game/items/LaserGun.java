@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.WeaponItem;
 
 /**
  * Class for Laser Gun item
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see WeaponItem
  */
 public class LaserGun extends WeaponItem {
 
