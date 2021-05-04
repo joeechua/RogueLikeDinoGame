@@ -26,7 +26,7 @@ public class PregnantBehaviour implements Behaviour{
         Action layEgg= null;
         Location here = map.locationOf(dino);
 
-        if(dino instanceof Allosaur && dino.getPregnancyTurns() >= 10){
+        if(dino instanceof Allosaur && dino.getPregnancyTurns() >= 20){
             layEgg = new LayEggAction();
             dino.removeBehaviour(this);
         }
