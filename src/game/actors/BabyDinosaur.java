@@ -2,6 +2,7 @@ package game.actors;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.GrowAction;
+import game.enums.Gender;
 
 /**
  * A baby dinosaur class.
@@ -19,6 +20,27 @@ public abstract class BabyDinosaur extends Dinosaur {
      */
     public BabyDinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
+        turnsSinceHatch = 0;
+        if(this instanceof BabyAllosaur){
+            initFoodLevel = foodLevel = 20;
+            rotTime = 40;
+        }
+        else{
+            initFoodLevel = foodLevel = 10;
+            rotTime = 20;
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param name        the name of the Actor
+     * @param displayChar the character that will represent the Actor in the display
+     * @param hitPoints   the Actor's starting hit points
+     * @param gender      the gender of the baby dino
+     */
+    public BabyDinosaur(String name, char displayChar, int hitPoints, Gender gender) {
+        super(name, displayChar, hitPoints);
+        this.gender = gender;
         turnsSinceHatch = 0;
         if(this instanceof BabyAllosaur){
             initFoodLevel = foodLevel = 20;
