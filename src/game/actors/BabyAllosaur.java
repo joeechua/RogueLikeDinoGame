@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
+import game.enums.Gender;
 import game.enums.Species;
 
 /**
@@ -19,8 +20,8 @@ public class BabyAllosaur extends BabyDinosaur{
      * All Baby Allosaurs are represented by a 'a' and have 100 hit points.
      * has dinosaur capabilities carnivore
      */
-    public BabyAllosaur() {
-        super("Baby " + Species.A.name(),'a',100);
+    public BabyAllosaur(Gender g) {
+        super("Baby " + Species.A.name(),'a',100,g);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this));
     }

@@ -2,17 +2,13 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
-import game.actions.DieAction;
 import game.actions.EatingAction;
 import game.actors.Dinosaur;
-import game.actors.Stegosaur;
 import game.enums.DinosaurCapabilities;
-import game.enums.Food;
 import game.ground.Bush;
 import game.ground.Tree;
 import game.items.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -64,7 +60,7 @@ public class HungerBehaviour implements Behaviour {
                     }
                 } else if (g instanceof Tree) {
                     Tree t = (Tree) g;
-                    if (t.gotFruit() && dino.hasCapability(DinosaurCapabilities.LONG_NECK)) {
+                    if (t.getTreeFruit().size() > 0 && dino.hasCapability(DinosaurCapabilities.LONG_NECK)) {
                         ret = new EatingAction(t.getTreeFruit().get(0), t);
                     }
                 }
@@ -99,7 +95,8 @@ public class HungerBehaviour implements Behaviour {
                         Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
                         if (carnivoreFood.getDisplayChar() == 'S' || carnivoreFood.getDisplayChar() == 's'){
                             if(carnivoreFood.getAttackTurns() == 0){
-                                ret= new MoveActorAction(exits.getDestination(), exits.getName());
+                                Action fB = new FollowBehaviour(carnivoreFood).getAction(dino, map);
+                                return fB;
                             }
                         }
                     }

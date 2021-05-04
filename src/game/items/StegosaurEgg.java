@@ -32,7 +32,7 @@ public class StegosaurEgg extends Egg {
         if(this.getTimeHatch() == 0 && !location.containsAnActor()){
             Player.wallet.addEcoPoints(Points.STEGOSAUR_HATCHED.getPoints());
             location.removeItem(this);
-            location.addActor(new BabyStegosaur());
+            location.addActor(new BabyStegosaur(this.getGender()));
         }
     }
 

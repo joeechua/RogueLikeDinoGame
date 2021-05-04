@@ -91,4 +91,10 @@ public abstract class Egg extends PortableItem {
     public int getTimeHatch() {
         return timeHatch;
     }
+
+    /**
+     * Lets outside classes get gender of the egg
+     * @return Gender
+     */
+    public Gender getGender(){return gender;}
 }

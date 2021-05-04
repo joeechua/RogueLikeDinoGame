@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 import game.actions.AttackAction;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
+import game.enums.Gender;
 import game.enums.Species;
 
 public class BabyStegosaur extends BabyDinosaur{
@@ -14,8 +15,8 @@ public class BabyStegosaur extends BabyDinosaur{
      * All Stegosaurs are represented by a 's' and have 100 hit points.
      * has dinosaur capabilities herbivore
      */
-    public BabyStegosaur() {
-        super("Baby " + Species.S.name(),'s',100);
+    public BabyStegosaur(Gender g) {
+        super("Baby " + Species.S.name(),'s',100, g);
         capabilities.add(DinosaurCapabilities.HERBIVORE);
         setEdibleFoodList(Food.getFoodList(this));
         attackTurns = 0;

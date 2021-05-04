@@ -9,20 +9,45 @@ import game.actors.BabyDinosaur;
 import game.actors.Dinosaur;
 import game.enums.DinosaurCapabilities;
 
-import java.util.ArrayList;
-
+/**
+ * A behaviour subclass that contains all possible behaviours a Dinosaur can have
+ * @see Behaviour
+ */
 public class DinosaurBehaviour implements Behaviour{
 
     private Action a;
+
+    /**
+     * Constructor
+     */
     public DinosaurBehaviour() {
     }
 
+    /**
+     * Selects behaviour and gets the appropriate action to be performed in order
+     * to fulfill certain needs
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return Action to be performed by actor
+     * @see Dinosaur
+     * @see Actor
+     * @see GameMap
+     * @see DieAction
+     * @see DoNothingAction
+     * @see DinosaurCapabilities
+     * @see PregnantBehaviour
+     * @see GrowBehaviour
+     * @see BreedBehaviour
+     * @see HungerBehaviour
+     * @see WanderBehaviour
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
         int locX = map.locationOf(actor).x();
         int locY = map.locationOf(actor).y();
         String loc = "(" + locX + ", " + locY + ")";
+        //dinosaur is unconscious and might die
         if(dino.isUnconscious()){
             if(dino.isDead()){
                 a = new DieAction();
@@ -31,34 +56,35 @@ public class DinosaurBehaviour implements Behaviour{
                 a = new DoNothingAction();
             }
         }
+        //dinosaur is pregnant
         else if(dino.hasCapability(DinosaurCapabilities.PREGNANT) && dino.isPregnant()){
             PregnantBehaviour pB = new PregnantBehaviour();
             a = pB.getAction(dino, map);
         }
-        else if(dino instanceof BabyDinosaur && !dino.isHungry()){
+        //dinosaur is a babydinosaur and is ready to grow
+        else if(dino instanceof BabyDinosaur){
             GrowBehaviour gB = new GrowBehaviour();
             a = gB.getAction(dino,map);
         }
+        //dinosaur is a male / dinosaur is not pregnant
         else if(((dino.getDisplayChar() == 'S' && dino.getFoodLevel() >= 50) ||
                 (dino.getDisplayChar() == 'B' && dino.getFoodLevel() >= 70))
         && !dino.isPregnant()){
             BreedBehaviour bB = new BreedBehaviour();
             a = bB.getAction(dino, map);
         }
-        else if((a == null || dino.isHungry()) && (dino.getFoodLevel() != dino.getMaxFoodLevel())){
+        //dinosaur is hungry or has noting to do
+        if((a == null || dino.isHungry()) && (dino.getFoodLevel() != dino.getMaxFoodLevel())){
             if(dino.isHungry()){
                 System.out.println(dino.getName() + " at " + loc + " is getting hungry!");
             }
             HungerBehaviour hB = new HungerBehaviour();
             a = hB.getAction(dino, map);
         }
-        else{
+        //if dinosaur is full, it will wander
+        if(a == null){
             WanderBehaviour wB = new WanderBehaviour();
             a = wB.getAction(dino, map);
-        }
-
-        if (a == null){
-            a= new DoNothingAction();
         }
         return a;
 
