@@ -61,7 +61,6 @@ public class Application {
 		world.addPlayer(player, gameMap.at(9, 4));
 
 		gameMap.at(5,7).setGround(groundFactory.newGround('⌻'));
-		gameMap.at(6,8).addItem(new StegosaurEgg());
 
 		// Place a pair of stegosaurs in the middle of the map
 		gameMap.at(30, 12).addActor(new Stegosaur(Gender.F));

@@ -99,8 +99,10 @@ public class HungerBehaviour implements Behaviour {
         Location food = null;
         Exit temp = null;
 
+        //if dino is carnivore
         if(!dino.isHerbivore()){
             for (Exit exits : here.getExits()) {
+                //go through exits of all exits to see if there is possible target to follow
                 for(Exit exit: exits.getDestination().getExits()){
                     if (exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
                         Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
@@ -111,6 +113,7 @@ public class HungerBehaviour implements Behaviour {
                             }
                         }
                     }
+                    //or else look for food
                     else{
                         for(Item it: exit.getDestination().getItems()){
                             if(it.getClass() == Corpse.class || it.getClass() == Egg.class){
@@ -121,6 +124,7 @@ public class HungerBehaviour implements Behaviour {
                 }
             }
         }
+        //if dinosaur is herbivore go through the adjacent squares for items
         else{
             for (Exit exit : here.getExits()) {
                 food = exit.getDestination();
@@ -131,6 +135,7 @@ public class HungerBehaviour implements Behaviour {
                         }
                     }
                 }
+                //the floor dont have so go through the bush and trees
                 else {
                     Ground ok = food.getGround();
                     if (ok.getClass() == Tree.class) {
