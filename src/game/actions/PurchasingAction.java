@@ -6,16 +6,33 @@ import game.ecopoint.EcoPointWallet;
 import game.enums.VendingItems;
 import game.items.*;
 
+/**
+ * Purchasing Action for Actors.
+ */
 public class PurchasingAction extends Action {
 
     private int itemPrice;
     private VendingItems item;
 
+    /**
+     * Constructor
+     * @param itemPrice price of the vending item
+     * @param item vending item to be purchased
+     */
     public PurchasingAction(int itemPrice, VendingItems item) {
         this.itemPrice = itemPrice;
         this.item = item;
     }
 
+    /**
+     * Perform the Purchasing action.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     * @see EcoPointWallet
+     * @see Actor
+     * @see Player
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Item purchasedItem = getPurchasedItem(item);
@@ -28,11 +45,21 @@ public class PurchasingAction extends Action {
         return actor + " has insufficient eco points to purchase " + purchasedItem + "\nLack of eco points: " + (itemPrice - playerWallet.getEcoPoints());
     }
 
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return a description of the action
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " buys " + item + " for " + item.getValue() + "; Current eco points: " + Player.wallet.getEcoPoints();
     }
 
+    /**
+     * Create the vending item and return the item
+     * @param item Vending Items to be purchased
+     * @return Vending Items to be purchased
+     */
     public Item getPurchasedItem(VendingItems item){
         switch (item){
             case FRUIT: return new Fruit();

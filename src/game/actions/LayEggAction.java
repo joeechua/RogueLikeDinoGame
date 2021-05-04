@@ -12,11 +12,25 @@ import game.items.AllosaurEgg;
 import game.items.BrachiosaurEgg;
 import game.items.StegosaurEgg;
 
+/**
+ * Lay Egg Action for Actors.
+ */
 public class LayEggAction extends Action {
+    /**
+     * Perform the LayEgg action.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened to the actor
+     * @see Dinosaur
+     * @see GameMap
+     * @see game.items.Egg
+     * @see DinosaurCapabilities
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
         Location birthLocation = map.locationOf(actor);
+        // create add egg to the current location and set birthLocation
         if(actor instanceof Allosaur){
             AllosaurEgg egg = new AllosaurEgg();
             egg.setBirthLocation(birthLocation);
@@ -32,11 +46,18 @@ public class LayEggAction extends Action {
             egg.setBirthLocation(birthLocation);
             birthLocation.addItem(egg);
         }
+        // remove pregnant capability and set pregnancy turns
         dino.removeCapability(DinosaurCapabilities.PREGNANT);
         dino.setPregnancyTurns(0);
         return menuDescription(actor);
     }
 
+    /**
+     * Return a descriptive string
+     *
+     * @param actor The actor performing the action.
+     * @return a description of the action
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " lays an egg.";

@@ -5,10 +5,13 @@ import game.actors.BabyBrachiosaur;
 import game.actors.Brachiosaur;
 import game.items.Corpse;
 
+/**
+ * Die Action for Actors.
+ */
 public class DieAction extends Action {
 
     /**
-     * Perform the action.
+     * Perform the Die action.
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
