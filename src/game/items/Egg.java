@@ -1,13 +1,9 @@
 package game.items;
 
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import game.actions.HatchAction;
 import game.actors.*;
-import game.behaviours.BreedBehaviour;
 import game.enums.Gender;
-import game.enums.Species;
 
 import java.util.Random;
 
