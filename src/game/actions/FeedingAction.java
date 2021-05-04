@@ -4,12 +4,14 @@ package game.actions;
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
 import game.actors.Player;
-import game.enums.Food;
 import game.enums.Points;
 import game.items.Fruit;
 
 /**
  * Feeding Action for player to feed Actors.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
 public class FeedingAction extends Action {
 

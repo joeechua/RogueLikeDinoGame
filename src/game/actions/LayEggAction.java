@@ -14,6 +14,9 @@ import game.items.StegosaurEgg;
 
 /**
  * Lay Egg Action for Actors.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
 public class LayEggAction extends Action {
     /**

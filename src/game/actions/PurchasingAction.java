@@ -8,6 +8,9 @@ import game.items.*;
 
 /**
  * Purchasing Action for Actors.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
 public class PurchasingAction extends Action {
 
@@ -32,6 +35,7 @@ public class PurchasingAction extends Action {
      * @see EcoPointWallet
      * @see Actor
      * @see Player
+     * @see Item
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -59,6 +63,14 @@ public class PurchasingAction extends Action {
      * Create the vending item and return the item
      * @param item Vending Items to be purchased
      * @return Vending Items to be purchased
+     * @see Item
+     * @see Fruit
+     * @see LaserGun
+     * @see AllosaurEgg
+     * @see StegosaurEgg
+     * @see BrachiosaurEgg
+     * @see CarnivoreMealKit
+     * @see VegetarianMealKit
      */
     public Item getPurchasedItem(VendingItems item){
         switch (item){

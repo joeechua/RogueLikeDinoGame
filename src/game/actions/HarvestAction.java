@@ -9,6 +9,9 @@ import java.util.Random;
 
 /**
  * Harvest Action for Actors.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
 public class HarvestAction extends Action {
     Item item;

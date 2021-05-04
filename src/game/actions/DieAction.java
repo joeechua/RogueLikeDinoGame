@@ -1,12 +1,13 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.*;
-import game.actors.BabyBrachiosaur;
-import game.actors.Brachiosaur;
 import game.items.Corpse;
 
 /**
  * Die Action for Actors.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
  */
 public class DieAction extends Action {
 
@@ -15,7 +16,10 @@ public class DieAction extends Action {
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return a description of what happened to the actor
+     * @return a description of what happened that can be displayed to the user.
+     * @see GameMap
+     * @see Location
+     * @see Corpse
      */
     @Override
     public String execute(Actor actor, GameMap map) {
