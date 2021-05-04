@@ -52,10 +52,13 @@ public class DinosaurBehaviour implements Behaviour{
             HungerBehaviour hB = new HungerBehaviour();
             a = hB.getAction(dino, map);
         }
-
-        if (a == null){
+        else{
             WanderBehaviour wB = new WanderBehaviour();
             a = wB.getAction(dino, map);
+        }
+
+        if (a == null){
+            a= new DoNothingAction();
         }
         return a;
 
