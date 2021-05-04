@@ -2,11 +2,11 @@ package game.items;
 
 import game.enums.ItemCapabilities;
 
-/***
+/**
  * Class for vegetarian meal kit
  */
 public class VegetarianMealKit extends PortableItem {
-    /***
+    /**
      * Constructor.
      * @see PortableItem
      * @see ItemCapabilities

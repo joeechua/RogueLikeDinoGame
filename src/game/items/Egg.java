@@ -7,7 +7,7 @@ import game.enums.Gender;
 
 import java.util.Random;
 
-/***
+/**
  * Abstract class for Egg object
  */
 public abstract class Egg extends PortableItem {
@@ -16,7 +16,7 @@ public abstract class Egg extends PortableItem {
     private final Gender gender;
     protected final Random random = new Random();
 
-    /***
+    /**
      * Constructor.
      * @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
@@ -30,7 +30,7 @@ public abstract class Egg extends PortableItem {
         this.timeHatch = 10 + random.nextInt(10);
     }
 
-    /***
+    /**
      * Tick function to let egg keep track of time, and when egg is due to hatch
      * @param location location of egg
      * @see Location
@@ -40,7 +40,7 @@ public abstract class Egg extends PortableItem {
         timeHatch--;
     }
 
-    /***
+    /**
      * tick function to let egg keep track of time when it is in the player's inventory
      * @param location location where actor is
      * @param actor Actor that is holding an egg item
@@ -59,7 +59,7 @@ public abstract class Egg extends PortableItem {
         }
     }
 
-    /***
+    /**
      * Randomly generates a gender for the egg
      * @return Gender enum type (F or M)
      * @see Gender
@@ -75,7 +75,7 @@ public abstract class Egg extends PortableItem {
         }
     }
 
-    /***
+    /**
      * Gives outisde classes access to location where egg was laid
      * @param birthLocation location of where egg was laid
      * @see Location
@@ -84,7 +84,7 @@ public abstract class Egg extends PortableItem {
         this.birthLocation = birthLocation;
     }
 
-    /***
+    /**
      * Lets outside classes have access to the time before egg hatches
      * @return rounds until the egg hatches
      */
