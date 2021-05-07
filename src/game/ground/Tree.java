@@ -59,10 +59,10 @@ public class Tree extends Ground {
 		if (!hasDroppedFruit && random.nextDouble() <= 0.05 && treeFruit.size() > 0) {
 			Fruit dropFruit = treeFruit.remove(0);
 			location.addItem(dropFruit);
-			dropFruit.setOnTree(false); //fruit on ground
+			dropFruit.setOnGround(true); //fruit on ground
 			dropFruitsArray.add(dropFruit);
 		}
-		// if
+		// tree has a 50% chance to produce one ripe fruit
 		if(random.nextDouble() <= 0.5){
 			treeFruit.add(new Fruit());
 			Player.wallet.addEcoPoints(Points.RIPE_FRUIT_PRODUCED.getPoints());

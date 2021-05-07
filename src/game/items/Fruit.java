@@ -13,7 +13,7 @@ import game.enums.ItemCapabilities;
  */
 public class Fruit extends PortableItem {
     private int rotTime = 15;
-    private boolean onTree;
+    private boolean onGround;
 
 
     /**
@@ -38,18 +38,20 @@ public class Fruit extends PortableItem {
         if(rotTime == 0){
             currentLocation.removeItem(this);
         }
-        else if(!onTree){
+        else if(onGround){
+            System.out.println("init 15 if got " + rotTime);
             this.rotTime--;
+            System.out.println("dec " + rotTime);
         }
 
     }
 
     /**
-     * Allows Tree class to set the status of the fruit when fruit drops
-     * @param stat status of the fruit (on tree or not)
+     * Allows Tree class to set the status of the fruit when fruit drops to the ground
+     * @param stat status of the fruit (on ground or not)
      */
-    public void setOnTree(boolean stat){
-        onTree = stat;
+    public void setOnGround(boolean stat){
+        onGround = stat;
     }
 
 }
