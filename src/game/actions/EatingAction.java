@@ -75,6 +75,9 @@ public class EatingAction extends Action {
         if(origin instanceof Bush && targetFood instanceof Fruit){
             Bush b = (Bush) origin;
             b.setBushFruit(null);
+//            if(b.gotFruit()) {
+//                b.getTreeFruit().remove(0);
+//            }
         }
         // origin ground has tree
         else if(origin instanceof Tree && targetFood instanceof Fruit){

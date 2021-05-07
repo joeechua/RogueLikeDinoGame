@@ -63,6 +63,7 @@ public class HarvestAction extends Action {
             Player.wallet.addEcoPoints(Points.RIPE_FRUIT_HARVESTED.getPoints());
             if(bush != null){
                 bush.setBushFruit(null);
+//                bush.getTreeFruit().remove(0);
             }
             else if(tree != null){
                 tree.getTreeFruit().remove(0);
