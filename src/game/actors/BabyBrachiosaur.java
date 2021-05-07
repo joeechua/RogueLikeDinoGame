@@ -17,6 +17,7 @@ public class BabyBrachiosaur extends BabyDinosaur{
      * Constructor.
      * All Brachiosaur are represented by a 'b' and have 100 hit points.
      * has dinosaur capabilities herbivore and long neck
+     * @param g the gender of baby brachiosaur
      * @see Dinosaur
      * @see Species
      * @see DinosaurCapabilities

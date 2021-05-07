@@ -34,6 +34,7 @@ public class Brachiosaur extends Dinosaur {
      * Constructor.
      * All Brachiosaur are represented by a 'B' and have 100 hit points.
      * has dinosaur capabilities herbivore and long neck
+     * @param inputGender the gender of brachiosaur
      * @see Dinosaur
      * @see Species
      * @see DinosaurCapabilities

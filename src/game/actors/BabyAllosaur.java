@@ -19,6 +19,7 @@ public class BabyAllosaur extends BabyDinosaur{
      * Constructor.
      * All Baby Allosaurs are represented by a 'a' and have 100 hit points.
      * has dinosaur capabilities carnivore
+     * @param g the gender of baby allosaur
      * @see Dinosaur
      * @see Species
      * @see DinosaurCapabilities

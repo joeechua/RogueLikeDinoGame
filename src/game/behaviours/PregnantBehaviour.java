@@ -21,7 +21,7 @@ public class PregnantBehaviour implements Behaviour{
      * Returns action pertaining to what the actor should do(layEgg or MoveActor)
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
-     * @return
+     * @return an Action that actor can perform.
      * @see Actor
      * @see Dinosaur
      * @see GameMap#locationOf(Actor)

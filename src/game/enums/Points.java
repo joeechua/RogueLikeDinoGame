@@ -20,7 +20,7 @@ public enum Points {
 
     /**
      * Constructor
-     * @param points
+     * @param points points gained when above situation happened
      */
     Points(int points){
         this.points = points;
@@ -28,7 +28,7 @@ public enum Points {
 
     /**
      * Allows outside classes to get restricted access to the points of each occurrence.
-     * @return
+     * @return a int represents the points gained when above situation happened
      */
     public int getPoints() {
         return this.points;

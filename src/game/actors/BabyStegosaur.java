@@ -20,6 +20,7 @@ public class BabyStegosaur extends BabyDinosaur{
      * Constructor.
      * All Stegosaurs are represented by a 's' and have 100 hit points.
      * has dinosaur capabilities herbivore
+     * @param g the gender of baby stegosaur
      * @see Dinosaur
      * @see DinosaurCapabilities
      * @see Food

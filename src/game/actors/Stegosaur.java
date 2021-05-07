@@ -42,6 +42,7 @@ public class Stegosaur extends Dinosaur {
 	 * Constructor.
 	 * All Stegosaurs are represented by a 'S' and have 100 hit points.
 	 * has dinosaur capabilities herbivore
+	 * @param inputGender the gendeer of stegosaur
 	 * @see Dinosaur
 	 * @see Species
 	 * @see DinosaurCapabilities

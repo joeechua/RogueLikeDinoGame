@@ -19,6 +19,7 @@ public class Corpse extends PortableItem {
 
     /**
      * Constructor.
+     * @param actor the actor who died and used to creates a corpse
      * @see edu.monash.fit2099.engine.Capabilities
      * @see Brachiosaur
      * @see Dinosaur#getRotTime()
