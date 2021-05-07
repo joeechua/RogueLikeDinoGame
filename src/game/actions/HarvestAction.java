@@ -61,10 +61,10 @@ public class HarvestAction extends Action {
         if(random.nextDouble() <= 0.6){
             actor.addItemToInventory(item);
             Player.wallet.addEcoPoints(Points.RIPE_FRUIT_HARVESTED.getPoints());
-            if(bush != null){
+            if(bush.gotFruit()){
                 bush.getBushFruit().remove(0);
             }
-            else if(tree != null){
+            else if(tree.gotFruit()){
                 tree.getTreeFruit().remove(0);
             }
         }
