@@ -39,9 +39,7 @@ public class Fruit extends PortableItem {
             currentLocation.removeItem(this);
         }
         else if(onGround){
-            System.out.println("init 15 if got " + rotTime);
             this.rotTime--;
-            System.out.println("dec " + rotTime);
         }
 
     }
