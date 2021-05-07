@@ -19,15 +19,14 @@ import java.util.Random;
 public class Bush extends Ground{
     private int age = 0;
     private Random random = new Random();
-    private Fruit bushFruit;
-//    private ArrayList<Fruit> bushFruit;
+    private ArrayList<Fruit> bushFruit;
 
     /**
      * Constructor.
      */
     public Bush() {
         super('⺾');
-//        bushFruit = new ArrayList<>();
+        bushFruit = new ArrayList<>();
     }
 
     /**
@@ -46,7 +45,7 @@ public class Bush extends Ground{
             displayChar = 'M';
 
         if(bushFruit == null && random.nextDouble() <= 0.1) {
-            bushFruit = new Fruit();
+            bushFruit.add(new Fruit());
             Player.wallet.addEcoPoints(Points.RIPE_FRUIT_PRODUCED.getPoints());
         }
     }
@@ -61,10 +60,8 @@ public class Bush extends Ground{
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        //if(actor instanceof Player && this.bushFruit){
-        if(actor instanceof Player && this.bushFruit != null){
-                return new Actions(new HarvestAction(bushFruit, this));
-//            return new Actions(new HarvestAction(bushFruit.get(0), this));
+        if(actor instanceof Player && this.bushFruit.size() > 0){
+            return new Actions(new HarvestAction(bushFruit.get(0), this));
         }
         return new Actions(null);
     }
@@ -73,7 +70,7 @@ public class Bush extends Ground{
      * Set the fruit from bush
      * @param bushFruit fruit from bush
      */
-    public void setBushFruit(Fruit bushFruit) {
+    public void setBushFruit(ArrayList<Fruit> bushFruit) {
         this.bushFruit = bushFruit;
     }
 
@@ -82,16 +79,14 @@ public class Bush extends Ground{
      * @return a boolean, if true bush got fruit, else no fruit
      */
     public boolean gotFruit(){
-        return bushFruit != null;
-//        return bushFruit.size() != 0;
+        return bushFruit.size() != 0;
     }
 
     /**
      * Get the fruit from bush
      * @return a fruit item from bush
      */
-//    public ArrayList<Fruit> getBushFruit(){
-    public Fruit getBushFruit(){
+    public ArrayList<Fruit> getBushFruit(){
         return bushFruit;
     }
 }

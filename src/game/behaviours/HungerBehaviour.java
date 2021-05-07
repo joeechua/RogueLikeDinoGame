@@ -74,7 +74,7 @@ public class HungerBehaviour implements Behaviour {
                 if (g instanceof Bush) {
                     Bush b = (Bush) g;
                     if (b.gotFruit()) {
-                        ret = new EatingAction(b.getBushFruit(),b);
+                        ret = new EatingAction(b.getBushFruit().get(0),b);
 //                        ret = new EatingAction(b.getBushFruit().get(0),b);
                     }
                 } else if (g instanceof Tree) {
