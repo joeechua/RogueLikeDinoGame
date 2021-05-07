@@ -93,7 +93,7 @@ public class Tree extends Ground {
 	 * @return a boolean, if true tree got fruit, else no fruit
 	 */
 	public boolean gotFruit(){
-		return treeFruit.size() != 0;
+		return treeFruit.size() > 0;
 	}
 
 	/**

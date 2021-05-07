@@ -75,11 +75,10 @@ public class HungerBehaviour implements Behaviour {
                     Bush b = (Bush) g;
                     if (b.gotFruit()) {
                         ret = new EatingAction(b.getBushFruit().get(0),b);
-//                        ret = new EatingAction(b.getBushFruit().get(0),b);
                     }
                 } else if (g instanceof Tree) {
                     Tree t = (Tree) g;
-                    if (t.getTreeFruit().size() > 0 && dino.hasCapability(DinosaurCapabilities.LONG_NECK)) {
+                    if (t.gotFruit() && dino.hasCapability(DinosaurCapabilities.LONG_NECK)) {
                         ret = new EatingAction(t.getTreeFruit().get(0), t);
                     }
                 }

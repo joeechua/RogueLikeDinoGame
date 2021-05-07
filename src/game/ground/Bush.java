@@ -44,7 +44,7 @@ public class Bush extends Ground{
         if (age == 20)
             displayChar = 'M';
 
-        if(bushFruit == null && random.nextDouble() <= 0.1) {
+        if(random.nextDouble() <= 0.1) {
             bushFruit.add(new Fruit());
             Player.wallet.addEcoPoints(Points.RIPE_FRUIT_PRODUCED.getPoints());
         }
@@ -67,24 +67,16 @@ public class Bush extends Ground{
     }
 
     /**
-     * Set the fruit from bush
-     * @param bushFruit fruit from bush
-     */
-    public void setBushFruit(ArrayList<Fruit> bushFruit) {
-        this.bushFruit = bushFruit;
-    }
-
-    /**
      * Determine whether bush contains fruits or not
      * @return a boolean, if true bush got fruit, else no fruit
      */
     public boolean gotFruit(){
-        return bushFruit.size() != 0;
+        return bushFruit.size() > 0;
     }
 
     /**
-     * Get the fruit from bush
-     * @return a fruit item from bush
+     * Get the fruit array list from bush
+     * @return a fruit array list from bush
      */
     public ArrayList<Fruit> getBushFruit(){
         return bushFruit;
