@@ -6,6 +6,8 @@ import game.actors.Allosaur;
 import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
 import game.actors.Stegosaur;
+import game.ground.Tree;
+
 import java.util.Random;
 
 /**
@@ -44,6 +46,11 @@ public class PregnantBehaviour implements Behaviour{
             dino.removeBehaviour(this);
         }
         else if(dino instanceof Stegosaur && dino.getPregnancyTurns() >= 10){
+            layEgg = new LayEggAction();
+            dino.removeBehaviour(this);
+        }
+        else if(dino instanceof Pterodactyl && dino.getPregnancyTurns() >= 10
+        && (here.getGround() instanceof Tree)){
             layEgg = new LayEggAction();
             dino.removeBehaviour(this);
         }

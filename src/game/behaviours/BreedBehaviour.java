@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.*;
 import game.actions.MateAction;
 import game.actors.BabyDinosaur;
 import game.actors.Dinosaur;
+import game.ground.Tree;
+
 import java.util.Random;
 
 /**
@@ -55,6 +57,9 @@ public class BreedBehaviour implements Behaviour {
                     Dinosaur target = (Dinosaur) map.getActorAt(exit.getDestination());
                     if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()
                     && target.getGender() != dino.getGender() && !(target instanceof BabyDinosaur)){
+                        if(dino instanceof Pterodactyl && !(here.getGround() instanceof Tree)){
+                            ret= moveCloser(dino, map);
+                        }
                         ret= new MateAction(target);
                     }
                 }
