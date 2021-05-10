@@ -81,6 +81,7 @@ public class PurchasingAction extends Action {
             case BRACHIOSAUR_EGG: return new BrachiosaurEgg();
             case CRANIVORE_MEAL_KIT: return new CarnivoreMealKit();
             case VEGETARIAN_MEAL_KIT: return new VegetarianMealKit();
+            case PTERODACTYL_EGG: return new PterodactylEgg();
             default: return null;
         }
     }

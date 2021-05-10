@@ -9,7 +9,8 @@ package game.enums;
 public enum Species {
     A("ALLOSAUR"),
     B("BRACHIOSAUR"),
-    S("STEGOSAUR");
+    S("STEGOSAUR"),
+    P("PTERODACTYL");
 
     public final String label;
 

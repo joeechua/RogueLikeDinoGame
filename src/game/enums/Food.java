@@ -22,6 +22,7 @@ public enum Food {
     STEG_FRUIT(10, Fruit.class, true),
     BRACH_FRUIT(5, Fruit.class, true),
     FED_FRUIT(20, Fruit.class, true),
+    FISH(5,Fish.class, false),
     VEGETARIAN_MEAL_KIT(100, VegetarianMealKit.class, true),
     CARNIVORE_MEAL_KIT(100, CarnivoreMealKit.class, false);
 

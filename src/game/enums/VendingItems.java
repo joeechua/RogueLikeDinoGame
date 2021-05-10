@@ -13,6 +13,7 @@ public enum VendingItems {
     STEGOSAUR_EGG(200),
     BRACHIOSAUR_EGG(500),
     ALLOSAUR_EGG(1000),
+    PTERODACTYL_EGG(200),
     LASER_GUN(500);
 
     public final int value;
