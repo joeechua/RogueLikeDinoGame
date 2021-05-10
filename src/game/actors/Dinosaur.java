@@ -37,6 +37,11 @@ public abstract class Dinosaur extends Actor {
     protected int pregnancyTurns;
     protected int attackTurns;
     protected ArrayList<DinosaurCapabilities> capabilities;
+    protected int waterLevel;
+    protected int initWaterLevel;
+    protected int minWaterLevel;
+    protected int maxWaterLevel;
+
     /**
      * Constructor.
      *
@@ -53,12 +58,23 @@ public abstract class Dinosaur extends Actor {
         behaviours = new ArrayList<>();
         capabilities = new ArrayList<>();
         edibleFoodList = new ArrayList<>();
+        initWaterLevel = waterLevel = 60;
+        minWaterLevel = 40;
         if(this instanceof Brachiosaur){
             minFoodLevel = 140;
             maxFoodLevel = 160;
             maxUnconsciousTime = 15;
             initFoodLevel = foodLevel = 100;
             rotTime = 40;
+            maxWaterLevel = 200;
+        }
+        else if(this instanceof Pterodactyl){
+            minFoodLevel = 90;
+            maxFoodLevel = 100;
+            maxUnconsciousTime = 15;
+            initFoodLevel = foodLevel = 50;
+            rotTime = 20;
+            maxWaterLevel = 100;
         }
         else{
             minFoodLevel = 90;
@@ -66,6 +82,7 @@ public abstract class Dinosaur extends Actor {
             maxUnconsciousTime = 20;
             initFoodLevel = foodLevel = 50;
             rotTime = 20;
+            maxWaterLevel = 100;
         }
         addBehaviour(new DinosaurBehaviour());
         // if adult add breed behaviour
@@ -119,7 +136,11 @@ public abstract class Dinosaur extends Actor {
             foodLevel--;
             unconsciousTime = 0;
         }
-        else {
+        if(waterLevel > 0){
+            waterLevel--;
+            unconsciousTime = 0;
+        }
+        if(foodLevel == 0 || waterLevel == 0) {
             unconsciousTime++;
         }
     }
@@ -247,7 +268,7 @@ public abstract class Dinosaur extends Actor {
      * @return a boolean, if true dino is unconscious, false dino is conscious
      */
     public boolean isUnconscious(){
-        return foodLevel <= 0;
+        return foodLevel <= 0 || waterLevel <= 0;
     }
 
     /**
@@ -406,5 +427,57 @@ public abstract class Dinosaur extends Actor {
      */
     public ArrayList<DinosaurCapabilities> getCapabilities() {
         return capabilities;
+    }
+
+    /**
+     * Get the current water level of dinosaurs
+     * @return int represents current water level of dinosaurs
+     */
+    public int getWaterLevel() {
+        return waterLevel;
+    }
+
+    public void setWaterLevel(int waterLevel) {
+        this.waterLevel = waterLevel;
+    }
+
+    /**
+     * Get the minimum water level of dinosaurs
+     * @return int represents minimum water level of dinosaurs
+     */
+    public int getMinWaterLevel() {
+        return minWaterLevel;
+    }
+
+    /**
+     * Get the maximum water level of dinosaurs
+     * @return int represents maximum water level of dinosaurs
+     */
+    public int getMaxWaterLevel() {
+        return maxWaterLevel;
+    }
+
+    /**
+     * Increase the water level of dinosaur
+     * @param incValue the increment value
+     */
+    public void incWaterLevel(int incValue){
+        waterLevel = Math.min(getWaterLevel()+incValue, getMaxWaterLevel());
+    }
+
+    /**
+     * Decrease the water level of dinosaur
+     * @param decValue the decrement value
+     */
+    public void decWaterLevel(int decValue){
+        waterLevel = Math.max(getWaterLevel()-decValue, 0);
+    }
+
+    /**
+     * Determine whether the dinosaur is thirsty with the water level.
+     * @return a boolean, if true dino is thirsty, false dino is not thirsty
+     */
+    public boolean isThirsty(){
+        return this.waterLevel < getMinWaterLevel();
     }
 }
