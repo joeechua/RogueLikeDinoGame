@@ -1,6 +1,8 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.DrinkAction;
+import game.ground.Lake;
 
 public class ThirstyBehaviour implements Behaviour{
     @Override
@@ -8,7 +10,7 @@ public class ThirstyBehaviour implements Behaviour{
         Location loc = map.locationOf(actor);
         for(Exit exit:loc.getExits()){
             if(exit.getDestination().getGround() instanceof Lake){
-                return DrinkAction(exit.getDestination());
+                return new DrinkAction(exit.getDestination());
             }
         }
         return null;
