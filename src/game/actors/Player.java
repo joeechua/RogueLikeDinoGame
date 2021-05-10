@@ -1,6 +1,8 @@
 package game.actors;
 
 import edu.monash.fit2099.engine.*;
+import game.Application;
+import game.actions.QuitAction;
 import game.ecopoint.EcoPointWallet;
 import game.ground.VendingMachine;
 
@@ -43,8 +45,17 @@ public class Player extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
-		if (lastAction.getNextAction() != null)
+		if(Application.choice == 1 && Application.challengeRounds == 0){
+			int option = 0;
+			if(this.wallet.getEcoPoints() >= Application.challengePoints){
+				option = 1;
+			}
+			return new QuitAction(option);
+		}
+		else if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		actions.add(new QuitAction(2));
+		Application.challengeRounds--;
 		return menu.showMenu(this, actions, display);
 	}
 

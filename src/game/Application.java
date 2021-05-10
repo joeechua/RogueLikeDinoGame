@@ -2,6 +2,7 @@ package game;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
@@ -22,6 +23,10 @@ import game.items.StegosaurEgg;
  *
  */
 public class Application {
+	public static int challengeRounds = 100;
+	public static int challengePoints = 20000;
+	public static int choice = 0;
+	private static boolean endGame = false;
 
 	public static void main(String[] args) {
 		World world = new World(new Display());
@@ -58,7 +63,6 @@ public class Application {
 		world.addGameMap(gameMap);
 		
 		Actor player = new Player("Player", '@', 100);
-		world.addPlayer(player, gameMap.at(9, 4));
 
 		gameMap.at(5,7).setGround(groundFactory.newGround('⌻'));
 
@@ -69,6 +73,53 @@ public class Application {
 		gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 		gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
 		gameMap.at(42,14).addActor(new Brachiosaur(Gender.F));
-		world.run();
+
+		//print a menu
+		do {
+			boolean printMenu = true;
+			while (printMenu) {
+				System.out.println("Select a game mode:");
+				Scanner scanner = new Scanner(System.in);
+				System.out.println("1) Challenge Mode \n2) Sandbox Mode");
+				String c = scanner.nextLine();
+				try {
+					choice = Integer.parseInt(c);
+					printMenu = false;
+				} catch (Exception e) {
+					//do nothing
+				}
+
+				if (choice == 1) {
+					System.out.printf("Enter points:");
+					Scanner points = new Scanner(System.in);
+					String p = points.nextLine();
+					System.out.printf("Enter rounds:");
+					Scanner rounds = new Scanner(System.in);
+					String r = rounds.nextLine();
+					try {
+						challengeRounds = Integer.parseInt(r);
+						challengePoints = Integer.parseInt(p);
+					} catch (Exception e) {
+						//do nothing
+					}
+				}
+			}
+			world.addPlayer(player, gameMap.at(9, 4));
+			world.run();
+			System.out.println("Do you want to play again?");
+			System.out.printf("1) Yes\n2) No\n");
+			Scanner end = new Scanner(System.in);
+			String e = end.nextLine();
+			int no = 0;
+			try{
+				no = Integer.parseInt(e);
+			}catch(Exception m){};
+			if(no == 2){
+				endGame = true;
+			}
+		}
+		while(!endGame);
+
+
 	}
 }
