@@ -2,10 +2,7 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.LayEggAction;
-import game.actors.Allosaur;
-import game.actors.Brachiosaur;
-import game.actors.Dinosaur;
-import game.actors.Stegosaur;
+import game.actors.*;
 import game.ground.Tree;
 
 import java.util.Random;

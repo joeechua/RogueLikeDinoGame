@@ -19,6 +19,7 @@ public class Lake extends Ground {
         super('~');
         turns = 0;
         waterSips = 25;
+        fishes = new ArrayList<>();
         for(int i = 1; i <= 5; i++){
             fishes.add(new Fish("Fish", '鱼', true));
         }

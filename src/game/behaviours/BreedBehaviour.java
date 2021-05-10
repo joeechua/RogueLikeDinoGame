@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.actions.MateAction;
 import game.actors.BabyDinosaur;
 import game.actors.Dinosaur;
+import game.actors.Pterodactyl;
 import game.ground.Tree;
 
 import java.util.Random;
