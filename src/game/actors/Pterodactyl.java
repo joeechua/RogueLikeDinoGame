@@ -20,6 +20,7 @@ public class Pterodactyl extends Dinosaur{
         capabilities.add(DinosaurCapabilities.FLY);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this)); // haven't implement in food
+        squares = 30;
     }
 
     /**
@@ -38,5 +39,6 @@ public class Pterodactyl extends Dinosaur{
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         gender = inputGender;
         setEdibleFoodList(Food.getFoodList(this)); // haven't implement in food
+        squares = 30;
     }
 }
