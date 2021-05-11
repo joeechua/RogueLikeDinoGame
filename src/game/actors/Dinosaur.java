@@ -3,6 +3,7 @@ package game.actors;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.actions.FeedingAction;
+import game.actions.LandingAction;
 import game.behaviours.*;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
@@ -41,6 +42,7 @@ public abstract class Dinosaur extends Actor {
     protected int initWaterLevel;
     protected int minWaterLevel;
     protected int maxWaterLevel;
+    protected int squares;
 
     /**
      * Constructor.
@@ -142,6 +144,15 @@ public abstract class Dinosaur extends Actor {
         }
         if(foodLevel == 0 || waterLevel == 0) {
             unconsciousTime++;
+        }
+
+        if(this instanceof Pterodactyl || this instanceof BabyPterodactyl){
+            if(squares > 0){
+                squares--;
+            }
+            else if(squares==0){
+                new LandingAction();
+            }
         }
     }
 
