@@ -78,6 +78,13 @@ public class DinosaurBehaviour implements Behaviour{
             HungerBehaviour hB = new HungerBehaviour();
             a = hB.getAction(dino, map);
         }
+        if(a == null && dino.getWaterLevel() != dino.getMaxWaterLevel()){
+            if(dino.isThirsty()){
+                System.out.println(dino.getName() + " at " + loc + " is getting thirsty!");
+            }
+            ThirstyBehaviour tB = new ThirstyBehaviour();
+            a = tB.getAction(dino, map);
+        }
         //if dinosaur is full, it will wander
         if(a == null){
             WanderBehaviour wB = new WanderBehaviour();

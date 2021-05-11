@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 import game.actions.GrowAction;
 import game.actors.BabyBrachiosaur;
 import game.actors.BabyDinosaur;
+import game.actors.BabyPterodactyl;
 import game.actors.BabyStegosaur;
 
 /**
@@ -16,7 +17,7 @@ import game.actors.BabyStegosaur;
  */
 public class GrowBehaviour implements Behaviour {
 
-    private final int MATURE_TURN_FOR_STEG = 30;
+    private final int MATURE_TURN_FOR_STEG_PTERO = 30;
     private final int MATURE_TURN_FOR_BRAC_ALLO = 50;
 
     /**
@@ -33,7 +34,8 @@ public class GrowBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
         BabyDinosaur babyDino = (BabyDinosaur) actor;
-        if(babyDino instanceof BabyStegosaur && babyDino.getTurnsSinceHatch() >= MATURE_TURN_FOR_STEG){
+        if((babyDino instanceof BabyStegosaur || babyDino instanceof BabyPterodactyl) &&
+                babyDino.getTurnsSinceHatch() >= MATURE_TURN_FOR_STEG_PTERO){
             return new GrowAction();
         }
         else if(babyDino.getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC_ALLO){

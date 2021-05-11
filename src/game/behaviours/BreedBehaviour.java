@@ -58,10 +58,12 @@ public class BreedBehaviour implements Behaviour {
                     Dinosaur target = (Dinosaur) map.getActorAt(exit.getDestination());
                     if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()
                     && target.getGender() != dino.getGender() && !(target instanceof BabyDinosaur)){
-                        if(dino instanceof Pterodactyl && !(here.getGround() instanceof Tree)){
-                            ret= moveCloser(dino, map);
+                        if(target instanceof Pterodactyl && exit.getDestination().getGround() instanceof Tree){
+                            ret= new MateAction(target);
                         }
-                        ret= new MateAction(target);
+                        else if(!(target instanceof Pterodactyl)){
+                            ret= new MateAction(target);
+                        }
                     }
                 }
             }

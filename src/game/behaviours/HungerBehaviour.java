@@ -3,9 +3,12 @@ package game.behaviours;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.actions.EatingAction;
+import game.actors.Allosaur;
 import game.actors.Dinosaur;
+import game.actors.Pterodactyl;
 import game.enums.DinosaurCapabilities;
 import game.ground.Bush;
+import game.ground.Lake;
 import game.ground.Tree;
 import game.items.*;
 
@@ -48,11 +51,19 @@ public class HungerBehaviour implements Behaviour {
         if (!dino.isHerbivore()) {
             //check all adjacent squares for food
             for (Exit exit : here.getExits()) {
-                if (exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
+                if (dino instanceof Allosaur && exit.getDestination().containsAnActor() && map.getActorAt(exit.getDestination()).getDisplayChar() != '@') {
                     Dinosaur carnivoreFood = (Dinosaur) map.getActorAt(exit.getDestination());
                     if (carnivoreFood.getDisplayChar() == 'S' || carnivoreFood.getDisplayChar() == 's') {
                         ret = new AttackAction(carnivoreFood);
                     }
+                }
+                //for Pterodactyl to eat fish
+                else if(dino instanceof Pterodactyl && exit.getDestination().getGround() instanceof Lake){
+                    Lake lake = (Lake) exit.getDestination().getGround();
+                    if(lake.gotFish()){
+                        ret = new EatingAction(lake.getFish().get(0), lake);
+                    }
+
                 }
                 //no live dinosaurs so eat the possible item
                 else{
@@ -123,6 +134,13 @@ public class HungerBehaviour implements Behaviour {
                                 Action fB = new FollowBehaviour(carnivoreFood).getAction(dino, map);
                                 return fB;
                             }
+                        }
+                    }
+                    //for Pterodactyl to get fish
+                    else if(exit.getDestination().getGround() instanceof Lake && dino instanceof Pterodactyl){
+                        Lake lake = (Lake) exit.getDestination().getGround();
+                        if(lake.gotFish()){
+                            return new MoveActorAction(exits.getDestination(), exits.getName());
                         }
                     }
                     //or else look for food
