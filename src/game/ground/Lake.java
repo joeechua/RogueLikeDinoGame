@@ -14,7 +14,7 @@ public class Lake extends Ground {
     private ArrayList<Fish> fishes;
     private int waterSips;
     private int turns;
-    private int maxNoOfFish = 25;
+    private final int MAX_NO_OF_FISH = 25;
     private Random random = new Random();
 
     public Lake(){
@@ -38,7 +38,7 @@ public class Lake extends Ground {
             incWaterSips((int) (rainfall * 20));
         }
 
-        if(fishes.size() < maxNoOfFish && random.nextDouble() <= 0.6){
+        if(fishes.size() < MAX_NO_OF_FISH && random.nextDouble() <= 0.6){
             fishes.add(new Fish("Fish", '鱼', true));
         }
     }
@@ -66,7 +66,7 @@ public class Lake extends Ground {
 
     /**
      * Determine whether lake contains water sips or not
-     * @return a boolean, if true bush got water sips, else dry
+     * @return a boolean, if true lake got water sips, else dry
      */
     public boolean gotWater(){
         return waterSips > 0;
