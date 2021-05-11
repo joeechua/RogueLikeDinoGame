@@ -264,7 +264,7 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     * Determine whether a dinosaur is unconscious with food level
+     * Determine whether a dinosaur is unconscious with food level, water level
      * @return a boolean, if true dino is unconscious, false dino is conscious
      */
     public boolean isUnconscious(){
