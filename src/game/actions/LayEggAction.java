@@ -6,10 +6,12 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import game.actors.Allosaur;
 import game.actors.Dinosaur;
+import game.actors.Pterodactyl;
 import game.actors.Stegosaur;
 import game.enums.DinosaurCapabilities;
 import game.items.AllosaurEgg;
 import game.items.BrachiosaurEgg;
+import game.items.PterodactylEgg;
 import game.items.StegosaurEgg;
 
 /**
@@ -41,6 +43,11 @@ public class LayEggAction extends Action {
         }
         else if(actor instanceof Stegosaur){
             StegosaurEgg egg = new StegosaurEgg();
+            egg.setBirthLocation(birthLocation);
+            birthLocation.addItem(egg);
+        }
+        else if(actor instanceof Pterodactyl){
+            PterodactylEgg egg = new PterodactylEgg();
             egg.setBirthLocation(birthLocation);
             birthLocation.addItem(egg);
         }

@@ -37,6 +37,9 @@ public class GrowAction extends Action {
         else if (actor instanceof BabyStegosaur){
             adultDino = new Stegosaur(((BabyStegosaur) actor).getGender());
         }
+        else if(actor instanceof BabyPterodactyl){
+            adultDino = new Pterodactyl(((BabyPterodactyl) actor).getGender());
+        }
         else{
             adultDino = new Brachiosaur(((BabyBrachiosaur) actor).getGender());
         }
