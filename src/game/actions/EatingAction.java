@@ -3,6 +3,7 @@ package game.actions;
 import edu.monash.fit2099.engine.*;
 import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
+import game.actors.Pterodactyl;
 import game.enums.Food;
 import game.ground.Bush;
 import game.ground.Tree;
@@ -116,13 +117,20 @@ public class EatingAction extends Action {
                 // eats corpse
                 else if(targetFood.getClass() == Corpse.class){
                     Corpse c = (Corpse) targetFood;
-                    if(c.getOriginDino() instanceof Brachiosaur){
-                        nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
+                    if(dino.getDisplayChar() == 'P' || dino.getDisplayChar() == 'p'){
+                        nutritionValue = 10;
                     }
                     else{
-                        nutritionValue = enumFood.getUpLevel("CORPSE");
+                        if(c.getOriginDino() instanceof Brachiosaur){
+                            nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
+                        }
+                        else if(c.getOriginDino() instanceof Pterodactyl){
+                            nutritionValue = enumFood.getUpLevel("PTER_CORPSE");
+                        }
+                        else{
+                            nutritionValue = enumFood.getUpLevel("CORPSE");
+                        }
                     }
-
                 }
                 // eats egg
                 else {
