@@ -60,6 +60,8 @@ public abstract class Dinosaur extends Actor {
     protected int squares;
     // to check if Pterodactyl is flying
     protected boolean isFlying;
+    //to check if Pterodactyl is on a tree
+    protected boolean onTree;
 
     /**
      * Constructor.
@@ -119,7 +121,7 @@ public abstract class Dinosaur extends Actor {
             }
         }
         //after attack can eat
-        else if(lastAction instanceof AttackAction){
+        else if(lastAction instanceof AttackAction || lastAction instanceof LandingAction){
             return new HungerBehaviour().getAction(this,map);
         }
         //// INCOMPLETE
@@ -169,22 +171,6 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-    public void setIsFlying(boolean flying) {
-        this.isFlying = flying;
-        if(!flying){
-            addBehaviour(new LandingBehaviour());
-            removeCapability(DinosaurCapabilities.FLY);
-        }
-        else{
-            removeBehaviour(new LandingBehaviour());
-            addCapability(DinosaurCapabilities.FLY);
-        }
-    }
-
-    public boolean getIsFlying(){
-        boolean ret = this.isFlying;
-        return ret;
-    }
 
     /**
      * Get the name of dinosaur
@@ -568,6 +554,14 @@ public abstract class Dinosaur extends Actor {
      */
     public void setFlying(boolean flying) {
         this.isFlying = flying;
+        if(!flying){
+            addBehaviour(new LandingBehaviour());
+            removeCapability(DinosaurCapabilities.FLY);
+        }
+        else{
+            removeBehaviour(new LandingBehaviour());
+            addCapability(DinosaurCapabilities.FLY);
+        }
     }
 
     /**
@@ -576,5 +570,14 @@ public abstract class Dinosaur extends Actor {
      */
     public boolean isFlying() {
         return isFlying;
+    }
+
+    public boolean getOnTree(){
+        boolean ret = onTree;
+        return ret;
+    }
+
+    public void setOnTree(boolean rest){
+        this.onTree = rest;
     }
 }

@@ -1,6 +1,7 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.LandingAction;
 import game.actions.LayEggAction;
 import game.actors.*;
 import game.ground.Tree;
@@ -47,9 +48,15 @@ public class PregnantBehaviour implements Behaviour{
             dino.removeBehaviour(this);
         }
         else if(dino instanceof Pterodactyl && dino.getPregnancyTurns() >= 10
-        && (here.getGround() instanceof Tree)){
+        && dino.getOnTree()){
             layEgg = new LayEggAction();
             dino.removeBehaviour(this);
+        }
+        else if(dino instanceof Pterodactyl && dino.getPregnancyTurns() >= 10
+                && !dino.getOnTree()){
+            //land the dino if its due but not on a tree
+            Behaviour lB = new LandingBehaviour();
+            layEgg = lB.getAction(actor, map);
         }
         else{
             Exit exit = here.getExits().get(random.nextInt(here.getExits().size()));

@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.actions.LandingAction;
 import game.actors.Dinosaur;
 import game.ground.Tree;
+import game.items.Corpse;
 
 public class LandingBehaviour implements Behaviour {
 
@@ -14,12 +15,21 @@ public class LandingBehaviour implements Behaviour {
         here = map.locationOf(actor);
         dino = (Dinosaur) actor;
         Action ret = null;
-        if(dino.getIsFlying()){
+        if(dino.isFlying()){
             for(Exit exits: here.getExits()){
+                //if tree land on it
                 if(exits.getDestination().getGround() instanceof Tree){
                     Tree t = (Tree) exits.getDestination().getGround();
                     if(!t.hasDinosaur()){
                         return new LandingAction(exits.getDestination(),false);
+                    }
+                }
+                //if corpse land on it
+                else if(exits.getDestination().getItems().size() > 0){
+                    for(Item it: exits.getDestination().getItems()){
+                        if(it instanceof Corpse){
+                            return new LandingAction(exits.getDestination(), false);
+                        }
                     }
                 }
                 else{
