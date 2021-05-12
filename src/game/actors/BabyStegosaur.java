@@ -29,9 +29,15 @@ public class BabyStegosaur extends BabyDinosaur{
         super("Baby " + Species.S.name(),'s',100, g);
         capabilities.add(DinosaurCapabilities.HERBIVORE);
         setEdibleFoodList(Food.getFoodList(this));
+        gender = g;
         attackTurns = 0;
+        // init food level of 50
+        setFoodLevel(50);
+        setMinFoodLevel(90);
+        setMaxFoodLevel(100);
+        setMaxUnconsciousTime(20);
+        setMaxWaterLevel(100);
         setRotTime(20);
-        setFoodLevel(10);
     }
 
     /**

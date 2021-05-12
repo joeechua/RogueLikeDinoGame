@@ -50,6 +50,7 @@ public class LandingBehaviour implements Behaviour {
             return moveCloser();
         }
         //in the case there are no trees around it will return null and it will wander or do something else
+        System.out.println("Why nothing de??");
         return ret;
     }
 

@@ -29,7 +29,13 @@ public class BabyAllosaur extends BabyDinosaur{
         super("Baby " + Species.A.name(),'a',100,g);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this));
-        setFoodLevel(20);
+        gender = g;
+        // init food level of 50
+        setFoodLevel(50);
+        setMinFoodLevel(90);
+        setMaxFoodLevel(100);
+        setMaxUnconsciousTime(20);
+        setMaxWaterLevel(100);
         setRotTime(20);
     }
 

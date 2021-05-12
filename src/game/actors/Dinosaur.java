@@ -124,10 +124,7 @@ public abstract class Dinosaur extends Actor {
         else if(lastAction instanceof AttackAction || lastAction instanceof LandingAction){
             return new HungerBehaviour().getAction(this,map);
         }
-        //// INCOMPLETE
-        if((this instanceof Pterodactyl || this instanceof BabyPterodactyl) && !this.isFlying){
-            return new LandingBehaviour().getAction(this, map);
-        }
+
         return new DinosaurBehaviour().getAction(this, map);
     }
 
@@ -166,9 +163,18 @@ public abstract class Dinosaur extends Actor {
                 System.out.println(this.getName() + " is flying.");
             }
             else if(squares==0){
-                setFlying(false);
+                addBehaviour(new LandingBehaviour());
             }
         }
+    }
+
+    public void setSquares(int num){
+        squares = num;
+    }
+
+    public int getSquares(){
+        int sq = squares;
+        return sq;
     }
 
 
@@ -211,6 +217,15 @@ public abstract class Dinosaur extends Actor {
      */
     public boolean isHerbivore(){
         if(capabilities.contains(DinosaurCapabilities.HERBIVORE)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean canLand(){
+        if(capabilities.contains(DinosaurCapabilities.FLY)){
             return true;
         }
         else{
@@ -554,14 +569,6 @@ public abstract class Dinosaur extends Actor {
      */
     public void setFlying(boolean flying) {
         this.isFlying = flying;
-        if(!flying){
-            addBehaviour(new LandingBehaviour());
-            removeCapability(DinosaurCapabilities.FLY);
-        }
-        else{
-            removeBehaviour(new LandingBehaviour());
-            addCapability(DinosaurCapabilities.FLY);
-        }
     }
 
     /**

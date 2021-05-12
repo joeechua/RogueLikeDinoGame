@@ -28,7 +28,12 @@ public class BabyBrachiosaur extends BabyDinosaur{
         capabilities.add(DinosaurCapabilities.HERBIVORE);
         capabilities.add(DinosaurCapabilities.LONG_NECK);
         setEdibleFoodList(Food.getFoodList(this));
+        gender = g;
+        setFoodLevel(100);
+        setMinFoodLevel(140);
+        setMaxFoodLevel(160);
+        setMaxUnconsciousTime(15);
         setRotTime(40);
-        setFoodLevel(10);
+        setMaxWaterLevel(200);
     }
 }

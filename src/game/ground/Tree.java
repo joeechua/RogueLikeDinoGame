@@ -33,6 +33,7 @@ public class Tree extends Ground {
 		super('+');
 		treeFruit = new ArrayList<>();
 		dropFruitsArray = new ArrayList<>();
+		dinosaurs = new ArrayList<>();
 	}
 
 	/**

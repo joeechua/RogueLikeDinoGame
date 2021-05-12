@@ -21,8 +21,12 @@ public class BabyPterodactyl extends BabyDinosaur{
         super("Baby " + Species.P.name(),'p',100,inputGender);
         capabilities.add(DinosaurCapabilities.FLY);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
-        setEdibleFoodList(Food.getFoodList(this)); // haven't implement in food
-        setFoodLevel(10);
+        setEdibleFoodList(Food.getFoodList(this));
+        setFoodLevel(50);
+        setMinFoodLevel(90);
+        setMaxFoodLevel(100);
+        setMaxWaterLevel(100);
+        setMaxUnconsciousTime(15);
         setRotTime(20);
         squares = 30;
         isFlying = true;

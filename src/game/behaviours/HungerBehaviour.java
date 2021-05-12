@@ -5,6 +5,7 @@ import game.actions.AttackAction;
 import game.actions.EatingAction;
 import game.actions.LandingAction;
 import game.actors.Allosaur;
+import game.actors.BabyPterodactyl;
 import game.actors.Dinosaur;
 import game.actors.Pterodactyl;
 import game.enums.DinosaurCapabilities;
@@ -59,7 +60,8 @@ public class HungerBehaviour implements Behaviour {
                     }
                 }
                 //for Pterodactyl to eat fish
-                else if(dino instanceof Pterodactyl && exit.getDestination().getGround() instanceof Lake){
+                else if((dino instanceof Pterodactyl || dino instanceof BabyPterodactyl)
+                        && exit.getDestination().getGround() instanceof Lake){
                     Lake lake = (Lake) exit.getDestination().getGround();
                     if(lake.gotFish()){
                         ret = new EatingAction(lake.getFish().get(0), lake);
@@ -142,7 +144,8 @@ public class HungerBehaviour implements Behaviour {
                         }
                     }
                     //for Pterodactyl to get fish
-                    else if(exit.getDestination().getGround() instanceof Lake && dino instanceof Pterodactyl){
+                    else if(exit.getDestination().getGround() instanceof Lake
+                            && (dino instanceof Pterodactyl || dino instanceof BabyPterodactyl)){
                         Lake lake = (Lake) exit.getDestination().getGround();
                         if(lake.gotFish()){
                             return new MoveActorAction(exits.getDestination(), exits.getName());
