@@ -54,6 +54,7 @@ public class Lake extends Ground {
         }
 
         if(!gotWater()){
+            System.out.println("lake dried!");
             location.setGround(new Dirt());
         }
     }

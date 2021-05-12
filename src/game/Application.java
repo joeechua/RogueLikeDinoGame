@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import edu.monash.fit2099.engine.*;
-import game.actors.Brachiosaur;
-import game.actors.Player;
-import game.actors.Pterodactyl;
-import game.actors.Stegosaur;
+import game.actors.*;
 import game.enums.Gender;
 import game.ground.*;
 import game.items.Corpse;
@@ -130,12 +127,11 @@ public class Application {
 		gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 		gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
 		gameMap.at(42,14).addActor(new Brachiosaur(Gender.F));
-		gameMap.at(41, 22).addActor(new Pterodactyl(Gender.F));
-		gameMap.at(41, 23).addActor(new Pterodactyl(Gender.M));
-		gameMap.at(41,24).addItem(new Corpse(new Stegosaur(Gender.F)));
-		gameMap.at(42,24).addItem(new Corpse(new Stegosaur(Gender.F)));
-		gameMap.at(41,22).addItem(new Corpse(new Stegosaur(Gender.F)));
-		gameMap.at(41,23).addItem(new Corpse(new Stegosaur(Gender.F)));
+		Pterodactyl ptero = new Pterodactyl(Gender.F);
+		ptero.setFlying(false);
+		gameMap.at(41, 22).addActor(ptero);
+		gameMap.at(41,23).addActor(new Allosaur(Gender.M));
+		//gameMap.at(41, 23).addActor(new Pterodactyl(Gender.M));
 
 		//print a menu
 		do {

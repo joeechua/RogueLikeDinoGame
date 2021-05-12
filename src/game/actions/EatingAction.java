@@ -99,7 +99,7 @@ public class EatingAction extends Action {
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
-            if(targetFood.getClass() == enumFood.getClassType()){
+            if(targetFood != null && targetFood.getClass() == enumFood.getClassType()){
                 // player feeds on dinosaur
                 if(isFed && enumFood.getIsVeg()){
                     // feeds fruit
@@ -145,11 +145,11 @@ public class EatingAction extends Action {
                 nutritionValue = Food.PTERO.getUpLevel("PTERO");
             }
         }
-        if(foodLoc != null && removeCount == 1){
+        if(foodLoc != null && targetFood != null && removeCount == 1){
             foodLoc.removeItem(targetFood);
         }
 
-        if(targetFood.getClass() == Corpse.class && dino instanceof Pterodactyl){
+        if(targetFood != null && targetFood.getClass() == Corpse.class && dino instanceof Pterodactyl){
             Corpse c = (Corpse) targetFood;
             c.setRemoveCount(removeCount-1);
             nutritionValue = 10;

@@ -127,7 +127,7 @@ public abstract class Dinosaur extends Actor {
             System.out.println("hello it landed??");
             return new HungerBehaviour().getAction(this,map);
         }
-
+        System.out.println("this is standing on: " + map.locationOf(this).getGround());
         return new DinosaurBehaviour().getAction(this, map);
     }
 
