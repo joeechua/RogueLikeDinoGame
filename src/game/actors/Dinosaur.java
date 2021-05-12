@@ -155,7 +155,6 @@ public abstract class Dinosaur extends Actor {
             unconsciousTime++;
         }
 
-        //// INCOMPLETE
         // Landing for Pterodactyl and BabyPterodactyl
         if(this instanceof Pterodactyl || this instanceof BabyPterodactyl){
             if(squares > 0){
@@ -340,6 +339,14 @@ public abstract class Dinosaur extends Actor {
      */
     public void removeBehaviour(Behaviour behaviour){
         behaviours.remove(behaviour);
+    }
+
+    /**
+     * Get the behaviour list of dinosaur
+     * @return the behaviour list of dinosaur
+     */
+    public ArrayList<Behaviour> getBehaviours() {
+        return behaviours;
     }
 
     // Gender
