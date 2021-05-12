@@ -74,7 +74,7 @@ public class DinosaurBehaviour implements Behaviour{
             a = gB.getAction(dino,map);
         }
         //dinosaur is a male / dinosaur is not pregnant
-        else if((((dino.getDisplayChar() == 'S' || dino.getDisplayChar() == 'A') && dino.getFoodLevel() >= 50) ||
+        else if((((dino.getDisplayChar() == 'S' || dino.getDisplayChar() == 'A' || dino.getDisplayChar() == 'P') && dino.getFoodLevel() >= 50) ||
                 (dino.getDisplayChar() == 'B' && dino.getFoodLevel() >= 70))
         && !dino.isPregnant()){
             BreedBehaviour bB = new BreedBehaviour();
