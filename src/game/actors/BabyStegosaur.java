@@ -32,7 +32,7 @@ public class BabyStegosaur extends BabyDinosaur{
         gender = g;
         attackTurns = 0;
         // init food level of 50
-        setFoodLevel(50);
+        setFoodLevel(10);
         setMinFoodLevel(90);
         setMaxFoodLevel(100);
         setMaxUnconsciousTime(20);

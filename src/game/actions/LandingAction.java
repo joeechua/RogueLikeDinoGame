@@ -3,7 +3,6 @@ package game.actions;
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
 import game.behaviours.LandingBehaviour;
-import game.enums.DinosaurCapabilities;
 import game.ground.Tree;
 
 public class LandingAction extends Action {
@@ -25,7 +24,7 @@ public class LandingAction extends Action {
         if(takeOff){
             Tree t = (Tree) g;
             if(t.hasDinosaur()){
-                t.loseDinosaur();
+                t.removeDinosaur();
             }
             dino.setFlying(true);
             dino.removeBehaviour(new LandingBehaviour());

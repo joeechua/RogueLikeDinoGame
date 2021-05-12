@@ -109,7 +109,7 @@ public class Tree extends Ground {
 
 	public boolean hasDinosaur(){return dinosaurs.size() ==1;}
 
-	public void loseDinosaur(){dinosaurs.remove(0);}
+	public void removeDinosaur(){dinosaurs.remove(0);}
 
 	public void addDinosaur(Dinosaur dino){dinosaurs.add(dino);}
 }
