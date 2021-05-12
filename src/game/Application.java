@@ -11,6 +11,7 @@ import game.actors.Pterodactyl;
 import game.actors.Stegosaur;
 import game.enums.Gender;
 import game.ground.*;
+import game.items.Corpse;
 
 /**
  * The main class for the Jurassic World game.
@@ -129,8 +130,12 @@ public class Application {
 		gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 		gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
 		gameMap.at(42,14).addActor(new Brachiosaur(Gender.F));
-		gameMap.at(41, 12).addActor(new Pterodactyl(Gender.F));
-		gameMap.at(41, 13).addActor(new Pterodactyl(Gender.M));
+		gameMap.at(41, 22).addActor(new Pterodactyl(Gender.F));
+		gameMap.at(41, 23).addActor(new Pterodactyl(Gender.M));
+		gameMap.at(41,24).addItem(new Corpse(new Stegosaur(Gender.F)));
+		gameMap.at(42,24).addItem(new Corpse(new Stegosaur(Gender.F)));
+		gameMap.at(41,22).addItem(new Corpse(new Stegosaur(Gender.F)));
+		gameMap.at(41,23).addItem(new Corpse(new Stegosaur(Gender.F)));
 
 		//print a menu
 		do {

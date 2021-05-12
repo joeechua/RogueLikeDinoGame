@@ -71,6 +71,7 @@ public class EatingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
+        int removeCount = dino.getRemoveCount();
 
         // origin ground has bush
         if(origin instanceof Bush && targetFood instanceof Fruit){
@@ -87,9 +88,10 @@ public class EatingAction extends Action {
             }
         }
         // foodLoc is not given
-        else if(foodLoc != null){
-            foodLoc.removeItem(targetFood);
-        }
+        //place this somewhere else
+//        else if(foodLoc != null){
+//            foodLoc.removeItem(targetFood);
+//        }
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
@@ -134,7 +136,18 @@ public class EatingAction extends Action {
                 }
                 // eats egg
                 else {
+                    removeCount = 0;
                     nutritionValue = enumFood.getUpLevel(enumFood.name());
+                }
+            }
+        }
+        if(foodLoc != null){
+            dino.setRemoveCount(removeCount-1);
+            System.out.println("Rem count: " + removeCount);
+            if(removeCount <= 0) {
+                foodLoc.removeItem(targetFood);
+                if(dino instanceof Pterodactyl){
+                    dino.setRemoveCount(3);
                 }
             }
         }

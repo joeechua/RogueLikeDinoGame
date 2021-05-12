@@ -46,6 +46,7 @@ public class Pterodactyl extends Dinosaur{
         setMaxWaterLevel(100);
         setMaxUnconsciousTime(15);
         setRotTime(20);
+        setRemoveCount(3);
         squares = 5;
         isFlying = true;
     }

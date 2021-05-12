@@ -73,7 +73,12 @@ public class HungerBehaviour implements Behaviour {
                     for(Item food: exit.getDestination().getItems()){
                         if(dino instanceof Pterodactyl && food instanceof Corpse){
                             //if corpse then land on it
-                            ret = new LandingAction(exit.getDestination(), false);
+                            if(dino.isFlying()){
+                                ret = new LandingAction(exit.getDestination(), false);
+                            }
+                            else{
+                                ret = new EatingAction(food, exit.getDestination());
+                            }
                         }
                         else if(dino.canEat(food)){
                             ret = new EatingAction(food, exit.getDestination());

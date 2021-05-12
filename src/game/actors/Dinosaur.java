@@ -62,6 +62,8 @@ public abstract class Dinosaur extends Actor {
     protected boolean isFlying;
     //to check if Pterodactyl is on a tree
     protected boolean onTree;
+    //to get number of turns needed to take away food
+    protected int removeCount;
 
     /**
      * Constructor.
@@ -121,7 +123,8 @@ public abstract class Dinosaur extends Actor {
             }
         }
         //after attack can eat
-        else if(lastAction instanceof AttackAction || lastAction instanceof LandingAction){
+        if(lastAction instanceof AttackAction || lastAction instanceof LandingAction){
+            System.out.println("hello it landed??");
             return new HungerBehaviour().getAction(this,map);
         }
 
@@ -157,7 +160,7 @@ public abstract class Dinosaur extends Actor {
 
         // Landing for Pterodactyl and BabyPterodactyl
         if(this instanceof Pterodactyl || this instanceof BabyPterodactyl){
-            if(squares > 0){
+            if(squares > 0 && this.isFlying){
                 squares--;
                 System.out.println(this.getName() + " is flying.");
             }
@@ -174,6 +177,15 @@ public abstract class Dinosaur extends Actor {
     public int getSquares(){
         int sq = squares;
         return sq;
+    }
+
+    public int getRemoveCount(){
+        int ret = removeCount;
+        return ret;
+    }
+
+    public void setRemoveCount(int remC){
+        this.removeCount = remC;
     }
 
 
