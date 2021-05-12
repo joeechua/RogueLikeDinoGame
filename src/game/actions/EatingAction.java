@@ -154,6 +154,7 @@ public class EatingAction extends Action {
             c.setRemoveCount(removeCount-1);
             nutritionValue = 10;
         }
+
         // increase foodlevel
         dino.incFoodLevel(nutritionValue);
 
