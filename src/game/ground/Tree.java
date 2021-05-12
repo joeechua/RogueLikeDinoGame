@@ -107,7 +107,7 @@ public class Tree extends Ground {
 		return treeFruit;
 	}
 
-	public boolean hasDinosaur(){return dinosaurs.size() ==1;}
+	public boolean hasDinosaur(){return dinosaurs.size() == 1;}
 
 	public void removeDinosaur(){dinosaurs.remove(0);}
 

@@ -87,11 +87,6 @@ public class EatingAction extends Action {
                 t.getTreeFruit().remove(0);
             }
         }
-        // foodLoc is not given
-        //place this somewhere else
-//        else if(foodLoc != null){
-//            foodLoc.removeItem(targetFood);
-//        }
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){

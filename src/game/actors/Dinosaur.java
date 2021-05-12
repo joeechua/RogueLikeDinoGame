@@ -122,7 +122,7 @@ public abstract class Dinosaur extends Actor {
                 }
             }
         }
-        //after attack can eat
+        // after attack can eat or after landing can eat
         if(lastAction instanceof AttackAction || lastAction instanceof LandingAction){
             System.out.println("hello it landed??");
             return new HungerBehaviour().getAction(this,map);
@@ -158,8 +158,7 @@ public abstract class Dinosaur extends Actor {
             unconsciousTime++;
         }
 
-        //// INCOMPLETE
-        // Landing for Pterodactyl and BabyPterodactyl
+        // Flying or Landing for Pterodactyl and BabyPterodactyl
         if(this instanceof Pterodactyl || this instanceof BabyPterodactyl){
             if(squares > 0 && this.isFlying){
                 squares--;
@@ -352,6 +351,14 @@ public abstract class Dinosaur extends Actor {
      */
     public void removeBehaviour(Behaviour behaviour){
         behaviours.remove(behaviour);
+    }
+
+    /**
+     * Get the behaviour list of dinosaur
+     * @return the behaviour list of dinosaur
+     */
+    public ArrayList<Behaviour> getBehaviours() {
+        return behaviours;
     }
 
     // Gender

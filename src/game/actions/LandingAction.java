@@ -2,6 +2,7 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
+import game.behaviours.Behaviour;
 import game.behaviours.LandingBehaviour;
 import game.ground.Tree;
 
@@ -27,7 +28,11 @@ public class LandingAction extends Action {
                 t.removeDinosaur();
             }
             dino.setFlying(true);
-            dino.removeBehaviour(new LandingBehaviour());
+            for(Behaviour behaviour: dino.getBehaviours()){
+                if(behaviour.getClass() == LandingBehaviour.class){
+                    dino.removeBehaviour(behaviour);
+                }
+            }
             dino.setSquares(5);
             dino.setOnTree(false);
             return menuDescription(actor) + "takes off from a tree.";
