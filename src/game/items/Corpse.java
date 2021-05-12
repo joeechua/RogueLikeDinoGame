@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.actors.Brachiosaur;
 import game.actors.Dinosaur;
+import game.actors.Pterodactyl;
+import game.actors.Stegosaur;
 import game.enums.ItemCapabilities;
 
 /**
@@ -16,6 +18,10 @@ import game.enums.ItemCapabilities;
 public class Corpse extends PortableItem {
     private int rotTime;
     private final Dinosaur originDino;
+    private int removeCount;
+    private final int BRACH_CORPSE_COUNT = 10;
+    private final int PTERO_CORPSE_COUNT = 3;
+    private final int OTHER_CORPSE_COUNT = 5;
 
     /**
      * Constructor.
@@ -32,6 +38,13 @@ public class Corpse extends PortableItem {
         capabilities.addCapability(ItemCapabilities.EATEN);
         if(dino instanceof Brachiosaur){
             capabilities.addCapability(ItemCapabilities.BRACH);
+            removeCount = 10;
+        }
+        else if(dino instanceof Pterodactyl){
+            removeCount = 3;
+        }
+        else {
+            removeCount = 5;
         }
         this.originDino = dino;
     }
@@ -58,4 +71,14 @@ public class Corpse extends PortableItem {
     public Dinosaur getOriginDino() {
         return originDino;
     }
+
+    public int getRemoveCount(){
+        int ret = this.removeCount;
+        return ret;
+    }
+
+    public void setRemoveCount(int remC){
+        this.removeCount = remC;
+    }
+
 }

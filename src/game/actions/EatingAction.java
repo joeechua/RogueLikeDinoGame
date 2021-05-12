@@ -71,7 +71,7 @@ public class EatingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
-        int removeCount = dino.getRemoveCount();
+        int removeCount = 0;
 
         // origin ground has bush
         if(origin instanceof Bush && targetFood instanceof Fruit){
@@ -119,37 +119,32 @@ public class EatingAction extends Action {
                 // eats corpse
                 else if(targetFood.getClass() == Corpse.class){
                     Corpse c = (Corpse) targetFood;
-                    if(dino.getDisplayChar() == 'P' || dino.getDisplayChar() == 'p'){
-                        nutritionValue = 10;
+                    removeCount = c.getRemoveCount();
+                    System.out.println("rem count: " + removeCount);
+                    if(c.getOriginDino() instanceof Brachiosaur){
+                        nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
+                    }
+                    else if(c.getOriginDino() instanceof Pterodactyl){
+                        nutritionValue = enumFood.getUpLevel("PTER_CORPSE");
                     }
                     else{
-                        if(c.getOriginDino() instanceof Brachiosaur){
-                            nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
-                        }
-                        else if(c.getOriginDino() instanceof Pterodactyl){
-                            nutritionValue = enumFood.getUpLevel("PTER_CORPSE");
-                        }
-                        else{
-                            nutritionValue = enumFood.getUpLevel("CORPSE");
-                        }
+                        nutritionValue = enumFood.getUpLevel("CORPSE");
                     }
                 }
                 // eats egg
                 else {
-                    removeCount = 0;
                     nutritionValue = enumFood.getUpLevel(enumFood.name());
                 }
             }
         }
-        if(foodLoc != null){
-            dino.setRemoveCount(removeCount-1);
-            System.out.println("Rem count: " + removeCount);
-            if(removeCount <= 0) {
-                foodLoc.removeItem(targetFood);
-                if(dino instanceof Pterodactyl){
-                    dino.setRemoveCount(3);
-                }
-            }
+        if(foodLoc != null && removeCount == 1){
+            foodLoc.removeItem(targetFood);
+        }
+
+        if(targetFood.getClass() == Corpse.class && dino instanceof Pterodactyl){
+            Corpse c = (Corpse) targetFood;
+            c.setRemoveCount(removeCount-1);
+            nutritionValue = 10;
         }
         // increase foodlevel
         dino.incFoodLevel(nutritionValue);
