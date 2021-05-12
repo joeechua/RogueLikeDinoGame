@@ -122,6 +122,9 @@ public abstract class Dinosaur extends Actor {
         else if(lastAction instanceof AttackAction){
             return new HungerBehaviour().getAction(this,map);
         }
+        if((this instanceof Pterodactyl || this instanceof BabyPterodactyl) && !this.isFlying){
+            return new LandingBehaviour().getAction(this, map);
+        }
         return new DinosaurBehaviour().getAction(this, map);
     }
 
@@ -160,7 +163,6 @@ public abstract class Dinosaur extends Actor {
             }
             else if(squares==0){
                 setFlying(false);
-                new LandingAction();
             }
         }
     }
@@ -540,10 +542,18 @@ public abstract class Dinosaur extends Actor {
 
     // Flying for Pterodactyl
     /**
-     * To determine whether Pterodactyl is flying or not
+     * To set the boolean whether Pterodactyl is flying or not
      * @param flying a boolean, if true means Pterodactyl is flying, false Pterodactyl
      */
     public void setFlying(boolean flying) {
         this.isFlying = flying;
+    }
+
+    /**
+     * To determine whether Pterodactyl is flying or not
+     * @return a boolean, if true means Pterodactyl is flying, false Pterodactyl
+     */
+    public boolean isFlying() {
+        return isFlying;
     }
 }
