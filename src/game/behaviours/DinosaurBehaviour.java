@@ -21,7 +21,6 @@ public class DinosaurBehaviour implements Behaviour{
 
     private Action a;
 
-
     /**
      * Selects behaviour and gets the appropriate action to be performed in order
      * to fulfill certain needs
@@ -57,7 +56,6 @@ public class DinosaurBehaviour implements Behaviour{
         }
         //dinosaur is landed and needs to fly
         else if((dino instanceof Pterodactyl || dino instanceof BabyPterodactyl) && dino.getSquares() == 0){
-            System.out.println("hello land??");
             LandingBehaviour lB = new LandingBehaviour();
             a = lB.getAction(actor, map);
             System.out.println(a);

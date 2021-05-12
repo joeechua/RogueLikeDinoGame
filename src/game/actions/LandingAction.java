@@ -46,7 +46,6 @@ public class LandingAction extends Action {
                 return menuDescription(actor) + " lands on a tree.";
             }
             dino.setOnTree(false);
-            System.out.println("hello???");
             return menuDescription(actor) + " lands on the ground";
         }
     }
