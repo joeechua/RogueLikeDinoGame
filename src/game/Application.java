@@ -143,7 +143,7 @@ public class Application {
 			while (printMenu) {
 				System.out.println("Select a game mode:");
 				Scanner scanner = new Scanner(System.in);
-				System.out.println("1) Challenge Mode \n2) Sandbox Mode");
+				System.out.println("1) Challenge Mode \n2) Sandbox Mode \n3) Exit Game");
 				String c = scanner.nextLine();
 				try {
 					choice = Integer.parseInt(c);
@@ -169,22 +169,12 @@ public class Application {
 				else if(choice == 2){
 					printMenu = false;
 				}
+				else if(choice == 3){
+					endGame = true;
+					return;
+				}
 			}
-			world.addPlayer(player, gameMap.at(9, 4));
-			world.run();
-			System.out.println("Do you want to play again?");
-			System.out.printf("1) Yes\n2) No\n");
-			Scanner end = new Scanner(System.in);
-			String e = end.nextLine();
-			int no = 0;
-			try{
-				no = Integer.parseInt(e);
-			}catch(Exception m){};
-			if(no == 2){
-				endGame = true;
-			}
-		}
-		while(!endGame);
+		} while(!endGame);
 
 
 	}
