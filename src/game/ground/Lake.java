@@ -1,9 +1,12 @@
 package game.ground;
 
+import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.Application;
 import game.actors.BabyPterodactyl;
+import game.actors.Dinosaur;
 import game.actors.Pterodactyl;
 import game.items.Fish;
 
@@ -23,7 +26,7 @@ public class Lake extends Ground {
         waterSips = 25;
         fishes = new ArrayList<>();
         for(int i = 1; i <= 5; i++){
-            fishes.add(new Fish("Fish", '鱼', true));
+            fishes.add(new Fish());
         }
     }
 
@@ -31,15 +34,24 @@ public class Lake extends Ground {
     public void tick(Location location) {
         super.tick(location);
         turns ++;
-
         if (turns % 10 == 0 && random.nextDouble() <= 0.2){
             System.out.println("It's raining.");
             float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
             incWaterSips((int) (rainfall * 20));
+            for(Actor actor: Application.actLoc){
+                if(actor instanceof Dinosaur){
+                    Dinosaur dino = (Dinosaur) actor;
+                    if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
+                        dino.setWaterLevel(10);
+                        //make it conscious
+                    }
+                }
+
+            }
         }
 
         if(fishes.size() < MAX_NO_OF_FISH && random.nextDouble() <= 0.6){
-            fishes.add(new Fish("Fish", '鱼', true));
+            fishes.add(new Fish());
         }
     }
 
