@@ -58,6 +58,9 @@ public class HungerBehaviour implements Behaviour {
                     if (carnivoreFood.getDisplayChar() == 'S' || carnivoreFood.getDisplayChar() == 's') {
                         ret = new AttackAction(carnivoreFood);
                     }
+                    else if(carnivoreFood.getDisplayChar() == 'P' || carnivoreFood.getDisplayChar() == 'p'){
+                        ret = new EatingAction(carnivoreFood, here);
+                    }
                 }
                 //for Pterodactyl to eat fish
                 else if((dino instanceof Pterodactyl || dino instanceof BabyPterodactyl)
