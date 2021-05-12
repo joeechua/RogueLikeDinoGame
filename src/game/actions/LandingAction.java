@@ -30,6 +30,7 @@ public class LandingAction extends Action {
             dino.setFlying(false);
             if(g instanceof Tree){
                 Tree t = (Tree) g;
+                t.addDinosaur(dino);
                 return menuDescription(actor) + " lands on a tree.";
             }
             return menuDescription(actor) + " lands on the ground";
