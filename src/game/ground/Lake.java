@@ -52,6 +52,10 @@ public class Lake extends Ground {
         if(fishes.size() < MAX_NO_OF_FISH && random.nextDouble() <= 0.6){
             fishes.add(new Fish());
         }
+
+        if(!gotWater()){
+            location.setGround(new Dirt());
+        }
     }
 
     @Override

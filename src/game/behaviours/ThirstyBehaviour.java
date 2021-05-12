@@ -11,7 +11,10 @@ public class ThirstyBehaviour implements Behaviour{
         Location loc = map.locationOf(actor);
         for(Exit exit:loc.getExits()){
             if(exit.getDestination().getGround() instanceof Lake){
-                return new DrinkAction(exit.getDestination());
+                Lake lake = (Lake) exit.getDestination().getGround();
+                if(lake.gotWater()){
+                    return new DrinkAction(exit.getDestination());
+                }
             }
         }
         return moveCloser(actor, map);
@@ -22,7 +25,10 @@ public class ThirstyBehaviour implements Behaviour{
         for(Exit exits: here.getExits()){
             for(Exit exit: exits.getDestination().getExits()){
                 if(exit.getDestination().getGround() instanceof Lake){
-                    return new MoveActorAction(exits.getDestination(), exits.getName());
+                    Lake lake = (Lake) exit.getDestination().getGround();
+                    if(lake.gotWater()){
+                        return new MoveActorAction(exits.getDestination(), exits.getName());
+                    }
                 }
             }
         }
