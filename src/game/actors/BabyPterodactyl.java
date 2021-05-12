@@ -22,5 +22,9 @@ public class BabyPterodactyl extends BabyDinosaur{
         capabilities.add(DinosaurCapabilities.FLY);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this)); // haven't implement in food
+        setFoodLevel(10);
+        setRotTime(20);
+        squares = 30;
+        isFlying = true;
     }
 }

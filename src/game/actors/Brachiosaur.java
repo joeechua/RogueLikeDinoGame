@@ -14,21 +14,27 @@ import game.enums.Species;
  */
 public class Brachiosaur extends Dinosaur {
 
-    /**
-     * Constructor.
-     * All Brachiosaur are represented by a 'B' and have 100 hit points.
-     * has dinosaur capabilities herbivore and long neck
-     * @see Dinosaur
-     * @see Species
-     * @see DinosaurCapabilities
-     * @see Food
-     */
-    public Brachiosaur() {
-        super(Species.B.name(), 'B', 100);
-        capabilities.add(DinosaurCapabilities.HERBIVORE);
-        capabilities.add(DinosaurCapabilities.LONG_NECK);
-        setEdibleFoodList(Food.getFoodList(this));
-    }
+//    /**
+//     * Constructor.
+//     * All Brachiosaur are represented by a 'B' and have 100 hit points.
+//     * has dinosaur capabilities herbivore and long neck
+//     * @see Dinosaur
+//     * @see Species
+//     * @see DinosaurCapabilities
+//     * @see Food
+//     */
+//    public Brachiosaur() {
+//        super(Species.B.name(), 'B', 100);
+//        capabilities.add(DinosaurCapabilities.HERBIVORE);
+//        capabilities.add(DinosaurCapabilities.LONG_NECK);
+//        setEdibleFoodList(Food.getFoodList(this));
+//        setFoodLevel(100);
+//        setMinFoodLevel(140);
+//        setMaxFoodLevel(160);
+//        setMaxUnconsciousTime(15);
+//        setRotTime(40);
+//        setMaxWaterLevel(200);
+//    }
 
     /**
      * Constructor.
@@ -46,5 +52,11 @@ public class Brachiosaur extends Dinosaur {
         capabilities.add(DinosaurCapabilities.LONG_NECK);
         setEdibleFoodList(Food.getFoodList(this));
         gender = inputGender;
+        setFoodLevel(100);
+        setMinFoodLevel(140);
+        setMaxFoodLevel(160);
+        setMaxUnconsciousTime(15);
+        setRotTime(40);
+        setMaxWaterLevel(200);
     }
 }

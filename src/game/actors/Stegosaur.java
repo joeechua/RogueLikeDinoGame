@@ -22,21 +22,29 @@ import game.enums.Species;
  * @see Dinosaur
  */
 public class Stegosaur extends Dinosaur {
-	/**
-	 * Constructor.
-	 * All Stegosaurs are represented by a 'S' and have 100 hit points.
-	 * has dinosaur capabilities herbivore
-	 * @see Dinosaur
-	 * @see Species
-	 * @see DinosaurCapabilities
-	 * @see Food
-	 */
-	public Stegosaur() {
-		super(Species.S.name(), 'S', 100);
-		capabilities.add(DinosaurCapabilities.HERBIVORE);
-		setEdibleFoodList(Food.getFoodList(this));
-		attackTurns = 0;
-	}
+
+//	/**
+//	 * Constructor.
+//	 * All Stegosaurs are represented by a 'S' and have 100 hit points.
+//	 * has dinosaur capabilities herbivore
+//	 * @see Dinosaur
+//	 * @see Species
+//	 * @see DinosaurCapabilities
+//	 * @see Food
+//	 */
+//	public Stegosaur() {
+//		super(Species.S.name(), 'S', 100);
+//		capabilities.add(DinosaurCapabilities.HERBIVORE);
+//		setEdibleFoodList(Food.getFoodList(this));
+//		attackTurns = 0;
+//		// init food level of 50
+//		setFoodLevel(50);
+//		setMinFoodLevel(90);
+//		setMaxFoodLevel(100);
+//		setMaxUnconsciousTime(20);
+//		setMaxWaterLevel(100);
+//		setRotTime(20);
+//	}
 
 	/**
 	 * Constructor.
@@ -54,6 +62,13 @@ public class Stegosaur extends Dinosaur {
 		setEdibleFoodList(Food.getFoodList(this));
 		gender = inputGender;
 		attackTurns = 0;
+		// init food level of 50
+		setFoodLevel(50);
+		setMinFoodLevel(90);
+		setMaxFoodLevel(100);
+		setMaxUnconsciousTime(20);
+		setMaxWaterLevel(100);
+		setRotTime(20);
 	}
 
 	/**

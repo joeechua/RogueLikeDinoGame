@@ -29,6 +29,8 @@ public class BabyAllosaur extends BabyDinosaur{
         super("Baby " + Species.A.name(),'a',100,g);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this));
+        setFoodLevel(20);
+        setRotTime(20);
     }
 
     /**

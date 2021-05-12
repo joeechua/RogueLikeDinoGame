@@ -30,6 +30,8 @@ public class BabyStegosaur extends BabyDinosaur{
         capabilities.add(DinosaurCapabilities.HERBIVORE);
         setEdibleFoodList(Food.getFoodList(this));
         attackTurns = 0;
+        setRotTime(20);
+        setFoodLevel(10);
     }
 
     /**

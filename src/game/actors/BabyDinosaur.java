@@ -25,23 +25,6 @@ public abstract class BabyDinosaur extends Dinosaur {
         super(name, displayChar, hitPoints);
         this.gender = gender;
         turnsSinceHatch = 0;
-        if(this instanceof BabyAllosaur){
-            initFoodLevel = foodLevel = 20;
-            rotTime = 20;
-        }
-        else if(this instanceof BabyBrachiosaur){
-            initFoodLevel = foodLevel = 10;
-            rotTime = 40;
-        }
-        else{
-            initFoodLevel = foodLevel = 10;
-            rotTime = 20;
-        }
-
-        if(this instanceof BabyPterodactyl){
-            squares = 30;
-            flying = true;
-        }
     }
 
     /**
