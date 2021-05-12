@@ -174,7 +174,10 @@ public class Application {
 					return;
 				}
 			}
-		} while(!endGame);
+			world.addPlayer(player, gameMap.at(9, 4));
+			world.run();
+		}
+		while(!endGame);
 
 
 	}
