@@ -122,6 +122,7 @@ public abstract class Dinosaur extends Actor {
         else if(lastAction instanceof AttackAction){
             return new HungerBehaviour().getAction(this,map);
         }
+        //// INCOMPLETE
         if((this instanceof Pterodactyl || this instanceof BabyPterodactyl) && !this.isFlying){
             return new LandingBehaviour().getAction(this, map);
         }
