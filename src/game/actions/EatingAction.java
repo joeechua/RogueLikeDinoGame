@@ -19,6 +19,7 @@ import game.items.Fruit;
 
 public class EatingAction extends Action {
     private Item targetFood;
+    private Actor targetDino;
     private boolean isFed = false;
     private Ground origin;
     private Location foodLoc;
@@ -56,6 +57,11 @@ public class EatingAction extends Action {
         this.foodLoc = loc;
     }
 
+    public EatingAction(Actor targetFood,Location loc){
+        this.targetDino = targetFood;
+        this.foodLoc = loc;
+    }
+
     /**
      * Performing the Eating action
      *
@@ -87,6 +93,9 @@ public class EatingAction extends Action {
                 t.getTreeFruit().remove(0);
             }
         }
+        else if(targetDino != null){
+            foodLoc.map().removeActor(targetDino);
+        }
 
         int nutritionValue = 0;
         for(Food enumFood: Food.values()){
@@ -114,7 +123,7 @@ public class EatingAction extends Action {
                 // eats corpse
                 else if(targetFood.getClass() == Corpse.class){
                     Corpse c = (Corpse) targetFood;
-                    if(dino instanceof Pterodactyl){
+                    if(dino instanceof  Pterodactyl){
                         removeCount = c.getRemoveCount();
                     }
                     if(c.getOriginDino() instanceof Brachiosaur){
@@ -131,6 +140,9 @@ public class EatingAction extends Action {
                 else {
                     nutritionValue = enumFood.getUpLevel(enumFood.name());
                 }
+            }
+            else if(targetDino != null){
+                nutritionValue = Food.PTERO.getUpLevel("PTERO");
             }
         }
         if(foodLoc != null && removeCount == 1){
