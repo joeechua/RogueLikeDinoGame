@@ -20,7 +20,7 @@ public class QuitAction extends Action {
         else if(action == 1){
             ret = "You have won the game!";
         }
-        return ret;
+        return ret + "\n" + menuDescription(actor);
     }
 
     @Override
