@@ -71,7 +71,7 @@ public class EatingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Dinosaur dino = (Dinosaur) actor;
-        int removeCount = 0;
+        int removeCount = 1;
 
         // origin ground has bush
         if(origin instanceof Bush && targetFood instanceof Fruit){
@@ -114,8 +114,9 @@ public class EatingAction extends Action {
                 // eats corpse
                 else if(targetFood.getClass() == Corpse.class){
                     Corpse c = (Corpse) targetFood;
-                    removeCount = c.getRemoveCount();
-                    System.out.println("rem count: " + removeCount);
+                    if(dino instanceof Pterodactyl){
+                        removeCount = c.getRemoveCount();
+                    }
                     if(c.getOriginDino() instanceof Brachiosaur){
                         nutritionValue = enumFood.getUpLevel("BRACH_CORPSE");
                     }
@@ -141,6 +142,7 @@ public class EatingAction extends Action {
             c.setRemoveCount(removeCount-1);
             nutritionValue = 10;
         }
+
         // increase foodlevel
         dino.incFoodLevel(nutritionValue);
 
