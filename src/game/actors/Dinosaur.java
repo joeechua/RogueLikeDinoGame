@@ -143,6 +143,7 @@ public abstract class Dinosaur extends Actor {
         // decrease water level for each tick
         if(waterLevel > 0){
             waterLevel--;
+            System.out.println(this + " water level: " + waterLevel);
             unconsciousTime = 0;
         }
 
@@ -160,10 +161,35 @@ public abstract class Dinosaur extends Actor {
             }
             else if(squares==0){
                 setFlying(false);
-                new LandingAction();
             }
         }
     }
+
+    public void setIsFlying(boolean flying) {
+        this.isFlying = flying;
+        if(!flying){
+            addBehaviour(new LandingBehaviour());
+            removeCapability(DinosaurCapabilities.FLY);
+        }
+        else{
+            removeBehaviour(new LandingBehaviour());
+            addCapability(DinosaurCapabilities.FLY);
+        }
+    }
+
+    public boolean getIsFlying(){
+        boolean ret = this.isFlying;
+        return ret;
+    }
+
+    /**
+     * Get the name of dinosaur
+     * @return name of the dinosaur
+     */
+    public String getName(){
+        return this.name;
+    }
+
 
     /**
      * Returns a collection of the Actions that the otherActor can do to the current Actor.
@@ -186,13 +212,6 @@ public abstract class Dinosaur extends Actor {
         return actions;
     }
 
-    /**
-     * Get the name of dinosaur
-     * @return name of the dinosaur
-     */
-    public String getName(){
-        return this.name;
-    }
 
     // Characteristic (capabilities)
     /**

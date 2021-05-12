@@ -7,6 +7,7 @@ import java.util.Scanner;
 import edu.monash.fit2099.engine.*;
 import game.actors.Brachiosaur;
 import game.actors.Player;
+import game.actors.Pterodactyl;
 import game.actors.Stegosaur;
 import game.enums.Gender;
 import game.ground.*;
@@ -128,6 +129,7 @@ public class Application {
 		gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 		gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
 		gameMap.at(42,14).addActor(new Brachiosaur(Gender.F));
+		gameMap.at(11, 11).addActor(new Pterodactyl(Gender.F));
 
 		//print a menu
 		do {
@@ -139,7 +141,6 @@ public class Application {
 				String c = scanner.nextLine();
 				try {
 					choice = Integer.parseInt(c);
-					printMenu = false;
 				} catch (Exception e) {
 					//do nothing
 				}
@@ -154,9 +155,13 @@ public class Application {
 					try {
 						challengeRounds = Integer.parseInt(r);
 						challengePoints = Integer.parseInt(p);
+						printMenu = false;
 					} catch (Exception e) {
 						//do nothing
 					}
+				}
+				else if(choice == 2){
+					printMenu = false;
 				}
 			}
 			world.addPlayer(player, gameMap.at(9, 4));

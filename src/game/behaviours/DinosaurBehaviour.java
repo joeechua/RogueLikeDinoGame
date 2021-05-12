@@ -6,7 +6,9 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import game.actions.DieAction;
 import game.actors.BabyDinosaur;
+import game.actors.BabyPterodactyl;
 import game.actors.Dinosaur;
+import game.actors.Pterodactyl;
 import game.enums.DinosaurCapabilities;
 
 /**
@@ -53,6 +55,12 @@ public class DinosaurBehaviour implements Behaviour{
                 a = new DoNothingAction();
             }
         }
+        //dinosaur is landed and needs to fly
+        else if(dino instanceof Pterodactyl || dino instanceof BabyPterodactyl
+                && !dino.hasCapability(DinosaurCapabilities.FLY)){
+            LandingBehaviour lB = new LandingBehaviour();
+            a = lB.getAction(actor, map);
+        }
         //dinosaur is pregnant
         else if(dino.hasCapability(DinosaurCapabilities.PREGNANT) && dino.isPregnant()){
             PregnantBehaviour pB = new PregnantBehaviour();
@@ -70,20 +78,16 @@ public class DinosaurBehaviour implements Behaviour{
             BreedBehaviour bB = new BreedBehaviour();
             a = bB.getAction(dino, map);
         }
-        //dinosaur is hungry or has noting to do
-        if((a == null || dino.isHungry()) && (dino.getFoodLevel() != dino.getMaxFoodLevel())){
-            if(dino.isHungry()){
-                System.out.println(dino.getName() + " at " + loc + " is getting hungry!");
-            }
-            HungerBehaviour hB = new HungerBehaviour();
-            a = hB.getAction(dino, map);
-        }
-        if(a == null && dino.getWaterLevel() != dino.getMaxWaterLevel()){
-            if(dino.isThirsty()){
-                System.out.println(dino.getName() + " at " + loc + " is getting thirsty!");
-            }
+        if(a == null && dino.isThirsty()){
+            System.out.println(dino.getName() + " at " + loc + " is getting thirsty!");
             ThirstyBehaviour tB = new ThirstyBehaviour();
             a = tB.getAction(dino, map);
+        }
+        //dinosaur is hungry or has noting to do
+        if(a == null && dino.isHungry()){
+            System.out.println(dino.getName() + " at " + loc + " is getting hungry!");
+            HungerBehaviour hB = new HungerBehaviour();
+            a = hB.getAction(dino, map);
         }
         //if dinosaur is full, it will wander
         if(a == null){

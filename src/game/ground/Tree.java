@@ -3,6 +3,7 @@ package game.ground;
 import edu.monash.fit2099.engine.*;
 import game.actions.EatingAction;
 import game.actions.HarvestAction;
+import game.actors.Dinosaur;
 import game.actors.Player;
 import game.enums.Points;
 import game.enums.VendingItems;
@@ -23,6 +24,7 @@ public class Tree extends Ground {
 	private Random random = new Random();
 	private ArrayList<Fruit> treeFruit;
 	private ArrayList<Fruit> dropFruitsArray;
+	private ArrayList<Dinosaur> dinosaurs;
 
 	/**
 	 * Constructor.
@@ -103,4 +105,10 @@ public class Tree extends Ground {
 	public ArrayList<Fruit> getTreeFruit() {
 		return treeFruit;
 	}
+
+	public boolean hasDinosaur(){return dinosaurs.size() ==1;}
+
+	public void loseDinosaur(){dinosaurs.remove(0);}
+
+	public void addDinosaur(Dinosaur dino){dinosaurs.add(dino);}
 }
