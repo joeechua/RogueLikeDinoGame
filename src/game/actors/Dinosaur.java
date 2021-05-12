@@ -43,6 +43,7 @@ public abstract class Dinosaur extends Actor {
     protected int minWaterLevel;
     protected int maxWaterLevel;
     protected int squares;
+    protected boolean flying;
 
     /**
      * Constructor.
@@ -151,9 +152,14 @@ public abstract class Dinosaur extends Actor {
                 squares--;
             }
             else if(squares==0){
+                setFlying(false);
                 new LandingAction();
             }
         }
+    }
+
+    public void setFlying(boolean flying) {
+        this.flying = flying;
     }
 
     /**
