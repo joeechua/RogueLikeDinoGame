@@ -30,8 +30,8 @@ public class BabyAllosaur extends BabyDinosaur{
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this));
         gender = g;
-        // init food level of 50
-        setFoodLevel(50);
+        // init food level of 20
+        setFoodLevel(20);
         setMinFoodLevel(90);
         setMaxFoodLevel(100);
         setMaxUnconsciousTime(20);
