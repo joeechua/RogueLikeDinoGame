@@ -78,6 +78,8 @@ public abstract class Dinosaur extends Actor {
             initFoodLevel = foodLevel = 50;
             rotTime = 20;
             maxWaterLevel = 100;
+            squares = 30;
+            flying = true;
         }
         else{
             minFoodLevel = 90;
@@ -87,7 +89,9 @@ public abstract class Dinosaur extends Actor {
             rotTime = 20;
             maxWaterLevel = 100;
         }
+
         addBehaviour(new DinosaurBehaviour());
+
         // if adult add breed behaviour
         if(!(this instanceof BabyDinosaur)){
             addBehaviour(new BreedBehaviour());
@@ -106,6 +110,9 @@ public abstract class Dinosaur extends Actor {
      * @param map        the map containing the Actor
      * @param display    the I/O object to which messages may be written
      * @return the Action to be performed
+     * @see Actor
+     * @see Action
+     * @see Actions
      * @see GameMap
      * @see HungerBehaviour
      * @see DinosaurBehaviour
@@ -147,6 +154,7 @@ public abstract class Dinosaur extends Actor {
             unconsciousTime++;
         }
 
+        // Landing for Pterodactyl and BabyPterodactyl
         if(this instanceof Pterodactyl || this instanceof BabyPterodactyl){
             if(squares > 0){
                 squares--;
@@ -480,14 +488,6 @@ public abstract class Dinosaur extends Actor {
      */
     public void incWaterLevel(int incValue){
         waterLevel = Math.min(getWaterLevel()+incValue, getMaxWaterLevel());
-    }
-
-    /**
-     * Decrease the water level of dinosaur
-     * @param decValue the decrement value
-     */
-    public void decWaterLevel(int decValue){
-        waterLevel = Math.max(getWaterLevel()-decValue, 0);
     }
 
     /**
