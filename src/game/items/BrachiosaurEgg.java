@@ -41,5 +41,9 @@ public class BrachiosaurEgg extends Egg{
             location.removeItem(this);
             location.addActor(new BabyBrachiosaur(this.getGender()));
         }
+        else if(this.getTimeHatch() == 0){
+            location.removeItem(this);
+            System.out.println("The Brachiosaur egg could not hatch");
+        }
     }
 }

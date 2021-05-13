@@ -58,7 +58,8 @@ public class HungerBehaviour implements Behaviour {
                     if (carnivoreFood.getDisplayChar() == 'S' || carnivoreFood.getDisplayChar() == 's') {
                         ret = new AttackAction(carnivoreFood);
                     }
-                    else if(carnivoreFood.getDisplayChar() == 'P' || carnivoreFood.getDisplayChar() == 'p'){
+                    else if((carnivoreFood.getDisplayChar() == 'P' || carnivoreFood.getDisplayChar() == 'p')
+                    && !carnivoreFood.getOnTree()){
                         ret = new EatingAction(carnivoreFood, here);
                     }
                 }
@@ -212,6 +213,8 @@ public class HungerBehaviour implements Behaviour {
                 return ret;
             }
         }
+        WanderBehaviour wB = new WanderBehaviour();
+        ret = wB.getAction(dino, map);
         return ret;
     }
 }

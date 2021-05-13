@@ -34,10 +34,17 @@ public class LandingAction extends Action {
                 t.removeDinosaur();
             }
             dino.setFlying(true);
-            for(Behaviour behaviour: dino.getBehaviours()){
+            int i = 0;
+            boolean found = false;
+            while(!found && i<dino.getBehaviours().size()){
+                Behaviour behaviour = dino.getBehaviours().get(i);
                 if(behaviour.getClass() == LandingBehaviour.class){
-                    dino.removeBehaviour(behaviour);
+                    found = true;
                 }
+                i++;
+            }
+            if(i < dino.getBehaviours().size()){
+                dino.getBehaviours().remove(i);
             }
             dino.setSquares(5);
             dino.setOnTree(false);
