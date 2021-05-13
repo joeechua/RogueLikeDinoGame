@@ -131,7 +131,7 @@ public class Application {
 		ptero.setFlying(false);
 		gameMap.at(41, 22).addActor(ptero);
 		gameMap.at(41,23).addActor(new Allosaur(Gender.M));
-		//gameMap.at(41, 23).addActor(new Pterodactyl(Gender.M));
+		gameMap.at(41, 1).addActor(new Pterodactyl(Gender.M));
 
 		//print a menu
 		do {

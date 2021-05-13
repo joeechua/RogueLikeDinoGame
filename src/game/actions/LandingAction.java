@@ -1,6 +1,7 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.*;
+import game.actors.BabyPterodactyl;
 import game.actors.Dinosaur;
 import game.behaviours.Behaviour;
 import game.behaviours.LandingBehaviour;
@@ -21,7 +22,12 @@ public class LandingAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Ground g = landingLoc.getGround();
         Dinosaur dino = (Dinosaur) actor;
-
+        if(dino instanceof BabyPterodactyl){
+            dino.setDisplayChar('p');
+        }
+        else{
+            dino.setDisplayChar('P');
+        }
         if(takeOff){
             Tree t = (Tree) g;
             if(t.hasDinosaur()){

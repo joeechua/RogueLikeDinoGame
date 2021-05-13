@@ -160,8 +160,8 @@ public abstract class Dinosaur extends Actor {
         // Flying or Landing for Pterodactyl and BabyPterodactyl
         if(this instanceof Pterodactyl || this instanceof BabyPterodactyl){
             if(squares > 0 && this.isFlying){
+                this.setDisplayChar('ⓟ');
                 squares--;
-                System.out.println(this.getName() + " is flying.");
             }
             else if(squares==0){
                 addBehaviour(new LandingBehaviour());
@@ -604,5 +604,9 @@ public abstract class Dinosaur extends Actor {
 
     public void setOnTree(boolean rest){
         this.onTree = rest;
+    }
+
+    public void setDisplayChar(char displayChar) {
+        this.displayChar = displayChar;
     }
 }
