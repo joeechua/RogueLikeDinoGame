@@ -127,7 +127,7 @@ public abstract class Dinosaur extends Actor {
             System.out.println("hello it landed??");
             return new HungerBehaviour().getAction(this,map);
         }
-        System.out.println("this is standing on: " + map.locationOf(this).getGround());
+        System.out.println(this.getName() + " is standing on: " + map.locationOf(this).getGround());
         return new DinosaurBehaviour().getAction(this, map);
     }
 
@@ -149,7 +149,6 @@ public abstract class Dinosaur extends Actor {
         // decrease water level for each tick
         if(waterLevel > 0){
             waterLevel--;
-            System.out.println(this + " water level: " + waterLevel);
             unconsciousTime = 0;
         }
 

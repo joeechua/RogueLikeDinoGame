@@ -35,7 +35,6 @@ public class Lake extends Ground {
         turns ++;
         waterSips--;
         if (turns % 10 == 0 && random.nextDouble() <= 0.2){
-            System.out.println("It's raining.");
             float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
             incWaterSips((int) (rainfall * 20));
             for(Actor actor: Application.actLoc){
@@ -112,4 +111,7 @@ public class Lake extends Ground {
         waterSips = Math.max(getWaterSips()-decValue, 0);
     }
 
+    public int getTurns() {
+        return turns;
+    }
 }

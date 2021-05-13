@@ -20,7 +20,7 @@ public enum Food {
     ALLO_EGG(10, Allosaur.class, false),
     BRACH_CORPSE(100, Corpse.class, false),
     CORPSE(50, Corpse.class, false),
-    PTERO(30, Pterodactyl.class, false),
+    PTERO_CORPSE(30, Pterodactyl.class, false),
     STEG_FRUIT(10, Fruit.class, true),
     BRACH_FRUIT(5, Fruit.class, true),
     FED_FRUIT(20, Fruit.class, true),

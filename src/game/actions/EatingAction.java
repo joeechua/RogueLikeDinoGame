@@ -141,10 +141,9 @@ public class EatingAction extends Action {
                     nutritionValue = enumFood.getUpLevel(enumFood.name());
                 }
             }
-            else if(targetDino != null){
-                nutritionValue = Food.PTERO.getUpLevel("PTERO");
-            }
         }
+
+        // Pterodactyl eating corpse
         if(foodLoc != null && targetFood != null && removeCount == 1){
             foodLoc.removeItem(targetFood);
         }
@@ -170,10 +169,13 @@ public class EatingAction extends Action {
             }
         }
 
-        if(targetFood != null)
-            return menuDescription(actor) + targetFood + ".\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
+        // if Allosaur eats Pterodactyl alive
+        if(targetDino != null){
+            dino.setFoodLevel(dino.getMaxFoodLevel());
+            return menuDescription(actor) + targetDino + ".\nFood level of " + dino + " has increased to max " +  dino.getFoodLevel();
+        }
         else
-            return menuDescription(actor) + targetDino + ".\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
+            return menuDescription(actor) + targetFood + ".\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
     }
 
     /**
