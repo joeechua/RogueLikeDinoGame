@@ -19,11 +19,12 @@ public class Application {
 	public static int challengePoints = 20000;
 	public static int choice = 0;
 	private static boolean endGame = false;
-	public static ActorLocations actLoc;
+	//public static ActorLocations actLoc;
+	public static DinoWorld world;
 
 	public static void main(String[] args) {
-		DinoWorld world = new DinoWorld(new Display());
-		actLoc = world.getActorLocations();
+		world = new DinoWorld(new Display());
+		//actLoc = world.getActorLocations();
 		//World world = new World(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new Bush(), new VendingMachine(), new Lake());
