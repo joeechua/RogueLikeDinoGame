@@ -4,7 +4,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.Application;
+import game.actors.BabyPterodactyl;
 import game.actors.Dinosaur;
+import game.actors.Pterodactyl;
 import game.items.Fish;
 
 import java.util.ArrayList;
@@ -58,11 +60,12 @@ public class Lake extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        if(actor instanceof Dinosaur){
-            Dinosaur dino = (Dinosaur) actor;
-            return dino.isFlying();
-        }
-        return false;
+//        if(actor instanceof Pterodactyl || actor instanceof BabyPterodactyl){
+//            Dinosaur dino = (Dinosaur) actor;
+//            return dino.isFlying();
+//        }
+//        return false;
+        return actor instanceof Pterodactyl || actor instanceof BabyPterodactyl;
     }
 
     /**

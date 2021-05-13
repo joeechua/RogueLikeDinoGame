@@ -10,6 +10,8 @@ import game.enums.Food;
 import game.enums.Gender;
 import game.ground.Bush;
 import game.ground.Dirt;
+import game.ground.Lake;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -114,7 +116,6 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         tick();
-
         if(map.locationOf(this).getGround() != null){
             if((this instanceof Brachiosaur || this instanceof BabyBrachiosaur) && map.locationOf(this).getGround().equals(Bush.class)){
                 if(random.nextDouble() <= 0.5){
@@ -124,9 +125,9 @@ public abstract class Dinosaur extends Actor {
         }
         // after attack can eat or after landing can eat
         if(lastAction instanceof AttackAction || lastAction instanceof LandingAction){
-            System.out.println("hello it landed??");
             return new HungerBehaviour().getAction(this,map);
         }
+
         System.out.println(this.getName() + " is standing on: " + map.locationOf(this).getGround());
         return new DinosaurBehaviour().getAction(this, map);
     }

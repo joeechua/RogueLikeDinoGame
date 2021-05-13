@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.*;
 import game.actors.*;
 import game.enums.Gender;
 import game.ground.*;
-import game.items.Corpse;
 
 /**
  * The main class for the Jurassic World game.
@@ -22,6 +21,8 @@ public class Application {
 	public static ActorLocations actLoc;
 
 	public static void main(String[] args) {
+
+		//print a menu
 		do {
 			boolean printMenu = true;
 			while (printMenu) {
@@ -159,7 +160,7 @@ public class Application {
 			// Place a pair of stegosaurs in the middle of the map
 			gameMap.at(30, 12).addActor(new Stegosaur(Gender.F));
 			gameMap.at(32, 12).addActor(new Stegosaur(Gender.M));
-			gameMap.at(50,12).addActor(new Brachiosaur(Gender.M));
+			gameMap.at(48,12).addActor(new Brachiosaur(Gender.M));
 			gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 			gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
 			gameMap.at(42,14).addActor(new Brachiosaur(Gender.F));
@@ -169,8 +170,6 @@ public class Application {
 			gameMap.at(41, 22).addActor(ptero);
 			gameMap.at(41,23).addActor(new Allosaur(Gender.M));
 			gameMap.at(41, 1).addActor(new Pterodactyl(Gender.M));
-
-		//print a menu
 
 			world.addPlayer(player, gameMap.at(9, 4));
 			world.run();
