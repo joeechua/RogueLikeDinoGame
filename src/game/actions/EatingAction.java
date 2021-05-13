@@ -166,11 +166,14 @@ public class EatingAction extends Action {
                     tree.getTreeFruit().remove(0);
                     dino.incFoodLevel(5);
                 }
-                return menuDescription(actor) + "\nFood level of " + dino + " has increased to " +  dino.getFoodLevel();
+                return menuDescription(actor) + targetFood + ".\nFood level of " + dino + " has increased to " +  dino.getFoodLevel();
             }
         }
 
-        return menuDescription(actor) + "\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
+        if(targetFood != null)
+            return menuDescription(actor) + targetFood + ".\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
+        else
+            return menuDescription(actor) + targetDino + ".\nFood level of " + dino + " has increased by "  + nutritionValue + " to " +  dino.getFoodLevel();
     }
 
     /**
@@ -181,6 +184,6 @@ public class EatingAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " is eating " + targetFood;
+        return actor + " is eating ";
     }
 }

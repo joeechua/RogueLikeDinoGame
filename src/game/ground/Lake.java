@@ -33,6 +33,7 @@ public class Lake extends Ground {
     public void tick(Location location) {
         super.tick(location);
         turns ++;
+        waterSips--;
         if (turns % 10 == 0 && random.nextDouble() <= 0.2){
             System.out.println("It's raining.");
             float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
@@ -54,14 +55,17 @@ public class Lake extends Ground {
         }
 
         if(!gotWater()){
-            System.out.println("lake dried!");
             location.setGround(new Dirt());
         }
     }
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        return actor instanceof Pterodactyl || actor instanceof BabyPterodactyl;
+        if(actor instanceof Dinosaur){
+            Dinosaur dino = (Dinosaur) actor;
+            return dino.isFlying();
+        }
+        return false;
     }
 
     /**
