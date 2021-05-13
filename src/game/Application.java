@@ -19,12 +19,11 @@ public class Application {
 	public static int challengePoints = 20000;
 	public static int choice = 0;
 	private static boolean endGame = false;
-	//public static ActorLocations actLoc;
-	public static DinoWorld world;
+	public static ActorLocations actLoc;
 
 	public static void main(String[] args) {
-		world = new DinoWorld(new Display());
-		//actLoc = world.getActorLocations();
+		DinoWorld world = new DinoWorld(new Display());
+		actLoc = world.getActorLocations();
 		//World world = new World(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new Bush(), new VendingMachine(), new Lake());
@@ -55,7 +54,7 @@ public class Application {
 		".....~~~~~~~~~........................~~.................................++++...",
 		".~~~~~~~~~~...............................................................++....",
 		"................................................................................");
-		GameMap gameMap = new GameMap(groundFactory, map);
+		GameMap gameMap = new GameMap(groundFactory, map );
 		world.addGameMap(gameMap);
 
 		FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Tree(), new Lake());
