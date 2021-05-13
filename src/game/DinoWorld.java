@@ -2,7 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.ActorLocations;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
+import game.actors.Dinosaur;
 
 public class DinoWorld extends World{
     /**

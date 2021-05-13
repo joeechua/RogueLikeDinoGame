@@ -54,7 +54,7 @@ public class Application {
 		".....~~~~~~~~~........................~~.................................++++...",
 		".~~~~~~~~~~...............................................................++....",
 		"................................................................................");
-		GameMap gameMap = new GameMap(groundFactory, map );
+		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 
 		FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Tree(), new Lake());
