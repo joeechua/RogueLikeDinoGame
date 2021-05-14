@@ -76,7 +76,7 @@ public class Application {
 			"......................................+++.......................................",
 			".......................................++++.....................................",
 			"...................................+++++........................................",
-			".....................................++++++~~~~~~...............................",
+			".....................................++++++~~~~~................................",
 			"......................................+++.~~~~~~................................",
 			"....~~~~.....~~~~....................+++~~~~~~~~................................",
 			"....~~~~~~~~~~~~~...............................................................",
@@ -87,11 +87,11 @@ public class Application {
 			"............+++.......................................+++~~~~~~~~~~.............",
 			"..........................................................~~~~~~~~~.............",
 			"~~~~~~~~~............................~~~...................~~~~~~~~......++.....",
-			"~~~~~~~~~...........................~~~~....................~~~~~~~.....++.++...",
-			".....~~~~~~~~~........................~~.................................++++...",
-			".~~~~~~~~~~...............................................................++....",
+			"~~~~~~~~~...........................~~~~~~..................~~~~~~~.....++.++...",
+			".....~~~~~~~~~........................~~.~...............................++++...",
+			".~~~~~~~~~~............................~~~................................++....",
 			"................................................................................");
-			GameMap gameMap = new GameMap(groundFactory, map );
+			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
 			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Tree(), new Lake());
@@ -160,15 +160,16 @@ public class Application {
 			// Place a pair of stegosaurs in the middle of the map
 			gameMap.at(30, 12).addActor(new Stegosaur(Gender.F));
 			gameMap.at(32, 12).addActor(new Stegosaur(Gender.M));
-			gameMap.at(48,12).addActor(new Brachiosaur(Gender.M));
+			gameMap.at(48, 11).addActor(new Stegosaur(Gender.M));
+			gameMap.at(49,12).addActor(new Brachiosaur(Gender.M));
 			gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 			gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
-			gameMap.at(42,14).addActor(new Brachiosaur(Gender.F));
+			gameMap.at(40,22).addActor(new Pterodactyl(Gender.F));
 			gameMap.at(41, 14).addActor(new Pterodactyl(Gender.M));
-			Pterodactyl ptero = new Pterodactyl(Gender.F);
-			//ptero.setFlying(false);
-			gameMap.at(41, 22).addActor(ptero);
-			gameMap.at(41,23).addActor(new Allosaur(Gender.M));
+//			Pterodactyl ptero = new Pterodactyl(Gender.F);
+//			ptero.setFlying(false);
+//			gameMap.at(40, 22).addActor(ptero);
+			gameMap.at(42,23).addActor(new Allosaur(Gender.M));
 			gameMap.at(41, 1).addActor(new Pterodactyl(Gender.M));
 
 			world.addPlayer(player, gameMap.at(9, 4));

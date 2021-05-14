@@ -11,5 +11,5 @@ public enum DinosaurCapabilities {
     CARNIVORE, //dinosaur is carnivore
     LONG_NECK, //dinosaur has a long neck
     FLY, //dinosaur can fly
-    PREGNANT; //dinosaur is pregnant
+    PREGNANT //dinosaur is pregnant
 }

@@ -10,7 +10,6 @@ import game.enums.Food;
 import game.enums.Gender;
 import game.ground.Bush;
 import game.ground.Dirt;
-import game.ground.Lake;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -235,14 +234,14 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-    public boolean canLand(){
-        if(capabilities.contains(DinosaurCapabilities.FLY)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+//    public boolean canLand(){
+//        if(capabilities.contains(DinosaurCapabilities.FLY)){
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
+//    }
 
     /**
      * Determine whether the dinosaur has long neck.
@@ -609,5 +608,9 @@ public abstract class Dinosaur extends Actor {
 
     public void setDisplayChar(char displayChar) {
         this.displayChar = displayChar;
+    }
+
+    public ArrayList<DinosaurCapabilities> getCapabilities() {
+        return capabilities;
     }
 }

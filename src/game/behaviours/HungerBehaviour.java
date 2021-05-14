@@ -207,7 +207,8 @@ public class HungerBehaviour implements Behaviour {
                         food = temp.getDestination();
                     }
                     while (food == dino.getPrevLoc());
-                    ret = new MoveActorAction(food, temp.getName());
+                    if(food.canActorEnter(dino))
+                        ret = new MoveActorAction(food, temp.getName());
                 }
                 dino.setPrevLoc(food);
                 return ret;

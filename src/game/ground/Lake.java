@@ -7,6 +7,7 @@ import game.Application;
 import game.actors.BabyPterodactyl;
 import game.actors.Dinosaur;
 import game.actors.Pterodactyl;
+import game.enums.DinosaurCapabilities;
 import game.items.Fish;
 
 import java.util.ArrayList;
@@ -60,12 +61,13 @@ public class Lake extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-//        if(actor instanceof Pterodactyl || actor instanceof BabyPterodactyl){
-//            Dinosaur dino = (Dinosaur) actor;
-//            return dino.isFlying();
-//        }
-//        return false;
-        return actor instanceof Pterodactyl || actor instanceof BabyPterodactyl;
+        if(actor instanceof Dinosaur){
+            Dinosaur dino = (Dinosaur) actor;
+            if(dino.getCapabilities().contains(DinosaurCapabilities.FLY)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -18,7 +18,7 @@ public class BabyPterodactyl extends BabyDinosaur{
      * @see Food
      */
     public BabyPterodactyl(Gender inputGender){
-        super("Baby " + Species.P.name(),'p',100,inputGender);
+        super("Baby " + Species.P.name(),'p',100, inputGender);
         capabilities.add(DinosaurCapabilities.FLY);
         capabilities.add(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this));
