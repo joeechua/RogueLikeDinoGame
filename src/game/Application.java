@@ -164,7 +164,7 @@ public class Application {
 			gameMap.at(49,12).addActor(new Brachiosaur(Gender.M));
 			gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 			gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
-			gameMap.at(40,22).addActor(new Pterodactyl(Gender.F));
+			gameMap.at(40,22).addActor(new Brachiosaur(Gender.F));
 			gameMap.at(41, 14).addActor(new Pterodactyl(Gender.M));
 //			Pterodactyl ptero = new Pterodactyl(Gender.F);
 //			ptero.setFlying(false);
