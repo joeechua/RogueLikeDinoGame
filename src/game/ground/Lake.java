@@ -4,9 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.Application;
-import game.actors.BabyPterodactyl;
 import game.actors.Dinosaur;
-import game.actors.Pterodactyl;
 import game.enums.DinosaurCapabilities;
 import game.items.Fish;
 
