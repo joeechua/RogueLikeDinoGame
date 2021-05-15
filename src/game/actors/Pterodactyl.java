@@ -36,8 +36,8 @@ public class Pterodactyl extends Dinosaur{
      */
     public Pterodactyl(Gender inputGender){
         super(Species.P.name(), 'P', 100);
-        capabilities.add(DinosaurCapabilities.FLY);
-        capabilities.add(DinosaurCapabilities.CARNIVORE);
+        this.addCapability(DinosaurCapabilities.FLY);
+        this.addCapability(DinosaurCapabilities.CARNIVORE);
         gender = inputGender;
         setEdibleFoodList(Food.getFoodList(this)); // haven't implement in food
         setFoodLevel(50);

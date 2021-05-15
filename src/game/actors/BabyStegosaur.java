@@ -27,7 +27,7 @@ public class BabyStegosaur extends BabyDinosaur{
      */
     public BabyStegosaur(Gender g) {
         super("Baby " + Species.S.name(),'s',100, g);
-        capabilities.add(DinosaurCapabilities.HERBIVORE);
+        this.addCapability(DinosaurCapabilities.HERBIVORE);
         setEdibleFoodList(Food.getFoodList(this));
         gender = g;
         attackTurns = 0;

@@ -25,8 +25,8 @@ public class BabyBrachiosaur extends BabyDinosaur{
      */
     public BabyBrachiosaur(Gender g) {
         super("Baby " + Species.B.name(), 'b', 1000,g);
-        capabilities.add(DinosaurCapabilities.HERBIVORE);
-        capabilities.add(DinosaurCapabilities.LONG_NECK);
+        this.addCapability(DinosaurCapabilities.HERBIVORE);
+        this.addCapability(DinosaurCapabilities.LONG_NECK);
         setEdibleFoodList(Food.getFoodList(this));
         gender = g;
         setFoodLevel(10);

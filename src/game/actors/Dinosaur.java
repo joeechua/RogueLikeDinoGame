@@ -29,8 +29,6 @@ public abstract class Dinosaur extends Actor {
     private ArrayList<Behaviour> behaviours;
     // List of edible food list
     private ArrayList<Food> edibleFoodList;
-    // Collection of capabilities
-    protected ArrayList<DinosaurCapabilities> capabilities;
     // previous location of dinosaur
     private Location prevLoc;
     // gender of dinosaurs
@@ -80,7 +78,6 @@ public abstract class Dinosaur extends Actor {
         super(name, displayChar, hitPoints);
         pregnancyTurns = 0;
         behaviours = new ArrayList<>();
-        capabilities = new ArrayList<>();
         edibleFoodList = new ArrayList<>();
         setWaterLevel(60);
         setMinWaterLevel(40);
@@ -226,7 +223,7 @@ public abstract class Dinosaur extends Actor {
      * @see DinosaurCapabilities
      */
     public boolean isHerbivore(){
-        if(capabilities.contains(DinosaurCapabilities.HERBIVORE)){
+        if(this.hasCapability(DinosaurCapabilities.HERBIVORE)){
             return true;
         }
         else{
@@ -234,22 +231,13 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-//    public boolean canLand(){
-//        if(capabilities.contains(DinosaurCapabilities.FLY)){
-//            return true;
-//        }
-//        else{
-//            return false;
-//        }
-//    }
-
     /**
      * Determine whether the dinosaur has long neck.
      * @return a boolean, if true dino has long neck, false dino doesn't have long neck
      * @see DinosaurCapabilities
      */
     public boolean isLongNeck(){
-        if(capabilities.contains(DinosaurCapabilities.LONG_NECK)){
+        if(this.hasCapability(DinosaurCapabilities.LONG_NECK)){
             return true;
         }
         else {
@@ -610,7 +598,4 @@ public abstract class Dinosaur extends Actor {
         this.displayChar = displayChar;
     }
 
-    public ArrayList<DinosaurCapabilities> getCapabilities() {
-        return capabilities;
-    }
 }

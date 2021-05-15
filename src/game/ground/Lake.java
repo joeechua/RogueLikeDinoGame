@@ -42,7 +42,7 @@ public class Lake extends Ground {
                 if(actor instanceof Dinosaur){
                     Dinosaur dino = (Dinosaur) actor;
                     if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
-                        dino.setWaterLevel(10);
+                        dino.incWaterLevel(10);
                         //make it conscious
                     }
                 }
@@ -61,11 +61,8 @@ public class Lake extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        if(actor instanceof Dinosaur){
-            Dinosaur dino = (Dinosaur) actor;
-            if(dino.getCapabilities().contains(DinosaurCapabilities.FLY)){
+        if(actor.hasCapability(DinosaurCapabilities.FLY)){
                 return true;
-            }
         }
         return false;
     }

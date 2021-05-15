@@ -27,7 +27,7 @@ public class BabyAllosaur extends BabyDinosaur{
      */
     public BabyAllosaur(Gender g) {
         super("Baby " + Species.A.name(),'a',100,g);
-        capabilities.add(DinosaurCapabilities.CARNIVORE);
+        this.addCapability(DinosaurCapabilities.CARNIVORE);
         setEdibleFoodList(Food.getFoodList(this));
         gender = g;
         // init food level of 20

@@ -48,8 +48,8 @@ public class Brachiosaur extends Dinosaur {
      */
     public Brachiosaur(Gender inputGender){
         super(Species.B.name(), 'B', 100);
-        capabilities.add(DinosaurCapabilities.HERBIVORE);
-        capabilities.add(DinosaurCapabilities.LONG_NECK);
+        this.addCapability(DinosaurCapabilities.HERBIVORE);
+        this.addCapability(DinosaurCapabilities.LONG_NECK);
         setEdibleFoodList(Food.getFoodList(this));
         gender = inputGender;
         setFoodLevel(100);

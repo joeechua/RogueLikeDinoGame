@@ -58,7 +58,7 @@ public class Stegosaur extends Dinosaur {
 	 */
 	public Stegosaur(Gender inputGender){
 		super(Species.S.name(), 'S', 100);
-		capabilities.add(DinosaurCapabilities.HERBIVORE);
+		this.addCapability(DinosaurCapabilities.HERBIVORE);
 		setEdibleFoodList(Food.getFoodList(this));
 		gender = inputGender;
 		attackTurns = 0;

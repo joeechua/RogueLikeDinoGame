@@ -55,7 +55,7 @@ public class Allosaur extends Dinosaur {
     public Allosaur(Gender inputGender) {
         super(Species.A.name(), 'A', 100);
         // add capabilities
-        capabilities.add(DinosaurCapabilities.CARNIVORE);
+        this.addCapability(DinosaurCapabilities.CARNIVORE);
         // set EdibleFoodList and gender
         setEdibleFoodList(Food.getFoodList(this));
         gender = inputGender;
