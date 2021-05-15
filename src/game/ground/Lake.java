@@ -34,7 +34,7 @@ public class Lake extends Ground {
     public void tick(Location location) {
         super.tick(location);
         turns ++;
-        waterSips--;
+//        waterSips--;
         if (turns % 10 == 0 && random.nextDouble() <= 0.2){
             float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
             incWaterSips((int) (rainfall * 20));

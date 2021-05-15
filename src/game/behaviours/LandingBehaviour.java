@@ -14,7 +14,6 @@ public class LandingBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
         here = map.locationOf(actor);
         dino = (Dinosaur) actor;
-//        Action ret = null;
         if(dino.isFlying()){
             for(Exit exits: here.getExits()){
                 //if dino lands on tree
@@ -28,7 +27,14 @@ public class LandingBehaviour implements Behaviour {
                 else if(exits.getDestination().getItems().size() > 0){
                     for(Item it: exits.getDestination().getItems()){
                         if(it instanceof Corpse){
-                            return new LandingAction(exits.getDestination(), false);
+                            boolean found = false;
+                            for(Exit exit: here.getExits()){
+                                if(exit.getDestination().getActor() instanceof Dinosaur){
+                                    found = true;
+                                }
+                            }
+                            if(!found)
+                                return new LandingAction(exits.getDestination(), false);
                         }
                     }
                 }
