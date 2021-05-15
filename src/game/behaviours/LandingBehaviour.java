@@ -14,7 +14,7 @@ public class LandingBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
         here = map.locationOf(actor);
         dino = (Dinosaur) actor;
-        Action ret = null;
+//        Action ret = null;
         if(dino.isFlying()){
             for(Exit exits: here.getExits()){
                 //if dino lands on tree
@@ -33,7 +33,7 @@ public class LandingBehaviour implements Behaviour {
                     }
                 }
                 else{
-                    ret = new LandingAction(exits.getDestination(),false);
+                    return new LandingAction(exits.getDestination(),false);
                 }
             }
         }
@@ -50,8 +50,8 @@ public class LandingBehaviour implements Behaviour {
             return moveCloser();
         }
         //in the case there are no trees around it will return null and it will wander or do something else
-        System.out.println("Why nothing de??");
-        return ret;
+//        System.out.println("Why nothing de??");
+        return null;
     }
 
     private Action moveCloser(){

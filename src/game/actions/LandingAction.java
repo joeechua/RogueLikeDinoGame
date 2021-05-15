@@ -28,7 +28,7 @@ public class LandingAction extends Action {
         else{
             dino.setDisplayChar('P');
         }
-        if(takeOff){
+        if(takeOff && map.locationOf(actor).getGround() instanceof Tree){
             Tree t = (Tree) g;
             if(t.hasDinosaur()){
                 t.removeDinosaur();
@@ -48,7 +48,8 @@ public class LandingAction extends Action {
             }
             dino.setSquares(5);
             dino.setOnTree(false);
-            return menuDescription(actor) + "takes off from a tree.";
+            dino.setDisplayChar('ⓟ');
+            return menuDescription(actor) + " takes off from a tree.";
         }
         else{
             dino.setFlying(false);
