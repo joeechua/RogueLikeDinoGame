@@ -18,7 +18,6 @@ public class Application {
 	public static int challengePoints = 20000;
 	public static int choice = 0;
 	private static boolean endGame = false;
-	public static ActorLocations actLoc;
 
 	public static void main(String[] args) {
 
@@ -59,9 +58,8 @@ public class Application {
 					return;
 				}
 			}
-			DinoWorld world = new DinoWorld(new Display());
-			actLoc = world.getActorLocations();
-			//World world = new World(new Display());
+//			DinoWorld world = new DinoWorld(new Display());
+			World world = new World(new Display());
 
 			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new Bush(), new VendingMachine(), new Lake());
 
@@ -91,7 +89,8 @@ public class Application {
 			".....~~~~~~~~~........................~~.~...............................++++...",
 			".~~~~~~~~~~............................~~~................................++....",
 			"................................................................................");
-			GameMap gameMap = new GameMap(groundFactory, map);
+			DinoGameMap gameMap = new DinoGameMap(groundFactory, map);
+//			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
 			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Tree(), new Lake());
@@ -122,7 +121,8 @@ public class Application {
 			"....................................................................~~~~~++++...",
 			".........~~~~~~~~~.......................~~~~~~~...~~~~~..................++....",
 			"............~~~~~~.....................~~~~~~~~~~~~~~~~~~.......................");
-			GameMap gameMap2 = new GameMap(groundFactory2, map2);
+			DinoGameMap gameMap2 = new DinoGameMap(groundFactory2, map2);
+//			GameMap gameMap2 = new GameMap(groundFactory2, map2);
 			world.addGameMap(gameMap2);
 
 			// link both maps

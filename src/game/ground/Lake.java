@@ -33,21 +33,22 @@ public class Lake extends Ground {
         super.tick(location);
         turns ++;
 //        waterSips--;
-        if (turns % 10 == 0 && random.nextDouble() <= 0.2){
-            float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
-            incWaterSips((int) (rainfall * 20));
-            for(Actor actor: Application.actLoc){
-                if(actor instanceof Dinosaur){
-                    Dinosaur dino = (Dinosaur) actor;
-                    if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
-                        dino.incWaterLevel(10);
-                        //make it conscious
-                    }
-                }
+//        if (turns % 10 == 0 && random.nextDouble() <= 0.2){
+//            float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
+//            incWaterSips((int) (rainfall * 20));
+//            for(Actor actor: Application.actLoc){
+//                if(actor instanceof Dinosaur){
+//                    Dinosaur dino = (Dinosaur) actor;
+//                    if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
+//                        dino.incWaterLevel(10);
+//                        //make it conscious
+//                    }
+//                }
+//
+//            }
+//        }
 
-            }
-        }
-
+        // add new fish
         if(fishes.size() < MAX_NO_OF_FISH && random.nextDouble() <= 0.6){
             fishes.add(new Fish());
         }
@@ -98,7 +99,7 @@ public class Lake extends Ground {
      * @param incValue the increment value
      */
     public void incWaterSips(int incValue){
-        waterSips = Math.min(getWaterSips()+incValue, 25);
+        waterSips = getWaterSips()+incValue;
     }
 
     /**
