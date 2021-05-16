@@ -3,7 +3,7 @@ package game.behaviours;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.actions.EatingAction;
-import game.actions.LandingAction;
+import game.actions.LandingTakeOffAction;
 import game.actors.Allosaur;
 import game.actors.BabyPterodactyl;
 import game.actors.Dinosaur;
@@ -78,7 +78,7 @@ public class HungerBehaviour implements Behaviour {
                         if(dino instanceof Pterodactyl && food instanceof Corpse){
                             //if corpse then land on it
                             if(dino.isFlying()){
-                                ret = new LandingAction(exit.getDestination(), false);
+                                ret = new LandingTakeOffAction(exit.getDestination(), false);
                             }
                             else{
                                 ret = new EatingAction(food, exit.getDestination());

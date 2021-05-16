@@ -1,10 +1,8 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.LandingAction;
 import game.actions.LayEggAction;
 import game.actors.*;
-import game.ground.Tree;
 
 import java.util.Random;
 

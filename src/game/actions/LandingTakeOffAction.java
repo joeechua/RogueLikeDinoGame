@@ -6,14 +6,15 @@ import game.actors.Dinosaur;
 import game.behaviours.Behaviour;
 import game.behaviours.LandingBehaviour;
 import game.ground.Tree;
+import game.items.Corpse;
 
-public class LandingAction extends Action {
+public class LandingTakeOffAction extends Action {
 
     private Location landingLoc;
     private boolean takeOff;
 
 
-    public LandingAction(Location loc, boolean fly){
+    public LandingTakeOffAction(Location loc, boolean fly){
         landingLoc = loc;
         takeOff = fly;
     }
@@ -58,6 +59,12 @@ public class LandingAction extends Action {
                 t.addDinosaur(dino);
                 dino.setOnTree(true);
                 return menuDescription(actor) + " lands on a tree.";
+            }
+            for(Item item: landingLoc.getItems()){
+                if(item instanceof Corpse){
+                    dino.setOnTree(false);
+                    return menuDescription(actor) + "lands on a corpse";
+                }
             }
             dino.setOnTree(false);
             return menuDescription(actor) + " lands on the ground";

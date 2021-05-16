@@ -3,7 +3,7 @@ package game.actors;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.actions.FeedingAction;
-import game.actions.LandingAction;
+import game.actions.LandingTakeOffAction;
 import game.behaviours.*;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
@@ -120,7 +120,7 @@ public abstract class Dinosaur extends Actor {
             }
         }
         // after attack can eat or after landing can eat
-        if(lastAction instanceof AttackAction || lastAction instanceof LandingAction){
+        if(lastAction instanceof AttackAction || lastAction instanceof LandingTakeOffAction){
             return new HungerBehaviour().getAction(this,map);
         }
 

@@ -1,7 +1,7 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.LandingAction;
+import game.actions.LandingTakeOffAction;
 import game.actors.Dinosaur;
 import game.ground.Tree;
 import game.items.Corpse;
@@ -20,7 +20,7 @@ public class LandingBehaviour implements Behaviour {
                 if(exits.getDestination().getGround() instanceof Tree){
                     Tree t = (Tree) exits.getDestination().getGround();
                     if(!t.hasDinosaur()){
-                        return new LandingAction(exits.getDestination(),false);
+                        return new LandingTakeOffAction(exits.getDestination(),false);
                     }
                 }
                 //if dino lands on corpse
@@ -34,12 +34,12 @@ public class LandingBehaviour implements Behaviour {
                                 }
                             }
                             if(!found)
-                                return new LandingAction(exits.getDestination(), false);
+                                return new LandingTakeOffAction(exits.getDestination(), false);
                         }
                     }
                 }
                 else{
-                    return new LandingAction(exits.getDestination(),false);
+                    return new LandingTakeOffAction(exits.getDestination(),false);
                 }
             }
         }
@@ -48,7 +48,7 @@ public class LandingBehaviour implements Behaviour {
                 if(exits.getDestination().getGround() instanceof Tree){
                     Tree t = (Tree) exits.getDestination().getGround();
                     if(!t.hasDinosaur()){
-                        return new LandingAction(exits.getDestination(),true);
+                        return new LandingTakeOffAction(exits.getDestination(),true);
                     }
                 }
             }
