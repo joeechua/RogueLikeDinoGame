@@ -20,12 +20,16 @@ public class DinoGameMap extends GameMap {
     @Override
     public void tick() {
         super.tick();
+        this.rain();
+    }
+
+    public void rain(){
         int turns = 0;
         for (int y : heights) {
             for (int x : widths) {
                 if(this.at(x, y).getGround() instanceof Lake){
-                  Lake lake = (Lake) this.at(x, y).getGround();
-                  turns = lake.getTurns();
+                    Lake lake = (Lake) this.at(x, y).getGround();
+                    turns = lake.getTurns();
                 }
             }
         }
