@@ -58,8 +58,8 @@ public class Application {
 					return;
 				}
 			}
-//			DinoWorld world = new DinoWorld(new Display());
-			World world = new World(new Display());
+			DinoWorld world = new DinoWorld(new Display());
+			//World world = new World(new Display());
 
 			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new Bush(), new VendingMachine(), new Lake());
 
@@ -90,7 +90,7 @@ public class Application {
 			".~~~~~~~~~~............................~~~................................++....",
 			"................................................................................");
 			DinoGameMap gameMap = new DinoGameMap(groundFactory, map);
-//			GameMap gameMap = new GameMap(groundFactory, map);
+			//GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
 			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Tree(), new Lake());
@@ -173,6 +173,7 @@ public class Application {
 			gameMap.at(41, 1).addActor(new Pterodactyl(Gender.M));
 
 			world.addPlayer(player, gameMap.at(9, 4));
+			System.out.println("world class: " + world.getClass());
 			world.run();
 		}
 		while(!endGame);

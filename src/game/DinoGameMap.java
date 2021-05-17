@@ -17,42 +17,42 @@ public class DinoGameMap extends GameMap {
         super(groundFactory, lines);
     }
 
-    @Override
-    public void tick() {
-        super.tick();
-        this.rain();
-    }
+//    @Override
+//    public void tick() {
+//        super.tick();
+//        //this.rain();
+//    }
 
     public void rain(){
-        int turns = 0;
+        //int turns = 0;
         for (int y : heights) {
             for (int x : widths) {
                 if(this.at(x, y).getGround() instanceof Lake){
                     Lake lake = (Lake) this.at(x, y).getGround();
-                    turns = lake.getTurns();
+                    //turns = lake.getTurns();
                 }
             }
         }
 
-        if(turns % 10 == 0 && random.nextDouble() <= 0.2){
-            System.out.println("It's raining !!");
-            float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
-            for (int y : heights) {
-                for (int x : widths) {
-                    if(this.at(x, y).getGround() instanceof Lake){
-                        Lake lake = (Lake) this.at(x, y).getGround();
-                        lake.incWaterSips((int) rainfall * 20);
-                    }
-                }
-            }
-            for(Actor actor: this.actorLocations){
-                if (actor instanceof Dinosaur){
-                    Dinosaur dino = (Dinosaur) actor;
-                    if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
-                        dino.incWaterLevel(10);
-                    }
+        //if(turns % 10 == 0 && random.nextDouble() <= 0.2){
+        //System.out.println("It's raining !!");
+        float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
+        for (int y : heights) {
+            for (int x : widths) {
+                if(this.at(x, y).getGround() instanceof Lake){
+                    Lake lake = (Lake) this.at(x, y).getGround();
+                    lake.incWaterSips((int) rainfall * 20);
                 }
             }
         }
+        for(Actor actor: this.actorLocations){
+            if (actor instanceof Dinosaur){
+                Dinosaur dino = (Dinosaur) actor;
+                if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
+                    dino.incWaterLevel(10);
+                }
+            }
+        }
+        //}
     }
 }
