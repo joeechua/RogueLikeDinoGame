@@ -8,20 +8,47 @@ import game.behaviours.LandingBehaviour;
 import game.ground.Tree;
 import game.items.Corpse;
 
+/**
+ * Special (Landing and Take Off) Action for Pterodactyl and BabyPterodactyl.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Action
+ */
+
 public class LandingTakeOffAction extends Action {
 
-    private Location landingLoc;
+    private Location landOrTakeOffLocation;
     private boolean takeOff;
 
-
-    public LandingTakeOffAction(Location loc, boolean fly){
-        landingLoc = loc;
-        takeOff = fly;
+    /**
+     * Constructor
+     *
+     * @param loc The location of landing or take off
+     * @param takeOff true if take off else landing
+     * @see Location
+     */
+    public LandingTakeOffAction(Location loc, boolean takeOff){
+        landOrTakeOffLocation = loc;
+        this.takeOff = takeOff;
     }
 
+    /**
+     * Perform the landing or take off action.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened to the actor
+     * @see Actor
+     * @see GameMap
+     * @see Dinosaur
+     * @see Ground
+     * @see Tree
+     * @see Corpse
+     * @see LandingBehaviour
+     * @see Behaviour
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
-        Ground g = landingLoc.getGround();
+        Ground g = landOrTakeOffLocation.getGround();
         Dinosaur dino = (Dinosaur) actor;
         if(dino instanceof BabyPterodactyl){
             dino.setDisplayChar('p');
@@ -60,10 +87,10 @@ public class LandingTakeOffAction extends Action {
                 dino.setOnTree(true);
                 return menuDescription(actor) + " lands on a tree.";
             }
-            for(Item item: landingLoc.getItems()){
+            for(Item item: landOrTakeOffLocation.getItems()){
                 if(item instanceof Corpse){
                     dino.setOnTree(false);
-                    return menuDescription(actor) + "lands on a corpse";
+                    return menuDescription(actor) + "lands on a corpse.";
                 }
             }
             dino.setOnTree(false);
@@ -71,6 +98,11 @@ public class LandingTakeOffAction extends Action {
         }
     }
 
+    /**
+     * Return a descriptive string
+     * @param actor The actor performing the action.
+     * @return a description of the action
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + "";

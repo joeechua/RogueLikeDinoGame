@@ -22,6 +22,7 @@ public class BabyStegosaur extends BabyDinosaur{
      * has dinosaur capabilities herbivore
      * @param g the gender of baby stegosaur
      * @see Dinosaur
+     * @see Actor
      * @see DinosaurCapabilities
      * @see Food
      */

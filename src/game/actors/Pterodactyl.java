@@ -1,9 +1,17 @@
 package game.actors;
 
+import edu.monash.fit2099.engine.Actor;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
 import game.enums.Gender;
 import game.enums.Species;
+
+/**
+ * A flying based carnivorous dinosaur (Pterodactyl).
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see Dinosaur
+ */
 
 public class Pterodactyl extends Dinosaur{
 
@@ -30,6 +38,7 @@ public class Pterodactyl extends Dinosaur{
      * has dinosaur capabilities fly and carnivore
      * @param inputGender the gender of Pterodactyl
      * @see Dinosaur
+     * @see Actor
      * @see Species
      * @see DinosaurCapabilities
      * @see Food

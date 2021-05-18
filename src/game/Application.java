@@ -126,32 +126,7 @@ public class Application {
 			world.addGameMap(gameMap2);
 
 			// link both maps
-			int topOfMap =  gameMap2.getYRange().min();
-			int leftOfMap = gameMap2.getXRange().min();
-			int bottomOfMap = gameMap2.getYRange().max();
-			int rightOfMap = gameMap2.getXRange().max();
-
-			for(int x : gameMap2.getXRange()){
-				Location loc = gameMap2.at(x, bottomOfMap);
-				loc.addExit(new Exit("South", gameMap.at(x, topOfMap), "2"));
-				if(x < rightOfMap){
-					loc.addExit(new Exit("South-East", gameMap.at(x + 1, topOfMap), "3"));
-				}
-				if(x > leftOfMap){
-					loc.addExit(new Exit("South-West", gameMap.at(x - 1, topOfMap), "1"));
-				}
-			}
-
-			for(int x: gameMap.getXRange()){
-				Location loc = gameMap.at(x, topOfMap);
-				loc.addExit(new Exit("North", gameMap2.at(x, bottomOfMap), "8"));
-				if(x < rightOfMap){
-					loc.addExit(new Exit("North-East", gameMap2.at(x + 1, bottomOfMap), "9"));
-				}
-				if(x > leftOfMap){
-					loc.addExit(new Exit("North-West", gameMap2.at(x - 1, bottomOfMap), "7"));
-				}
-			}
+			linkMapVertically(gameMap, gameMap2);
 
 			Actor player = new Player("Player", '@', 100);
 
@@ -178,6 +153,40 @@ public class Application {
 		}
 		while(!endGame);
 
+	}
 
+	/**
+	 * Link 2 maps vertically by adding exits to the borders of map
+	 *
+	 * @param belowMap map that are supposed to be place below
+	 * @param aboveMap map that are supposed to be place above
+	 */
+	public static void linkMapVertically(DinoGameMap belowMap, DinoGameMap aboveMap){
+		int topOfMap =  belowMap.getYRange().min();
+		int leftOfMap = belowMap.getXRange().min();
+		int bottomOfMap = belowMap.getYRange().max();
+		int rightOfMap = belowMap.getXRange().max();
+
+		for(int x : aboveMap.getXRange()){
+			Location loc = aboveMap.at(x, bottomOfMap);
+			loc.addExit(new Exit("South", belowMap.at(x, topOfMap), "2"));
+			if(x < rightOfMap){
+				loc.addExit(new Exit("South-East", belowMap.at(x + 1, topOfMap), "3"));
+			}
+			if(x > leftOfMap){
+				loc.addExit(new Exit("South-West", belowMap.at(x - 1, topOfMap), "1"));
+			}
+		}
+
+		for(int x: belowMap.getXRange()){
+			Location loc = belowMap.at(x, topOfMap);
+			loc.addExit(new Exit("North", aboveMap.at(x, bottomOfMap), "8"));
+			if(x < rightOfMap){
+				loc.addExit(new Exit("North-East", aboveMap.at(x + 1, bottomOfMap), "9"));
+			}
+			if(x > leftOfMap){
+				loc.addExit(new Exit("North-West", aboveMap.at(x - 1, bottomOfMap), "7"));
+			}
+		}
 	}
 }

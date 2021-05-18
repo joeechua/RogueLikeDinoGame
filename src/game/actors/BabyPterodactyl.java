@@ -1,9 +1,17 @@
 package game.actors;
 
+import edu.monash.fit2099.engine.Actor;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
 import game.enums.Gender;
 import game.enums.Species;
+
+/**
+ * A flying based baby carnivorous dinosaur (Baby Pterodactyl).
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see BabyDinosaur
+ */
 
 public class BabyPterodactyl extends BabyDinosaur{
 
@@ -13,6 +21,7 @@ public class BabyPterodactyl extends BabyDinosaur{
      * has dinosaur capabilities fly and carnivore
      * @param inputGender the gender of baby pterodactyl
      * @see Dinosaur
+     * @see Actor
      * @see Species
      * @see DinosaurCapabilities
      * @see Food
