@@ -18,50 +18,91 @@ import java.util.Random;
  * A dinosaur class.
  *
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Actor
  */
 
 public abstract class Dinosaur extends Actor {
 
+    /**
+     * Random number generator
+     */
     private Random random = new Random();
-    // Collection of behaviours
+    /**
+     * Collection of behaviours
+     */
     private ArrayList<Behaviour> behaviours;
-    // List of edible food list
+    /**
+     * List of edible food list
+     */
     private ArrayList<Food> edibleFoodList;
-    // previous location of dinosaur
+    /**
+     * previous location of dinosaur
+     */
     private Location prevLoc;
-    // gender of dinosaurs
+    /**
+     * gender of dinosaurs
+     */
     protected Gender gender;
-    // current food level
+    /**
+     * current food level
+     */
     protected int foodLevel;
-    // min food level before getting unconscious
+    /**
+     * min food level before getting unconscious
+     */
     protected int minFoodLevel;
-    // max food level that dino can have
+    /**
+     * max food level that dino can have
+     */
     protected int maxFoodLevel;
-    // current unconscious time
+    /**
+     * current unconscious time
+     */
     protected int unconsciousTime;
-    // max unconscious time before dying
+    /**
+     * max unconscious time before dying
+     */
     protected int maxUnconsciousTime;
-    // rot time for corps
+    /**
+     * rot time for corpse
+     */
     protected int rotTime;
-    // pregnancy turns for pregnant dino
+    /**
+     * pregnancy turns for pregnant dino
+     */
     protected int pregnancyTurns;
-    // attack turns to check if allosaurs able to attack the same steg
+    /**
+     * attack turns to check if allosaur able to attack the same stegosaur
+     */
     protected int attackTurns;
-    // current water level
+    /**
+     * current water level
+     */
     protected int waterLevel;
-    // min water level before getting unconscious
+    /**
+     * min water level before getting unconscious
+     */
     protected int minWaterLevel;
-    // max water level that dino can have
+    /**
+     * max water level that dino can have
+     */
     protected int maxWaterLevel;
-    // squares that Pterodactyl fly
+    /**
+     * squares that Pterodactyl fly
+     */
     protected int squares;
-    // to check if Pterodactyl is flying
+    /**
+     * to check if Pterodactyl is flying
+     */
     protected boolean isFlying;
-    //to check if Pterodactyl is on a tree
+    /**
+     * to check if Pterodactyl is on a tree
+     */
     protected boolean onTree;
-    //to get number of turns needed to take away food
+    /**
+     * to get number of turns needed to take away food
+     */
     protected int removeCount;
 
     /**
@@ -70,6 +111,7 @@ public abstract class Dinosaur extends Actor {
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
+     * @see BabyDinosaur
      * @see DinosaurBehaviour
      * @see BreedBehaviour
      * @see GrowBehaviour
@@ -108,6 +150,8 @@ public abstract class Dinosaur extends Actor {
      * @see GameMap
      * @see HungerBehaviour
      * @see DinosaurBehaviour
+     * @see AttackAction
+     * @see LandingTakeOffAction
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -166,20 +210,36 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    /**
+     * Set the squares of dinosaur
+     * @param num int represents the square
+     */
     public void setSquares(int num){
         squares = num;
     }
 
+    /**
+     * Get the squares of dinosaur
+     * @return int represents the square
+     */
     public int getSquares(){
         int sq = squares;
         return sq;
     }
 
+    /**
+     * Get the remove count of the corpse
+     * @return int represents the remove count of the corpse
+     */
     public int getRemoveCount(){
         int ret = removeCount;
         return ret;
     }
 
+    /**
+     * Set the remove count of the corpse
+     * @param remC int represents the remove count of the corpse
+     */
     public void setRemoveCount(int remC){
         this.removeCount = remC;
     }
@@ -579,21 +639,33 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * To determine whether Pterodactyl is flying or not
-     * @return a boolean, if true means Pterodactyl is flying, false Pterodactyl
+     * @return a boolean, if true means Pterodactyl is flying, false Pterodactyl is not flying
      */
     public boolean isFlying() {
         return isFlying;
     }
 
+    /**
+     * To determine whether the Pterodactyl is on tree or not
+     * @return a boolean, if true Pterodactyl is on tree, false Pterodactyl is not on tree
+     */
     public boolean getOnTree(){
         boolean ret = onTree;
         return ret;
     }
 
+    /**
+     * Set the boolean to state the Pterodactyl is on Tree or not
+     * @param rest a boolean, if true Pterodactyl is on tree, false Pterodactyl is not on tree
+     */
     public void setOnTree(boolean rest){
         this.onTree = rest;
     }
 
+    /**
+     * Set the display character of dinosaurs
+     * @param displayChar display character for dinosaurs
+     */
     public void setDisplayChar(char displayChar) {
         this.displayChar = displayChar;
     }

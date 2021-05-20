@@ -9,7 +9,7 @@ import game.enums.Species;
 /**
  * A carnivorous dinosaur (Allosaur).
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Dinosaur
  */
 
@@ -47,6 +47,7 @@ public class Allosaur extends Dinosaur {
      * @see Actor
      * @see Dinosaur
      * @see Species
+     * @see Gender
      * @see DinosaurCapabilities
      * @see Food
      */

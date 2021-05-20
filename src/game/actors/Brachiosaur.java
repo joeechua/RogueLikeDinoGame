@@ -9,7 +9,7 @@ import game.enums.Species;
 /**
  * A herbivorous and long neck dinosaur (Brachiosaur).
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Dinosaur
  */
 public class Brachiosaur extends Dinosaur {
@@ -44,6 +44,7 @@ public class Brachiosaur extends Dinosaur {
      * @see Dinosaur
      * @see Actor
      * @see Species
+     * @see Gender
      * @see DinosaurCapabilities
      * @see Food
      */

@@ -9,7 +9,7 @@ import game.enums.Species;
 /**
  * A flying based baby carnivorous dinosaur (Baby Pterodactyl).
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see BabyDinosaur
  */
 
@@ -23,6 +23,7 @@ public class BabyPterodactyl extends BabyDinosaur{
      * @see Dinosaur
      * @see Actor
      * @see Species
+     * @see Gender
      * @see DinosaurCapabilities
      * @see Food
      */

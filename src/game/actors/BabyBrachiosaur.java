@@ -9,7 +9,7 @@ import game.enums.Species;
 /**
  * A baby herbivorous and long neck dinosaur (Baby Brachiosaur).
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see BabyDinosaur
  */
 
@@ -22,6 +22,7 @@ public class BabyBrachiosaur extends BabyDinosaur{
      * @see Dinosaur
      * @see Actor
      * @see Species
+     * @see Gender
      * @see DinosaurCapabilities
      * @see Food
      */

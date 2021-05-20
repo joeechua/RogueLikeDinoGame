@@ -1,15 +1,10 @@
 package game.actors;
 
 
-import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import game.actions.AttackAction;
-import game.behaviours.Behaviour;
-import game.behaviours.WanderBehaviour;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
 import game.enums.Gender;
@@ -18,7 +13,7 @@ import game.enums.Species;
 /**
  * A herbivorous dinosaur (Stegosaur).
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Dinosaur
  */
 public class Stegosaur extends Dinosaur {
@@ -54,6 +49,7 @@ public class Stegosaur extends Dinosaur {
 	 * @see Dinosaur
 	 * @see Actor
 	 * @see Species
+	 * @see Gender
 	 * @see DinosaurCapabilities
 	 * @see Food
 	 */

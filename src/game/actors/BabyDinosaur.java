@@ -1,17 +1,19 @@
 package game.actors;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.GrowAction;
 import game.enums.Gender;
 
 /**
  * A baby dinosaur class.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Dinosaur
  */
 
 public abstract class BabyDinosaur extends Dinosaur {
+    /**
+     * turns since the egg hatched
+     */
     protected int turnsSinceHatch;
 
     /**
@@ -20,6 +22,7 @@ public abstract class BabyDinosaur extends Dinosaur {
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
      * @param gender      the gender of the baby dino
+     * @see Gender
      */
     public BabyDinosaur(String name, char displayChar, int hitPoints, Gender gender) {
         super(name, displayChar, hitPoints);
@@ -36,6 +39,10 @@ public abstract class BabyDinosaur extends Dinosaur {
      * @return the Action to be performed
      * @see Actor
      * @see Dinosaur
+     * @see Actions
+     * @see Action
+     * @see GameMap
+     * @see Display
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {

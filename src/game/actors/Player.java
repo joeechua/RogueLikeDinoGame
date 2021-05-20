@@ -4,14 +4,11 @@ import edu.monash.fit2099.engine.*;
 import game.Application;
 import game.actions.QuitAction;
 import game.ecopoint.EcoPointWallet;
-import game.ground.VendingMachine;
-
-import java.util.List;
 
 /**
  * Class representing the Player.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Actor
  */
 public class Player extends Actor {

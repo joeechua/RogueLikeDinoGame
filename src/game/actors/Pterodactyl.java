@@ -9,7 +9,7 @@ import game.enums.Species;
 /**
  * A flying based carnivorous dinosaur (Pterodactyl).
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Dinosaur
  */
 
@@ -40,6 +40,7 @@ public class Pterodactyl extends Dinosaur{
      * @see Dinosaur
      * @see Actor
      * @see Species
+     * @see Gender
      * @see DinosaurCapabilities
      * @see Food
      */

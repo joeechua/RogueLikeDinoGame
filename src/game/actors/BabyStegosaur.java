@@ -12,7 +12,7 @@ import game.enums.Species;
 /**
  * A baby herbivorous dinosaur (BabyStegosaur).
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see BabyDinosaur
  */
 public class BabyStegosaur extends BabyDinosaur{
@@ -23,6 +23,8 @@ public class BabyStegosaur extends BabyDinosaur{
      * @param g the gender of baby stegosaur
      * @see Dinosaur
      * @see Actor
+     * @see Gender
+     * @see Species
      * @see DinosaurCapabilities
      * @see Food
      */
@@ -60,6 +62,7 @@ public class BabyStegosaur extends BabyDinosaur{
      * @param map current GameMap
      * @return A collection of Actions.
      * @see Actor
+     * @see GameMap
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
