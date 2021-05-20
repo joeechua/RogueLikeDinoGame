@@ -75,7 +75,7 @@ public class Corpse extends PortableItem {
 
     /**
      * Get the number of turns this corpse has left on the map after being eaten
-     * @return
+     * @return int represents the remove count
      */
     public int getRemoveCount(){
         int ret = this.removeCount;
@@ -84,7 +84,7 @@ public class Corpse extends PortableItem {
 
     /**
      * Set the number of turns this corpse has left on the map after being eaten
-     * @param remC
+     * @param remC int represents the remove count
      */
     public void setRemoveCount(int remC){
         this.removeCount = remC;
