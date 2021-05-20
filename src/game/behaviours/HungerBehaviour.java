@@ -59,7 +59,7 @@ public class HungerBehaviour implements Behaviour {
                         ret = new AttackAction(carnivoreFood);
                     }
                     else if((carnivoreFood.getDisplayChar() == 'P' || carnivoreFood.getDisplayChar() == 'p')
-                    && !carnivoreFood.getOnTree()){
+                    && !carnivoreFood.getOnTree() && !carnivoreFood.isFlying()){
                         ret = new EatingAction(carnivoreFood, here);
                     }
                 }

@@ -16,15 +16,15 @@ public class LandingBehaviour implements Behaviour {
         dino = (Dinosaur) actor;
         if(dino.isFlying()){
             for(Exit exits: here.getExits()){
-                //if dino lands on tree
+                //if dino finds a tree
                 if(exits.getDestination().getGround() instanceof Tree){
                     Tree t = (Tree) exits.getDestination().getGround();
                     if(!t.hasDinosaur()){
                         return new LandingTakeOffAction(exits.getDestination(),false);
                     }
                 }
-                //if dino lands on corpse
-                else if(exits.getDestination().getItems().size() > 0){
+                //if dino finds a corpse
+                else if(exits.getDestination().getItems().size() > 0 && exits.getDestination().getActor() == null){
                     for(Item it: exits.getDestination().getItems()){
                         if(it instanceof Corpse){
                             boolean found = false;

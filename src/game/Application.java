@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.*;
 import game.actors.*;
 import game.enums.Gender;
 import game.ground.*;
+import game.items.PterodactylEgg;
 
 /**
  * The main class for the Jurassic World game.
@@ -165,11 +166,8 @@ public class Application {
 			gameMap.at(52,12).addActor(new Brachiosaur(Gender.M));
 			gameMap.at(40,14).addActor(new Brachiosaur(Gender.F));
 			gameMap.at(40,22).addActor(new Brachiosaur(Gender.F));
-			gameMap.at(41, 14).addActor(new Pterodactyl(Gender.M));
-//			Pterodactyl ptero = new Pterodactyl(Gender.F);
-//			ptero.setFlying(false);
-//			gameMap.at(40, 22).addActor(ptero);
-			gameMap.at(42,23).addActor(new Allosaur(Gender.M));
+			gameMap.at(41, 9).addActor(new Pterodactyl(Gender.M));
+			gameMap.at(22,23).addActor(new Allosaur(Gender.M));
 			gameMap.at(41, 1).addActor(new Pterodactyl(Gender.M));
 
 			world.addPlayer(player, gameMap.at(9, 4));

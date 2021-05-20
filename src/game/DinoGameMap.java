@@ -48,7 +48,8 @@ public class DinoGameMap extends GameMap {
         for(Actor actor: this.actorLocations){
             if (actor instanceof Dinosaur){
                 Dinosaur dino = (Dinosaur) actor;
-                if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
+                if(dino.isThirsty() && dino.isUnconscious()){
+                    System.out.println(dino + " wakes up after rain!");
                     dino.incWaterLevel(10);
                 }
             }
