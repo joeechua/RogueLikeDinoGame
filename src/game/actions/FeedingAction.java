@@ -1,6 +1,5 @@
 package game.actions;
 
-
 import edu.monash.fit2099.engine.*;
 import game.actors.Dinosaur;
 import game.actors.Player;
@@ -10,12 +9,18 @@ import game.items.Fruit;
 /**
  * Feeding Action for player to feed Actors.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 public class FeedingAction extends Action {
 
+    /**
+     * target dinosaurs fed by player
+     */
     private Dinosaur targetDino;
+    /**
+     * item from inventory to feed on target dinosaur
+     */
     private Item foodInventory;
 
     /**
@@ -23,6 +28,8 @@ public class FeedingAction extends Action {
      *
      * @param dino the dinosaur feed by player
      * @param item the item to feed on dinosaur
+     * @see Dinosaur
+     * @see Item
      */
     public FeedingAction(Dinosaur dino, Item item){
         this.targetDino = dino;
@@ -38,6 +45,8 @@ public class FeedingAction extends Action {
      * @see EatingAction
      * @see Actor
      * @see Player
+     * @see Points
+     * @see game.enums.Food
      * @see game.ecopoint.EcoPointWallet
      */
     @Override

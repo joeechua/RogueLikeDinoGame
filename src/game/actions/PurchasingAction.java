@@ -14,13 +14,20 @@ import game.items.*;
  */
 public class PurchasingAction extends Action {
 
+    /**
+     * price of the vending item
+     */
     private int itemPrice;
+    /**
+     * the vending item to be purchased
+     */
     private VendingItems item;
 
     /**
      * Constructor
      * @param itemPrice price of the vending item
      * @param item vending item to be purchased
+     * @see VendingItems
      */
     public PurchasingAction(int itemPrice, VendingItems item) {
         this.itemPrice = itemPrice;
@@ -34,6 +41,7 @@ public class PurchasingAction extends Action {
      * @return a description of what happened that can be displayed to the user.
      * @see EcoPointWallet
      * @see Actor
+     * @see GameMap
      * @see Player
      * @see Item
      */
@@ -69,6 +77,7 @@ public class PurchasingAction extends Action {
      * @see AllosaurEgg
      * @see StegosaurEgg
      * @see BrachiosaurEgg
+     * @see PterodactylEgg
      * @see CarnivoreMealKit
      * @see VegetarianMealKit
      */

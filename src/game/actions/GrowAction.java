@@ -6,7 +6,7 @@ import game.actors.*;
 /**
  * Grow Action for Actors.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 public class GrowAction extends Action {
@@ -21,9 +21,11 @@ public class GrowAction extends Action {
      * @see BabyBrachiosaur
      * @see BabyAllosaur
      * @see BabyStegosaur
+     * @see BabyPterodactyl
      * @see Allosaur
      * @see Brachiosaur
      * @see Stegosaur
+     * @see Pterodactyl
      * @see GameMap
      * @see Location
      */

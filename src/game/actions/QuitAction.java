@@ -7,11 +7,14 @@ import edu.monash.fit2099.engine.GameMap;
 /**
  * Quit Action for Player.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 
 public class QuitAction extends Action {
+    /**
+     * integer that represents the action
+     */
     private int action = 0;
 
     /**

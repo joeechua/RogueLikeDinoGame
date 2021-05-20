@@ -6,7 +6,7 @@ import game.items.Corpse;
 /**
  * Die Action for Actors.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 public class DieAction extends Action {
@@ -17,6 +17,7 @@ public class DieAction extends Action {
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return a description of what happened that can be displayed to the user.
+     * @see Actor
      * @see GameMap
      * @see Location
      * @see Corpse

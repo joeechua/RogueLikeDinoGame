@@ -13,15 +13,30 @@ import game.items.Fruit;
 /**
  * Eating Action for Actors.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 
 public class EatingAction extends Action {
+    /**
+     * the target food that will be eat by dinosaur
+     */
     private Item targetFood;
+    /**
+     * target dinosaurs to be eaten
+     */
     private Actor targetDino;
+    /**
+     * determine whether it is fed by player
+     */
     private boolean isFed = false;
+    /**
+     * the origin ground
+     */
     private Ground origin;
+    /**
+     * the location of the food
+     */
     private Location foodLoc;
 
     /**
@@ -29,6 +44,8 @@ public class EatingAction extends Action {
      *
      * @param targetFood the food that will be eat by dinosaur
      * @param origin ground item at current location
+     * @see Item
+     * @see Ground
      */
     public EatingAction(Item targetFood, Ground origin) {
         this.targetFood = targetFood;
@@ -40,6 +57,8 @@ public class EatingAction extends Action {
      *
      * @param targetFood the food that will be eat by dinosaur
      * @param actor the actor performing the action
+     * @see Item
+     * @see Actor
      */
     public EatingAction(Item targetFood, Actor actor) {
         this.targetFood = targetFood;
@@ -51,12 +70,21 @@ public class EatingAction extends Action {
      *
      * @param targetFood the food that will be eat by dinosaur
      * @param loc location of the targetFood
+     * @see Item
+     * @see Location
      */
     public EatingAction(Item targetFood, Location loc) {
         this.targetFood = targetFood;
         this.foodLoc = loc;
     }
 
+    /**
+     * Constructor
+     * @param targetFood the food that will be eat by dinosaur
+     * @param loc location of the targetFood
+     * @see Actor
+     * @see Location
+     */
     public EatingAction(Actor targetFood,Location loc){
         this.targetDino = targetFood;
         this.foodLoc = loc;
@@ -68,6 +96,8 @@ public class EatingAction extends Action {
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return a description of what happened that can be displayed to the user.
+     * @see Actor
+     * @see GameMap
      * @see Bush
      * @see Tree
      * @see Food

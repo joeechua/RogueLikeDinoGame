@@ -9,7 +9,7 @@ import game.items.Corpse;
 /**
  * Special Action for attacking other Actors.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 public class AttackAction extends Action {
@@ -27,6 +27,7 @@ public class AttackAction extends Action {
 	 * Constructor.
 	 * 
 	 * @param target the Actor to attack
+	 * @see Actor
 	 */
 	public AttackAction(Actor target) {
 		this.target = target;

@@ -10,7 +10,7 @@ import game.ground.Lake;
 /**
  * Drink Action for Actors (Dinosaurs)
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 

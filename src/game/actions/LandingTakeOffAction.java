@@ -11,13 +11,19 @@ import game.items.Corpse;
 /**
  * Special (Landing and Take Off) Action for Pterodactyl and BabyPterodactyl.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 
 public class LandingTakeOffAction extends Action {
 
+    /**
+     * location of landing or take off
+     */
     private Location landOrTakeOffLocation;
+    /**
+     * determine whether take off or landing
+     */
     private boolean takeOff;
 
     /**

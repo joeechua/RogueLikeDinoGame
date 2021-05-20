@@ -165,6 +165,7 @@ public class Application {
 		int bottomOfMap = belowMap.getYRange().max();
 		int rightOfMap = belowMap.getXRange().max();
 
+		// add exits for above map
 		for(int x : aboveMap.getXRange()){
 			Location loc = aboveMap.at(x, bottomOfMap);
 			loc.addExit(new Exit("South", belowMap.at(x, topOfMap), "2"));
@@ -176,6 +177,7 @@ public class Application {
 			}
 		}
 
+		// add exits for below map
 		for(int x: belowMap.getXRange()){
 			Location loc = belowMap.at(x, topOfMap);
 			loc.addExit(new Exit("North", aboveMap.at(x, bottomOfMap), "8"));

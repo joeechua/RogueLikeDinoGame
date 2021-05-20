@@ -9,16 +9,20 @@ import game.enums.Gender;
 /**
  * Mate Action for Actors
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Action
  */
 public class MateAction extends Action{
 
+    /**
+     * dinosaur target mate
+     */
     private Dinosaur mate;
 
     /**
      * Constructor
      * @param mate dinosaur target mate
+     * @see Dinosaur
      */
     public MateAction(Dinosaur mate) {
         this.mate = mate;
@@ -29,6 +33,8 @@ public class MateAction extends Action{
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return a description of what happened to the actor
+     * @see Actor
+     * @see GameMap
      * @see Dinosaur
      * @see Gender
      * @see DinosaurCapabilities
