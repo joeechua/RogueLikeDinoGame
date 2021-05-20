@@ -12,12 +12,18 @@ import java.util.Random;
 /**
  * A class that represents Bush.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Ground
  */
 
 public class Bush extends Ground{
+    /**
+     * The age of bush
+     */
     private int age = 0;
+    /**
+     * Random number generator
+     */
     private Random random = new Random();
     private ArrayList<Fruit> bushFruit;
 
@@ -57,6 +63,8 @@ public class Bush extends Ground{
      * @param direction the direction of the Ground from the Actor
      * @return A collection of Actions.
      * @see Actor
+     * @see Location
+     * @see Player
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {

@@ -1,12 +1,10 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.EatingAction;
 import game.actions.HarvestAction;
 import game.actors.Dinosaur;
 import game.actors.Player;
 import game.enums.Points;
-import game.enums.VendingItems;
 import game.items.Fruit;
 
 
@@ -16,14 +14,29 @@ import java.util.Random;
 /**
  * A class that represents Tree.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Ground
  */
 public class Tree extends Ground {
+	/**
+	 * Age of tree
+	 */
 	private int age = 0;
+	/**
+	 * Random number generator
+	 */
 	private Random random = new Random();
+	/**
+	 * ArrayList of tree fruit
+	 */
 	private ArrayList<Fruit> treeFruit;
+	/**
+	 * ArrayList of drop fruits
+	 */
 	private ArrayList<Fruit> dropFruitsArray;
+	/**
+	 * ArrayList of dinosaurs on tree
+	 */
 	private ArrayList<Dinosaur> dinosaurs;
 
 	/**
@@ -40,6 +53,8 @@ public class Tree extends Ground {
 	 * Called once per turn, so that maps can experience the passage of time.
 	 * @param location The location of the Ground
 	 * @see Location
+	 * @see Item
+	 * @see Fruit
 	 */
 	@Override
 	public void tick(Location location) {
@@ -79,6 +94,9 @@ public class Tree extends Ground {
 	 * @param direction the direction of the Ground from the Actor
 	 * @return A collection of Actions.
 	 * @see Actor
+	 * @see Location
+	 * @see Tree
+	 * @see HarvestAction
 	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
@@ -107,9 +125,21 @@ public class Tree extends Ground {
 		return treeFruit;
 	}
 
+	/**
+	 * Determine whether it has dinosaur on tree
+	 * @return a boolean, if true means there's a dinosaur on tree, false there is no dinosaur on tree
+	 */
 	public boolean hasDinosaur(){return dinosaurs.size() == 1;}
 
+	/**
+	 * Remove the dinosaur on tree
+	 */
 	public void removeDinosaur(){dinosaurs.remove(0);}
 
+	/**
+	 * Add the dinosaur on tree
+	 * @param dino the dinosaur that is on tree
+	 * @see Dinosaur
+	 */
 	public void addDinosaur(Dinosaur dino){dinosaurs.add(dino);}
 }

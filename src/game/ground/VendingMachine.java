@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * A class that represents VendingMachine.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Ground
  */
 public class VendingMachine extends Ground {
@@ -24,7 +24,7 @@ public class VendingMachine extends Ground {
         super('⌻');
         // add capability
         for (VendingItems item: VendingItems.values()){
-            addCapability(item);
+            this.addCapability(item);
         }
     }
 
@@ -46,6 +46,8 @@ public class VendingMachine extends Ground {
      * @param direction the direction of the Ground from the Actor
      * @return A collection of Actions.
      * @see Actor
+     * @see Location
+     * @see VendingItems
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {

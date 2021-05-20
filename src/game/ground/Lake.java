@@ -12,14 +12,26 @@ import java.util.Random;
 /**
  * A class that represents Lake.
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see edu.monash.fit2099.engine.Ground
  */
 
 public class Lake extends Ground {
+    /**
+     * ArrayList of fishes
+     */
     private ArrayList<Fish> fishes;
+    /**
+     * The water sips of lake
+     */
     private int waterSips;
+    /**
+     * The max number of fish can be contain in lake
+     */
     private final int MAX_NO_OF_FISH = 25;
+    /**
+     * Random number generator
+     */
     private Random random = new Random();
 
     /**
@@ -38,6 +50,8 @@ public class Lake extends Ground {
      * Called once per turn, so that lake can experience the passage of time.
      * @param location The location of the Lake Ground
      * @see Location
+     * @see Fish
+     * @see Dirt
      */
     @Override
     public void tick(Location location) {
@@ -95,6 +109,10 @@ public class Lake extends Ground {
         return waterSips > 0;
     }
 
+    /**
+     * Get the water sips of lake
+     * @return int represents the water sips of lake
+     */
     public int getWaterSips() {
         return waterSips;
     }
