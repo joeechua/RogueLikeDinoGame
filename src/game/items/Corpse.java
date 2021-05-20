@@ -12,7 +12,7 @@ import game.enums.ItemCapabilities;
 /**
  * Class for Corpse object
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see PortableItem
  */
 public class Corpse extends PortableItem {
@@ -28,6 +28,7 @@ public class Corpse extends PortableItem {
      * @param actor the actor who died and used to creates a corpse
      * @see edu.monash.fit2099.engine.Capabilities
      * @see Brachiosaur
+     * @see Pterodactyl
      * @see Dinosaur#getRotTime()
      * @see Actor
      */
@@ -72,11 +73,19 @@ public class Corpse extends PortableItem {
         return originDino;
     }
 
+    /**
+     * Get the number of turns this corpse has left on the map after being eaten
+     * @return
+     */
     public int getRemoveCount(){
         int ret = this.removeCount;
         return ret;
     }
 
+    /**
+     * Set the number of turns this corpse has left on the map after being eaten
+     * @param remC
+     */
     public void setRemoveCount(int remC){
         this.removeCount = remC;
     }

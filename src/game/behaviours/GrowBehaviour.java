@@ -12,7 +12,7 @@ import game.actors.BabyStegosaur;
 /**
  * Behaviour subclass that allows dinosaur to grow
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Behaviour
  */
 public class GrowBehaviour implements Behaviour {
@@ -34,10 +34,12 @@ public class GrowBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
         BabyDinosaur babyDino = (BabyDinosaur) actor;
+        //stegosaur or pterodactyl babies case
         if((babyDino instanceof BabyStegosaur || babyDino instanceof BabyPterodactyl) &&
                 babyDino.getTurnsSinceHatch() >= MATURE_TURN_FOR_STEG_PTERO){
             return new GrowAction();
         }
+        //other dinosaurs (allosaur and brachiosaur)
         else if(babyDino.getTurnsSinceHatch() >= MATURE_TURN_FOR_BRAC_ALLO){
             return new GrowAction();
         }

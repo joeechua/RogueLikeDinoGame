@@ -20,7 +20,7 @@ import java.util.Random;
 /**
  * Behaviour that allows dinosaur to eat or prey on other dinosaurs
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Behaviour
  */
 public class HungerBehaviour implements Behaviour {
@@ -198,7 +198,6 @@ public class HungerBehaviour implements Behaviour {
                     }
                 }
                 if (ret == null && possible != null) {
-                    System.out.println();
                     ret = possible;
                 }
                 if (ret == null) {
@@ -210,6 +209,7 @@ public class HungerBehaviour implements Behaviour {
                     if(food.canActorEnter(dino))
                         ret = new MoveActorAction(food, temp.getName());
                 }
+                //just to make sure the dinosaur doesn't go back and forth in the same two squares
                 dino.setPrevLoc(food);
                 return ret;
             }

@@ -3,7 +3,7 @@ package game.enums;
 /**
  * Collection of items available in the vending machine
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see game.ground.VendingMachine
  */
 public enum VendingItems {

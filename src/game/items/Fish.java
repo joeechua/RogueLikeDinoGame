@@ -1,14 +1,18 @@
 package game.items;
 
-import edu.monash.fit2099.engine.Item;
 
+/**
+ * Fish item to be placed in lakes
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 1.0
+ * @see PortableItem
+ */
 public class Fish extends PortableItem {
     /***
      * Constructor.
+     * @see PortableItem#PortableItem(String, char)
      */
     public Fish() {
         super("Fish", '鱼');
     }
-
-    //simple but doing this will make it easy to extend (i want to make it available in vending machine)
 }

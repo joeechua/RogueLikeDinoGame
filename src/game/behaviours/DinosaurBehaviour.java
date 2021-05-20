@@ -14,7 +14,7 @@ import game.enums.DinosaurCapabilities;
 /**
  * A behaviour subclass that contains all possible behaviours a Dinosaur can have
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see Behaviour
  */
 public class DinosaurBehaviour implements Behaviour{
@@ -38,6 +38,8 @@ public class DinosaurBehaviour implements Behaviour{
      * @see BreedBehaviour#getAction(Actor, GameMap)
      * @see HungerBehaviour#getAction(Actor, GameMap)
      * @see WanderBehaviour#getAction(Actor, GameMap)
+     * @see ThirstyBehaviour#getAction(Actor, GameMap)
+     * @see LandingBehaviour#getAction(Actor, GameMap)
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {

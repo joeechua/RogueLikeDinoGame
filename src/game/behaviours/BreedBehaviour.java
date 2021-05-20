@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * Behaviour subclass for Dinosaur breeding
  * @author Chloe Chee Xuan Lin, Chua Jo Ee
- * @version 2.0
+ * @version 3.0
  * @see game.behaviours.Behaviour
  */
 public class BreedBehaviour implements Behaviour {
@@ -44,6 +44,7 @@ public class BreedBehaviour implements Behaviour {
      * @see MateAction
      * @see Dinosaur#getClass()
      * @see BabyDinosaur
+     * @see Pterodactyl#getOnTree()
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
@@ -54,10 +55,13 @@ public class BreedBehaviour implements Behaviour {
         Action ret = null;
         for(Exit exit: here.getExits()){
             if (map.isAnActorAt(exit.getDestination())) {
+                //make sure they're not trying to mate with Player
                 if(map.getActorAt(exit.getDestination()).getDisplayChar() != '@'){
                     Dinosaur target = (Dinosaur) map.getActorAt(exit.getDestination());
+                    //if they are the same species
                     if (!target.isPregnant() && target.getDisplayChar() == dino.getDisplayChar()
                     && target.getGender() != dino.getGender() && !(target instanceof BabyDinosaur)){
+                        //if Pterodactyls are trying to mate, make sure their on a tree
                         if(target instanceof Pterodactyl){
                             Pterodactyl pteroOne = (Pterodactyl) target;
                             Pterodactyl pteroTwo = (Pterodactyl) dino;
@@ -72,6 +76,7 @@ public class BreedBehaviour implements Behaviour {
                 }
             }
         }
+        //if no breeding they'll just move closer to a target OR return null if no target
         if(ret == null){
             ret = moveCloser(dino, map);
         }
