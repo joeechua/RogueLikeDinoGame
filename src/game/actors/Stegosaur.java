@@ -52,6 +52,7 @@ public class Stegosaur extends Dinosaur {
 	 * has dinosaur capabilities herbivore
 	 * @param inputGender the gendeer of stegosaur
 	 * @see Dinosaur
+	 * @see Actor
 	 * @see Species
 	 * @see DinosaurCapabilities
 	 * @see Food

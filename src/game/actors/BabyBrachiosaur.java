@@ -1,5 +1,6 @@
 package game.actors;
 
+import edu.monash.fit2099.engine.Actor;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
 import game.enums.Gender;
@@ -19,6 +20,7 @@ public class BabyBrachiosaur extends BabyDinosaur{
      * has dinosaur capabilities herbivore and long neck
      * @param g the gender of baby brachiosaur
      * @see Dinosaur
+     * @see Actor
      * @see Species
      * @see DinosaurCapabilities
      * @see Food

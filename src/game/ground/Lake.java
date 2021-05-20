@@ -3,24 +3,30 @@ package game.ground;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import game.Application;
-import game.actors.Dinosaur;
 import game.enums.DinosaurCapabilities;
 import game.items.Fish;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * A class that represents Lake.
+ * @author Chloe Chee Xuan Lin, Chua Jo Ee
+ * @version 2.0
+ * @see edu.monash.fit2099.engine.Ground
+ */
+
 public class Lake extends Ground {
     private ArrayList<Fish> fishes;
     private int waterSips;
-    private int turns;
     private final int MAX_NO_OF_FISH = 25;
     private Random random = new Random();
 
+    /**
+     * Constructor.
+     */
     public Lake(){
         super('~');
-        turns = 0;
         waterSips = 25;
         fishes = new ArrayList<>();
         for(int i = 1; i <= 5; i++){
@@ -28,36 +34,35 @@ public class Lake extends Ground {
         }
     }
 
+    /**
+     * Called once per turn, so that lake can experience the passage of time.
+     * @param location The location of the Lake Ground
+     * @see Location
+     */
     @Override
     public void tick(Location location) {
         super.tick(location);
-        turns ++;
-//        waterSips--;
-//        if (turns % 10 == 0 && random.nextDouble() <= 0.2){
-//            float rainfall = (float) (((random.nextInt(6)) + 1) * 0.1);
-//            incWaterSips((int) (rainfall * 20));
-//            for(Actor actor: Application.actLoc){
-//                if(actor instanceof Dinosaur){
-//                    Dinosaur dino = (Dinosaur) actor;
-//                    if(dino.isThirsty() && dino.isUnconscious() && !dino.isHungry()){
-//                        dino.incWaterLevel(10);
-//                        //make it conscious
-//                    }
-//                }
-//
-//            }
-//        }
+        waterSips--;
 
         // add new fish
         if(fishes.size() < MAX_NO_OF_FISH && random.nextDouble() <= 0.6){
             fishes.add(new Fish());
         }
 
+        // lake drys out
         if(!gotWater()){
             location.setGround(new Dirt());
         }
     }
 
+    /**
+     * Returns true if an Actor can enter lake
+     *
+     * @param actor the Actor who might be moving to the lake
+     * @return true if the Actor can enter lake
+     * @see Actor
+     * @see DinosaurCapabilities
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         if(actor.hasCapability(DinosaurCapabilities.FLY)){
@@ -99,7 +104,7 @@ public class Lake extends Ground {
      * @param incValue the increment value
      */
     public void incWaterSips(int incValue){
-        waterSips = getWaterSips()+incValue;
+        this.waterSips = getWaterSips() + incValue;
     }
 
     /**
@@ -107,10 +112,7 @@ public class Lake extends Ground {
      * @param decValue the decrement value
      */
     public void decWaterSips(int decValue){
-        waterSips = Math.max(getWaterSips()-decValue, 0);
+        this.waterSips = Math.max(getWaterSips()-decValue, 0);
     }
 
-    public int getTurns() {
-        return turns;
-    }
 }

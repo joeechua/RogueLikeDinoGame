@@ -1,13 +1,10 @@
 package game.actors;
 
 import edu.monash.fit2099.engine.*;
-import game.behaviours.Behaviour;
 import game.enums.DinosaurCapabilities;
 import game.enums.Food;
 import game.enums.Gender;
 import game.enums.Species;
-
-import java.util.ArrayList;
 
 /**
  * A carnivorous dinosaur (Allosaur).
@@ -47,6 +44,7 @@ public class Allosaur extends Dinosaur {
      * All Allosaurs are represented by a 'A' and have 100 hit points.
      * has dinosaur capabilities carnivore
      * @param inputGender gender of the dinosaur
+     * @see Actor
      * @see Dinosaur
      * @see Species
      * @see DinosaurCapabilities

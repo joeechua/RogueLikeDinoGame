@@ -42,6 +42,7 @@ public class Brachiosaur extends Dinosaur {
      * has dinosaur capabilities herbivore and long neck
      * @param inputGender the gender of brachiosaur
      * @see Dinosaur
+     * @see Actor
      * @see Species
      * @see DinosaurCapabilities
      * @see Food
