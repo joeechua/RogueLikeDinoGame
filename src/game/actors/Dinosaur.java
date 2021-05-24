@@ -184,14 +184,9 @@ public abstract class Dinosaur extends Actor {
             pregnancyTurns++;
         }
 
-        // decrease food level for each tick
-        if(foodLevel > 0){
+        // decrease food and water level for each tick
+        if(foodLevel > 0 && waterLevel > 0){
             foodLevel--;
-            unconsciousTime = 0;
-        }
-
-        // decrease water level for each tick
-        if(waterLevel > 0){
             waterLevel--;
             unconsciousTime = 0;
         }
