@@ -146,7 +146,6 @@ public class Application {
 			gameMap.at(41, 1).addActor(new Pterodactyl(Gender.M));
 
 			world.addPlayer(player, gameMap.at(9, 4));
-			System.out.println("world class: " + world.getClass());
 			world.run();
 		}
 		while(!endGame);
