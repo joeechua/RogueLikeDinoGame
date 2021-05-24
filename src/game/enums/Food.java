@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public enum Food {
     STEG_EGG(10, StegosaurEgg.class, false),
     BRACH_EGG(10, BrachiosaurEgg.class, false),
-    ALLO_EGG(10, Allosaur.class, false),
+    ALLO_EGG(10, AllosaurEgg.class, false),
     BRACH_CORPSE(100, Corpse.class, false),
     CORPSE(50, Corpse.class, false),
     PTERO_CORPSE(30, Pterodactyl.class, false),

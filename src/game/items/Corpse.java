@@ -39,13 +39,13 @@ public class Corpse extends PortableItem {
         capabilities.addCapability(ItemCapabilities.EATEN);
         if(dino instanceof Brachiosaur){
             capabilities.addCapability(ItemCapabilities.BRACH);
-            removeCount = 10;
+            removeCount = BRACH_CORPSE_COUNT;
         }
         else if(dino instanceof Pterodactyl){
-            removeCount = 3;
+            removeCount = PTERO_CORPSE_COUNT;
         }
         else {
-            removeCount = 5;
+            removeCount = OTHER_CORPSE_COUNT;
         }
         this.originDino = dino;
     }

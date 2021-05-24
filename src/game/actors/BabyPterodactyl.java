@@ -36,7 +36,7 @@ public class BabyPterodactyl extends BabyDinosaur{
         setMinFoodLevel(90);
         setMaxFoodLevel(100);
         setMaxWaterLevel(100);
-        setMaxUnconsciousTime(15);
+        setMaxUnconsciousTimeFL(15);
         setRotTime(20);
         squares = 30;
         isFlying = true;

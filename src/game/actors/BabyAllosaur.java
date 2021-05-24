@@ -36,7 +36,7 @@ public class BabyAllosaur extends BabyDinosaur{
         setFoodLevel(20);
         setMinFoodLevel(90);
         setMaxFoodLevel(100);
-        setMaxUnconsciousTime(20);
+        setMaxUnconsciousTimeFL(20);
         setMaxWaterLevel(100);
         setRotTime(20);
     }

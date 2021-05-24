@@ -35,7 +35,7 @@ public class BabyBrachiosaur extends BabyDinosaur{
         setFoodLevel(10);
         setMinFoodLevel(140);
         setMaxFoodLevel(160);
-        setMaxUnconsciousTime(15);
+        setMaxUnconsciousTimeFL(15);
         setRotTime(40);
         setMaxWaterLevel(200);
     }

@@ -54,7 +54,7 @@ public class Pterodactyl extends Dinosaur{
         setMinFoodLevel(90);
         setMaxFoodLevel(100);
         setMaxWaterLevel(100);
-        setMaxUnconsciousTime(15);
+        setMaxUnconsciousTimeFL(15);
         setRotTime(20);
         setRemoveCount(3);
         squares = 30;

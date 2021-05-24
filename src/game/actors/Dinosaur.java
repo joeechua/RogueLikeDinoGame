@@ -61,9 +61,13 @@ public abstract class Dinosaur extends Actor {
      */
     protected int unconsciousTime;
     /**
-     * max unconscious time before dying
+     * max unconscious time before dying when foodlevel == 0
      */
-    protected int maxUnconsciousTime;
+    protected int maxUnconsciousTimeFL;
+    /**
+     * max unconscious time before dying when waterlevel == 0
+     */
+    protected int maxUnconsciousTimeWL;
     /**
      * rot time for corpse
      */
@@ -123,7 +127,7 @@ public abstract class Dinosaur extends Actor {
         edibleFoodList = new ArrayList<>();
         setWaterLevel(60);
         setMinWaterLevel(40);
-
+        setMaxUnconsciousTimeWL(15);
         addBehaviour(new DinosaurBehaviour());
 
         // if adult add breed behaviour
@@ -168,7 +172,6 @@ public abstract class Dinosaur extends Actor {
             return new HungerBehaviour().getAction(this,map);
         }
 
-        System.out.println(this.getName() + " is standing on: " + map.locationOf(this).getGround());
         return new DinosaurBehaviour().getAction(this, map);
     }
 
@@ -367,7 +370,7 @@ public abstract class Dinosaur extends Actor {
      * @return a boolean, if true dino is dead, false dino is alive
      */
     public boolean isDead(){
-        return (getUnconsciousTime() >= getMaxUnconsciousTime() || hitPoints <= 0);
+        return (getUnconsciousTime() >= getMaxUnconsciousTimeFL() || getUnconsciousTime() >= getMaxUnconsciousTimeWL() ||hitPoints <= 0);
     }
 
     /**
@@ -523,16 +526,36 @@ public abstract class Dinosaur extends Actor {
         return unconsciousTime;
     }
 
-    public void setMaxUnconsciousTime(int maxUnconsciousTime) {
-        this.maxUnconsciousTime = maxUnconsciousTime;
+    /**
+     * Set the max unconscious time of dinosaur when food level is 0
+     * @param maxUnconsciousTimeFL represents max unconscious time of dinosaur when food level is 0
+     */
+    public void setMaxUnconsciousTimeFL(int maxUnconsciousTimeFL) {
+        this.maxUnconsciousTimeFL = maxUnconsciousTimeFL;
     }
 
     /**
-     * Get the max unconscious time of dinosaur
-     * @return int represents max unconscious time of dinosaur
+     * Get the max unconscious time of dinosaur when food level is 0
+     * @return int represents max unconscious time of dinosaur when food level is 0
      */
-    public int getMaxUnconsciousTime() {
-        return maxUnconsciousTime;
+    public int getMaxUnconsciousTimeFL() {
+        return maxUnconsciousTimeFL;
+    }
+
+    /**
+     * Get the max unconscious time of dinosaur when water level is 0
+     * @return int represents max unconscious time of dinosaur when water level is 0
+     */
+    public int getMaxUnconsciousTimeWL() {
+        return maxUnconsciousTimeWL;
+    }
+
+    /**
+     * Set the max unconscious time of dinosaur when water level is 0
+     * @param maxUnconsciousTimeWL represents max unconscious time of dinosaur when water level is 0
+     */
+    public void setMaxUnconsciousTimeWL(int maxUnconsciousTimeWL) {
+        this.maxUnconsciousTimeWL = maxUnconsciousTimeWL;
     }
 
     // Pregnancy Turns

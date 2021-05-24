@@ -38,7 +38,7 @@ public class BabyStegosaur extends BabyDinosaur{
         setFoodLevel(10);
         setMinFoodLevel(90);
         setMaxFoodLevel(100);
-        setMaxUnconsciousTime(20);
+        setMaxUnconsciousTimeFL(20);
         setMaxWaterLevel(100);
         setRotTime(20);
     }
