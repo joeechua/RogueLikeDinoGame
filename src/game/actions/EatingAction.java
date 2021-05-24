@@ -6,8 +6,10 @@ import game.actors.Dinosaur;
 import game.actors.Pterodactyl;
 import game.enums.Food;
 import game.ground.Bush;
+import game.ground.Lake;
 import game.ground.Tree;
 import game.items.Corpse;
+import game.items.Fish;
 import game.items.Fruit;
 
 /**
@@ -123,6 +125,13 @@ public class EatingAction extends Action {
                 t.getTreeFruit().remove(0);
             }
         }
+        // origin ground has lake
+        else if(origin instanceof Lake && targetFood instanceof Fish){
+            Lake l = (Lake) origin;
+            if(l.gotFish()){
+                l.getFish().remove(0);
+            }
+        }
         else if(targetDino != null){
             foodLoc.map().removeActor(targetDino);
         }
@@ -165,6 +174,11 @@ public class EatingAction extends Action {
                     else{
                         nutritionValue = enumFood.getUpLevel("CORPSE");
                     }
+                }
+                // eat fish
+                else if(targetFood.getClass() == Fish.class){
+                    nutritionValue = enumFood.getUpLevel("FISH");
+                    dino.incWaterLevel(30);
                 }
                 // eats egg
                 else {
